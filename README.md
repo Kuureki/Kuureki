@@ -33,13 +33,3 @@
 </p>
 
 <br />
-
-<div align="center">
-  <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Kuureki&theme=github_dark" alt="profile details"/>
-</div>
-
-<br/>
-
-<div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=ffffff&height=100&section=footer" width="100%" alt="footer wave" />
-</div>
