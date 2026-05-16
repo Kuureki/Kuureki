@@ -10,8 +10,8 @@ import {
   TimerIcon,
   CursorArrowIcon,
 } from '@radix-ui/react-icons';
+import { useLanyard } from 'use-lanyard';
 
-import { useLanyard } from '@/components/LanyardProvider';
 import Contact from '@/components/Contact';
 import CurrentObsession from '@/components/CurrentObsession';
 import Footer from '@/components/Footer';
@@ -60,7 +60,7 @@ const activityTypeLabels: Record<number, string> = {
 };
 
 export default function ActivityPage() {
-  const { presence, isLoading, error } = useLanyard();
+  const { data: presence, isLoading } = useLanyard(DISCORD_ID);
 
   const discordUser = presence?.discord_user;
   const status = presence?.discord_status ?? 'offline';
@@ -102,7 +102,7 @@ export default function ActivityPage() {
 
             <div className="mt-12 flex flex-col gap-6">
               {/* Discord Profile Card */}
-              <div className="border-border overflow-hidden rounded-[10px] border bg-bg-2">
+              <div className="border-border bg-bg-2 overflow-hidden rounded-[10px] border">
                 {nameplateUrl && (
                   <div
                     className="h-[72px] w-full bg-cover bg-center"
@@ -112,7 +112,7 @@ export default function ActivityPage() {
                     }}
                   />
                 )}
-                <div className="px-[1.6rem] pb-[1.6rem] pt-4">
+                <div className="px-[1.6rem] pt-4 pb-[1.6rem]">
                   <div className="flex items-start gap-4">
                     <div className="relative flex-shrink-0">
                       <img
@@ -175,7 +175,7 @@ export default function ActivityPage() {
 
               {/* Spotify Card */}
               {spotify && (
-                <div className="border-border rounded-[10px] border bg-bg-2 px-[1.6rem] py-[1.6rem]">
+                <div className="border-border bg-bg-2 rounded-[10px] border px-[1.6rem] py-[1.6rem]">
                   <div className="text-text-dim mb-3 flex items-center gap-2 font-mono text-[0.68rem] tracking-[0.1em] uppercase">
                     <SpeakerLoudIcon className="h-3.5 w-3.5" />
                     Listening to Spotify
@@ -192,12 +192,8 @@ export default function ActivityPage() {
                       <div className="text-text mb-1 text-[0.95rem] font-medium">
                         {spotify.song}
                       </div>
-                      <div className="text-text-muted text-[0.825rem]">
-                        {spotify.artist}
-                      </div>
-                      <div className="text-text-dim mt-1 text-[0.75rem]">
-                        on {spotify.album}
-                      </div>
+                      <div className="text-text-muted text-[0.825rem]">{spotify.artist}</div>
+                      <div className="text-text-dim mt-1 text-[0.75rem]">on {spotify.album}</div>
                     </div>
                   </div>
                 </div>
@@ -211,7 +207,7 @@ export default function ActivityPage() {
                   return (
                     <div
                       key={activity.id}
-                      className="border-border rounded-[10px] border bg-bg-2 px-[1.6rem] py-[1.6rem]"
+                      className="border-border bg-bg-2 rounded-[10px] border px-[1.6rem] py-[1.6rem]"
                     >
                       <div className="text-text-dim mb-3 flex items-center gap-2 font-mono text-[0.68rem] tracking-[0.1em] uppercase">
                         <ActivityIcon className="h-3.5 w-3.5" />
@@ -251,7 +247,7 @@ export default function ActivityPage() {
                 .map((activity) => (
                   <div
                     key={activity.id}
-                    className="border-border rounded-[10px] border bg-bg-2 px-[1.6rem] py-[1.6rem]"
+                    className="border-border bg-bg-2 rounded-[10px] border px-[1.6rem] py-[1.6rem]"
                   >
                     <div className="text-text-dim mb-3 flex items-center gap-2 font-mono text-[0.68rem] tracking-[0.1em] uppercase">
                       <PersonIcon className="h-3.5 w-3.5" />
@@ -264,15 +260,13 @@ export default function ActivityPage() {
                 ))}
 
               {activities.length === 0 && !spotify && !isLoading && (
-                <div className="border-border rounded-[10px] border bg-bg-2 px-[1.6rem] py-[1.6rem]">
-                  <div className="text-text-dim text-[0.875rem]">
-                    No active activities.
-                  </div>
+                <div className="border-border bg-bg-2 rounded-[10px] border px-[1.6rem] py-[1.6rem]">
+                  <div className="text-text-dim text-[0.875rem]">No active activities.</div>
                 </div>
               )}
 
               {/* GitHub Contribution Heatmap */}
-              <div className="border-border rounded-[10px] border bg-bg-2 px-[1.6rem] py-[1.6rem]">
+              <div className="border-border bg-bg-2 rounded-[10px] border px-[1.6rem] py-[1.6rem]">
                 <GitHubHeatmap username={GITHUB_USERNAME} />
               </div>
 
