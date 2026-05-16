@@ -59,6 +59,35 @@ const activityTypeLabels: Record<number, string> = {
   5: 'Competing in',
 };
 
+function resolveDiscordImage(applicationId: string, asset: string): string {
+  if (asset.startsWith('mp:external')) {
+    return `https://media.discordapp.net/${asset.replace('mp:', '')}`;
+  }
+  return `https://cdn.discordapp.com/app-assets/${applicationId}/${asset}.png`;
+}
+
+function formatTimestamps(start?: number, end?: number): string | null {
+  if (!start) return null;
+  const now = Date.now();
+  const startDate = new Date(start);
+  if (end) {
+    const elapsed = now - start;
+    const total = end - start;
+    const remaining = total - elapsed;
+    if (remaining <= 0) return null;
+    const mins = Math.floor(remaining / 60000);
+    const hrs = Math.floor(mins / 60);
+    if (hrs > 0) return `${hrs}h ${mins % 60}m left`;
+    return `${mins}m left`;
+  }
+  const elapsed = now - start;
+  const mins = Math.floor(elapsed / 60000);
+  const hrs = Math.floor(mins / 60);
+  if (hrs > 0) return `${hrs}h ${mins % 60}m elapsed`;
+  if (mins > 0) return `${mins}m elapsed`;
+  return 'Just started';
+}
+
 export default function ActivityPage() {
   const { presence, isLoading } = useLanyard();
 
@@ -212,6 +241,23 @@ export default function ActivityPage() {
                 .filter((a) => a.name !== 'Spotify' && a.name !== 'Custom Status')
                 .map((activity) => {
                   const ActivityIcon = activityTypeIcons[activity.type] ?? CursorArrowIcon;
+                  const activityAssets = activity.assets;
+
+                  let largeImageSrc: string | null = null;
+                  let smallImageSrc: string | null = null;
+
+                  if (activityAssets?.large_image && activity.application_id) {
+                    largeImageSrc = resolveDiscordImage(activity.application_id, activityAssets.large_image);
+                  }
+                  if (activityAssets?.small_image && activity.application_id) {
+                    smallImageSrc = resolveDiscordImage(activity.application_id, activityAssets.small_image);
+                  }
+
+                  const timeInfo = formatTimestamps(
+                    activity.timestamps?.start,
+                    activity.timestamps?.end,
+                  );
+
                   return (
                     <div
                       key={activity.id}
@@ -222,12 +268,21 @@ export default function ActivityPage() {
                         {activityTypeLabels[activity.type] ?? 'Using'}
                       </div>
                       <div className="flex items-start gap-4">
-                        {activity.assets?.large_image && (
-                          <img
-                            src={`https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`}
-                            alt=""
-                            className="h-16 w-16 flex-shrink-0 rounded-md"
-                          />
+                        {largeImageSrc && (
+                          <div className="relative h-16 w-16 flex-shrink-0">
+                            <img
+                              src={largeImageSrc}
+                              alt=""
+                              className="h-16 w-16 rounded-md"
+                            />
+                            {smallImageSrc && (
+                              <img
+                                src={smallImageSrc}
+                                alt=""
+                                className="border-bg-2 absolute -right-1 -bottom-1 h-6 w-6 rounded-full border-2"
+                              />
+                            )}
+                          </div>
                         )}
                         <div className="flex-1">
                           <div className="text-text mb-1 text-[0.95rem] font-medium">
@@ -241,6 +296,11 @@ export default function ActivityPage() {
                           {activity.state && (
                             <div className="text-text-dim mt-1 text-[0.75rem]">
                               {activity.state}
+                            </div>
+                          )}
+                          {timeInfo && (
+                            <div className="text-text-dim mt-1 font-mono text-[0.65rem]">
+                              {timeInfo}
                             </div>
                           )}
                         </div>
