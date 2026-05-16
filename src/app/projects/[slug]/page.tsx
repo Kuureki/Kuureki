@@ -1,5 +1,5 @@
-import type { Metadata } from 'next';
 import { ArrowLeftIcon, ExternalLinkIcon, ArrowRightIcon } from '@radix-ui/react-icons';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import Contact from '@/components/Contact';
@@ -63,9 +63,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-text-dim transition-colors duration-150 hover:text-accent"
+                    className="text-text-dim hover:text-accent transition-colors duration-150"
                   >
-                    <ExternalLinkIcon className="w-4 h-4" />
+                    <ExternalLinkIcon className="h-4 w-4" />
                   </a>
                 )}
                 <span
@@ -102,11 +102,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 rel="noopener noreferrer"
                 className="group mb-12 inline-flex items-center gap-3 no-underline"
               >
-                <div className="bg-text hover:bg-[#d0d0d8] rounded-[9px] px-[1.2rem] py-[0.6rem] text-[0.825rem] font-medium text-bg transition-all duration-150">
+                <div className="bg-text text-bg rounded-[9px] px-[1.2rem] py-[0.6rem] text-[0.825rem] font-medium transition-all duration-150 hover:bg-[#d0d0d8]">
                   Visit {project.name}
                 </div>
-                <div className="text-text-muted group-hover:text-text group-hover:translate-x-0.5 transition-all duration-150">
-                  <ArrowRightIcon className="w-4 h-4" />
+                <div className="text-text-muted group-hover:text-text transition-all duration-150 group-hover:translate-x-0.5">
+                  <ArrowRightIcon className="h-4 w-4" />
                 </div>
               </a>
             )}

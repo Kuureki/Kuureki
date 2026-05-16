@@ -9,7 +9,8 @@ import { SITE } from '@/lib/config';
 
 export const metadata: Metadata = {
   title: `Writing — ${SITE.name}`,
-  description: 'Engineering blog. Deep dives into architecture, product decisions, and technical challenges.',
+  description:
+    'Engineering blog. Deep dives into architecture, product decisions, and technical challenges.',
 };
 
 export default function BlogIndexPage() {
@@ -47,7 +48,7 @@ export default function BlogIndexPage() {
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
-                  className={`border-border group border-b py-[1.5rem] no-underline transition-colors duration-150 hover:bg-bg-2/40 ${idx === 0 ? 'border-border border-t' : ''}`}
+                  className={`border-border group hover:bg-bg-2/40 border-b py-[1.5rem] no-underline transition-colors duration-150 ${idx === 0 ? 'border-border border-t' : ''}`}
                 >
                   <div className="flex items-start gap-[1.25rem]">
                     <div className="flex-1">
@@ -55,14 +56,12 @@ export default function BlogIndexPage() {
                         <span className="text-text group-hover:text-accent text-[1.05rem] font-medium transition-colors duration-150">
                           {post.title}
                         </span>
-                        <span className="text-text-dim font-mono text-[0.65rem]">
-                          {post.read}
-                        </span>
+                        <span className="text-text-dim font-mono text-[0.65rem]">{post.read}</span>
                       </div>
                       <div className="text-text-dim mb-[0.5rem] flex items-center gap-2 text-[0.75rem]">
                         <span>{post.date}</span>
                         <span className="text-border">·</span>
-                        <span className="rounded-sm border border-border px-1.5 py-[0.1rem] font-mono text-[0.6rem]">
+                        <span className="border-border rounded-sm border px-1.5 py-[0.1rem] font-mono text-[0.6rem]">
                           {post.category}
                         </span>
                       </div>
@@ -73,10 +72,8 @@ export default function BlogIndexPage() {
             </div>
 
             {posts.length === 0 && (
-              <div className="border-border mt-8 rounded-[10px] border bg-bg-2 px-[1.6rem] py-[1.6rem]">
-                <div className="text-text-dim text-[0.875rem]">
-                  No posts yet. Check back soon.
-                </div>
+              <div className="border-border bg-bg-2 mt-8 rounded-[10px] border px-[1.6rem] py-[1.6rem]">
+                <div className="text-text-dim text-[0.875rem]">No posts yet. Check back soon.</div>
               </div>
             )}
           </div>

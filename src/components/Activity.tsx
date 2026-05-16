@@ -15,8 +15,7 @@ function getAssetUrl(
   activity: NonNullable<ReturnType<typeof useLanyard>['presence']>['activities'][number],
 ) {
   const assets = activity.assets;
-  if (!assets) 
-return null;
+  if (!assets) return null;
 
   if (assets.large_image?.startsWith('spotify:')) {
     return `https://i.scdn.co/image/${assets.large_image.replace('spotify:', '')}`;
@@ -46,14 +45,13 @@ export default function Activity() {
       { threshold: 0.1, rootMargin: '0px 0px -40px 0px' },
     );
 
-    if (ref.current) 
-observer.observe(ref.current);
+    if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
 
   const spotify = presence?.spotify;
   const isListeningToSpotify = presence?.listening_to_spotify;
-  const activities = presence?.activities?.filter(a => a.name !== 'Spotify') ?? [];
+  const activities = presence?.activities?.filter((a) => a.name !== 'Spotify') ?? [];
   const isOnMobile = presence?.active_on_discord_mobile;
   const isOnDesktop = presence?.active_on_discord_desktop;
 
@@ -122,9 +120,7 @@ observer.observe(ref.current);
                     {spotify.song ?? 'Unknown track'}
                   </div>
                   <div className="text-text-muted truncate text-[0.825rem]">
-                    {spotify.artist ?? 'Unknown artist'}
-{' '}
-—{spotify.album ?? 'Unknown album'}
+                    {spotify.artist ?? 'Unknown artist'} —{spotify.album ?? 'Unknown album'}
                   </div>
                   {spotify.timestamps?.start && spotify.timestamps?.end && (
                     <div className="mt-2 flex items-center gap-2">
@@ -134,17 +130,15 @@ observer.observe(ref.current);
                           style={{
                             width: `${Math.min(
                               100,
-                              ((Date.now() - spotify.timestamps.start)
-                                / (spotify.timestamps.end - spotify.timestamps.start))
-                                * 100,
+                              ((Date.now() - spotify.timestamps.start) /
+                                (spotify.timestamps.end - spotify.timestamps.start)) *
+                                100,
                             )}%`,
                           }}
                         />
                       </div>
                       <span className="text-text-dim font-mono text-[0.65rem]">
-                        {formatTime(Date.now() - spotify.timestamps.start)}
-{' '}
-/{' '}
+                        {formatTime(Date.now() - spotify.timestamps.start)} /{' '}
                         {formatTime(spotify.timestamps.end - spotify.timestamps.start)}
                       </span>
                     </div>
@@ -153,11 +147,11 @@ observer.observe(ref.current);
               </div>
             )}
 
-            {activities.length > 0
-              && activities.map((activity) => {
+            {activities.length > 0 &&
+              activities.map((activity) => {
                 const imageUrl = getAssetUrl(activity);
-                const typeLabel
-                  = activity.type === 0
+                const typeLabel =
+                  activity.type === 0
                     ? 'Playing'
                     : activity.type === 1
                       ? 'Streaming'
@@ -202,10 +196,8 @@ observer.observe(ref.current);
                       )}
                       {activity.timestamps?.start && (
                         <div className="text-text-dim mt-2 font-mono text-[0.65rem]">
-                          {formatTime(Date.now() - activity.timestamps.start)}
-{' '}
-elapsed
-</div>
+                          {formatTime(Date.now() - activity.timestamps.start)} elapsed
+                        </div>
                       )}
                     </div>
                   </div>

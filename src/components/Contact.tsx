@@ -20,8 +20,7 @@ export default function Contact() {
       { threshold: 0.1, rootMargin: '0px 0px -40px 0px' },
     );
 
-    if (ref.current) 
-observer.observe(ref.current);
+    if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
 
@@ -53,7 +52,7 @@ observer.observe(ref.current);
               </p>
             </div>
             <div className="flex flex-col gap-2">
-              {links.map(link => (
+              {links.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}

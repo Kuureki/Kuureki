@@ -22,23 +22,23 @@ export const BADGES = [
 
 export const QUOTES = [
   {
-    text: 'The world isn\'t perfect. But it\'s there for us, doing the best it can. That\'s what makes it so damn beautiful.',
+    text: "The world isn't perfect. But it's there for us, doing the best it can. That's what makes it so damn beautiful.",
     source: 'Fullmetal Alchemist',
   },
   {
-    text: 'If you don\'t take risks, you can\'t create a future.',
+    text: "If you don't take risks, you can't create a future.",
     source: 'Monkey D. Luffy, One Piece',
   },
   {
-    text: 'People\'s lives don\'t end when they die. It ends when they lose faith.',
+    text: "People's lives don't end when they die. It ends when they lose faith.",
     source: 'Itachi Uchiha, Naruto',
   },
   {
-    text: 'Whatever you lose, you\'ll find it again. But what you throw away you\'ll never get back.',
+    text: "Whatever you lose, you'll find it again. But what you throw away you'll never get back.",
     source: 'Kenshin Himura, Rurouni Kenshin',
   },
   {
-    text: 'It\'s not the face that makes someone a monster, it\'s the choices they make with their lives.',
+    text: "It's not the face that makes someone a monster, it's the choices they make with their lives.",
     source: 'Naruto Uzumaki',
   },
   {

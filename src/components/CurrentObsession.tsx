@@ -40,7 +40,7 @@ export default function CurrentObsession({ obsession }: CurrentObsessionProps) {
   const Icon = typeIcons[obsession.type] ?? MagicWandIcon;
 
   return (
-    <div className="border-border rounded-[10px] border bg-bg-2 px-[1.6rem] py-[1.6rem]">
+    <div className="border-border bg-bg-2 rounded-[10px] border px-[1.6rem] py-[1.6rem]">
       <div className="text-text-dim mb-4 font-mono text-[0.68rem] tracking-[0.1em] uppercase">
         {typeLabels[obsession.type] ?? 'Current obsession'}
       </div>

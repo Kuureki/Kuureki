@@ -10,8 +10,7 @@ import {
   TimerIcon,
   CursorArrowIcon,
 } from '@radix-ui/react-icons';
-import { useLanyard } from 'use-lanyard';
-
+import { useLanyard } from '@/components/LanyardProvider';
 import Contact from '@/components/Contact';
 import CurrentObsession from '@/components/CurrentObsession';
 import Footer from '@/components/Footer';
@@ -24,6 +23,7 @@ import {
   getAvatarUrl,
   getNameplateColor,
   getNameplateUrl,
+  getPrimaryGuildBadgeUrl,
   getPrimaryGuildTag,
 } from '@/lib/lanyard';
 
@@ -60,7 +60,7 @@ const activityTypeLabels: Record<number, string> = {
 };
 
 export default function ActivityPage() {
-  const { data: presence, isLoading } = useLanyard(DISCORD_ID);
+  const { presence, isLoading } = useLanyard();
 
   const discordUser = presence?.discord_user;
   const status = presence?.discord_status ?? 'offline';
@@ -72,6 +72,7 @@ export default function ActivityPage() {
   const nameplateUrl = getNameplateUrl(presence?.discord_user);
   const nameplateColor = getNameplateColor(presence?.discord_user);
   const primaryGuildTag = getPrimaryGuildTag(presence?.discord_user);
+  const primaryGuildBadgeUrl = getPrimaryGuildBadgeUrl(presence?.discord_user);
 
   return (
     <>
@@ -138,12 +139,19 @@ export default function ActivityPage() {
                         </h2>
                         {primaryGuildTag && (
                           <span
-                            className="rounded-sm border px-2 py-[0.1rem] font-mono text-[0.6rem]"
+                            className="inline-flex items-center gap-1.5 rounded-sm border px-2 py-[0.1rem] font-mono text-[0.6rem]"
                             style={{
                               borderColor: nameplateColor ? `${nameplateColor}33` : undefined,
                               color: nameplateColor ?? undefined,
                             }}
                           >
+                            {primaryGuildBadgeUrl && (
+                              <img
+                                src={primaryGuildBadgeUrl}
+                                alt=""
+                                className="h-3.5 w-3.5"
+                              />
+                            )}
                             {primaryGuildTag}
                           </span>
                         )}

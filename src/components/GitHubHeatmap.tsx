@@ -12,13 +12,7 @@ interface GitHubHeatmapProps {
   username: string;
 }
 
-const levelColors = [
-  'bg-bg-3',
-  'bg-green/20',
-  'bg-green/35',
-  'bg-green/55',
-  'bg-green/75',
-];
+const levelColors = ['bg-bg-3', 'bg-green/20', 'bg-green/35', 'bg-green/55', 'bg-green/75'];
 
 const levelColorsHover = [
   'hover:bg-bg-3',
@@ -45,17 +39,12 @@ function generateMockContributions(): ContributionDay[] {
     let count = 0;
     if (!isWeekend) {
       const rand = Math.random();
-      if (rand > 0.6) 
-count = Math.floor(Math.random() * 8) + 1;
-      if (rand > 0.85) 
-count = Math.floor(Math.random() * 12) + 4;
-      if (isRecent && rand > 0.5) 
-count = Math.floor(Math.random() * 6) + 1;
-    }
- else {
+      if (rand > 0.6) count = Math.floor(Math.random() * 8) + 1;
+      if (rand > 0.85) count = Math.floor(Math.random() * 12) + 4;
+      if (isRecent && rand > 0.5) count = Math.floor(Math.random() * 6) + 1;
+    } else {
       const rand = Math.random();
-      if (rand > 0.8) 
-count = Math.floor(Math.random() * 3) + 1;
+      if (rand > 0.8) count = Math.floor(Math.random() * 3) + 1;
     }
 
     const level = count === 0 ? 0 : count <= 3 ? 1 : count <= 6 ? 2 : count <= 9 ? 3 : 4;
@@ -72,7 +61,12 @@ count = Math.floor(Math.random() * 3) + 1;
 
 export default function GitHubHeatmap({ username }: GitHubHeatmapProps) {
   const [contributions, setContributions] = useState<ContributionDay[]>([]);
-  const [tooltip, setTooltip] = useState<{ date: string; count: number; x: number; y: number } | null>(null);
+  const [tooltip, setTooltip] = useState<{
+    date: string;
+    count: number;
+    x: number;
+    y: number;
+  } | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -99,10 +93,8 @@ export default function GitHubHeatmap({ username }: GitHubHeatmapProps) {
           GitHub Contributions
         </div>
         <div className="text-text-muted font-mono text-[0.75rem]">
-          {totalContributions.toLocaleString()}
-{' '}
-contributions in the last year
-</div>
+          {totalContributions.toLocaleString()} contributions in the last year
+        </div>
       </div>
 
       <div className="overflow-x-auto">
@@ -141,18 +133,16 @@ contributions in the last year
 
       {tooltip && (
         <div
-          className="pointer-events-none absolute z-10 rounded-md border border-border bg-bg-2 px-2.5 py-1.5 shadow-lg"
+          className="border-border bg-bg-2 pointer-events-none absolute z-10 rounded-md border px-2.5 py-1.5 shadow-lg"
           style={{
             left: tooltip.x - 40,
             top: tooltip.y - 40,
           }}
         >
-          <div className="text-text whitespace-nowrap font-mono text-[0.7rem]">
-            {tooltip.count}
-{' '}
-contribution{tooltip.count !== 1 ? 's' : ''}
+          <div className="text-text font-mono text-[0.7rem] whitespace-nowrap">
+            {tooltip.count} contribution{tooltip.count !== 1 ? 's' : ''}
           </div>
-          <div className="text-text-dim whitespace-nowrap font-mono text-[0.65rem]">
+          <div className="text-text-dim font-mono text-[0.65rem] whitespace-nowrap">
             {tooltip.date}
           </div>
         </div>

@@ -5,27 +5,27 @@ export interface AboutCard {
 
 export const ABOUT_CARDS: AboutCard[] = [
   {
-    title: 'Anime × Systems',
-    desc: 'I build products that take anime culture seriously — not as a niche, but as a domain with real engineering challenges. Gacha bot economies, seasonal draft scoring, AniList data pipelines. The problems are interesting because the domain is deep.',
+    title: 'Domain depth first',
+    desc: 'I study the domain before touching code. The quality gap between most software and what practitioners actually need is almost always a knowledge problem, not a technical one.',
   },
   {
-    title: 'Quality-first indie',
-    desc: 'Seasonly exists because MAL FAL has an active user base but zero design investment and broken onboarding. Megami exists because Karuta and Mudae leave drama on the table. I build replacements, not clones.',
+    title: 'Privacy by design',
+    desc: "I think carefully about what data should and should not leave a user's machine — not as a compliance checkbox, but as an architectural constraint from the start.",
   },
   {
     title: 'Lean infrastructure',
-    desc: 'Everything runs on tight budgets — Cloudflare Workers, Hetzner VPS, Docker, Postgres with pgvector. No cloud bill bloat. The constraint forces better architecture decisions.',
+    desc: 'Tight budgets force better decisions. I build with the smallest footprint that meets the requirement, and treat every unnecessary dependency as a liability.',
   },
   {
-    title: 'Data ownership',
-    desc: 'Seasonly stores no anime metadata — everything is fetched real-time from AniList at request time. Megami\'s image pipeline processes on-demand. I think carefully about what data should persist and what should be ephemeral.',
+    title: 'Ship, then refine',
+    desc: 'A working version in front of real users is worth more than a perfect architecture in a design doc. I move fast on the first version and let actual use reveal what matters.',
   },
 ];
 
 export const PRINCIPLES = [
-  'Build replacements, not clones — find the gap in existing tools and ship something better.',
+  'Understand the domain before writing a line of code.',
   'Privacy is a feature, not a compliance checkbox.',
   'Ship a working version before optimising the architecture.',
-  'Study the domain deeply — gacha economics, fantasy sports scoring, distributed systems — before touching code.',
-  'Treat anime culture as a serious engineering domain, not a hobby.',
+  'Find the gap in existing tools — build replacements, not clones.',
+  'Treat every unnecessary dependency as a liability.',
 ];

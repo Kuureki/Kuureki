@@ -1,4 +1,9 @@
-import { GitHubLogoIcon, TwitterLogoIcon, DiscordLogoIcon, EnvelopeClosedIcon } from '@radix-ui/react-icons';
+import {
+  GitHubLogoIcon,
+  TwitterLogoIcon,
+  DiscordLogoIcon,
+  EnvelopeClosedIcon,
+} from '@radix-ui/react-icons';
 import Link from 'next/link';
 
 import { SITE, SOCIALS } from '@/lib/config';

@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
 import { ExternalLinkIcon } from '@radix-ui/react-icons';
+import { useEffect, useRef } from 'react';
 
 import { PROJECTS } from '@/lib/config';
 
@@ -36,15 +36,12 @@ export default function Projects() {
             <h2 className="text-text font-serif text-[1.9rem] leading-[1.2] font-normal tracking-[-0.02em]">
               Things I&apos;ve built.
             </h2>
-            <p className="text-text-muted mt-[0.6rem] max-w-[460px] text-[0.875rem]">
-              Two products, one focused on anime culture, the other on competitive seasonal prediction.
-            </p>
           </div>
           <div className="flex flex-col gap-[1px]">
             {PROJECTS.map((project, idx) => (
               <div
                 key={project.slug}
-                className={`border-border cursor-pointer border-b py-[1.35rem] transition-colors duration-150 hover:bg-bg-2/30 ${idx === 0 ? 'border-border border-t' : ''}`}
+                className={`border-border hover:bg-bg-2/30 cursor-pointer border-b py-[1.35rem] transition-colors duration-150 ${idx === 0 ? 'border-border border-t' : ''}`}
                 onClick={() => {
                   window.location.href = `/projects/${project.slug}`;
                 }}
@@ -72,10 +69,10 @@ export default function Projects() {
                               e.stopPropagation();
                               window.open(project.url, '_blank', 'noopener,noreferrer');
                             }}
-                            className="text-text-dim transition-colors duration-150 hover:text-accent"
+                            className="text-text-dim hover:text-accent transition-colors duration-150"
                             aria-label={`Visit ${project.name} website`}
                           >
-                            <ExternalLinkIcon className="w-4 h-4" />
+                            <ExternalLinkIcon className="h-4 w-4" />
                           </button>
                         )}
                         <span

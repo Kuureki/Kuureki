@@ -43,17 +43,10 @@ export const PROJECTS: Project[] = [
     name: 'Seasonly',
     status: 'Active',
     shortDesc:
-      'Premium fantasy anime league platform. Draft your predicted top 10 shows each season, compete in private or public leagues, and score based on real AniList performance data. Built as a quality-first replacement for MAL\'s neglected FAL.',
+      "Premium fantasy anime league platform. Draft your predicted top 10 shows each season, compete in private or public leagues, and score based on real AniList performance data. Built as a quality-first replacement for MAL's neglected FAL.",
     fullDesc:
-      'Seasonly is a fantasy anime league platform built around the natural cadence of the anime calendar — Winter, Spring, Summer, Fall. Each season, users draft their predicted top 10 shows before the season locks, then compete in head-to-head league matchups scored against real AniList data.\n\nThe scoring model goes beyond naive popularity tracking. It uses a prediction-accuracy system with pre-season expectation baselines derived from AniList popularity, trending, meanScore, and favourites at draft-lock time — combined with a rank-position multiplier. Dark horse picks that genuinely overperform score more than obvious frontrunners that simply deliver as expected.\n\nPrivate leagues with invite codes, AniList OAuth as the sole auth method, and a Noir Gold design system differentiate it from the only real competitor: MAL\'s Fantasy Anime League, which has an active user base but no design investment, broken onboarding, and zero feature iteration.',
-    tags: [
-      'Next.js 15',
-      'TypeScript',
-      'Tailwind v4',
-      'Drizzle ORM',
-      'PostgreSQL',
-      'AniList GraphQL',
-    ],
+      "Seasonly is a fantasy anime league platform built around the natural cadence of the anime calendar — Winter, Spring, Summer, Fall. Each season, users draft their predicted top 10 shows before the season locks, then compete in head-to-head league matchups scored against real AniList data.\n\nThe scoring model goes beyond naive popularity tracking. It uses a prediction-accuracy system with pre-season expectation baselines derived from AniList popularity, trending, meanScore, and favourites at draft-lock time — combined with a rank-position multiplier. Dark horse picks that genuinely overperform score more than obvious frontrunners that simply deliver as expected.\n\nPrivate leagues with invite codes, AniList OAuth as the sole auth method, and a Noir Gold design system differentiate it from the only real competitor: MAL's Fantasy Anime League, which has an active user base but no design investment, broken onboarding, and zero feature iteration.",
+    tags: ['Next.js', 'TypeScript', 'Tailwind v4', 'Drizzle ORM', 'PostgreSQL', 'AniList GraphQL'],
     highlights: [
       'Prediction-accuracy scoring model with pre-season expectation baselines',
       'Private leagues with invite codes — a key gap in MAL FAL',
@@ -66,9 +59,9 @@ export const PROJECTS: Project[] = [
 ];
 
 export function getProjectBySlug(slug: string): Project | undefined {
-  return PROJECTS.find(p => p.slug === slug);
+  return PROJECTS.find((p) => p.slug === slug);
 }
 
 export function getAllProjectSlugs(): string[] {
-  return PROJECTS.map(p => p.slug);
+  return PROJECTS.map((p) => p.slug);
 }

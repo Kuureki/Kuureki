@@ -20,8 +20,7 @@ export default function Stack() {
       { threshold: 0.1, rootMargin: '0px 0px -40px 0px' },
     );
 
-    if (ref.current) 
-observer.observe(ref.current);
+    if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
 
@@ -41,13 +40,13 @@ observer.observe(ref.current);
             </p>
           </div>
           <div className="xs:gap-4 flex flex-col gap-6">
-            {STACK.map(group => (
+            {STACK.map((group) => (
               <div key={group.title}>
                 <h4 className="text-text-dim mb-3 font-mono text-[0.68rem] tracking-[0.1em] uppercase">
                   {group.title}
                 </h4>
                 <div className="flex flex-wrap gap-[0.4rem]">
-                  {group.items.map(item => (
+                  {group.items.map((item) => (
                     <span
                       key={item}
                       className="text-text-muted border-border bg-bg-2 hover:text-text hover:border-border-hover cursor-default rounded border px-[0.7rem] py-[0.3rem] text-[0.78rem] font-medium transition-all duration-150"

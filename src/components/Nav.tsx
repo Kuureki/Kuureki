@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
 import { HamburgerMenuIcon, Cross1Icon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 
 import { useLanyard } from '@/components/LanyardProvider';
 import { SITE } from '@/lib/config';
@@ -78,7 +78,7 @@ export default function Nav() {
       ref={menuRef}
       className="pointer-events-none fixed top-4 right-0 left-0 z-[100] flex justify-center"
     >
-      <nav className="bg-bg/70 border-border/80 pointer-events-auto flex min-w-[20rem] items-center gap-1 rounded-full border px-2 py-1.5 shadow-lg ring-1 shadow-black/20 ring-white/[0.04] backdrop-blur-xl">
+      <nav className="bg-bg/70 border-border/80 pointer-events-auto flex min-w-[22rem] items-center gap-1 rounded-full border px-2 py-1.5 shadow-lg ring-1 shadow-black/20 ring-white/[0.04] backdrop-blur-xl">
         <Link
           href="/"
           className="hover:bg-bg-3 flex items-center gap-2 rounded-full py-1 pr-3 pl-1 transition-colors duration-150"
@@ -90,7 +90,7 @@ export default function Nav() {
               <img
                 src={avatarDecorationUrl}
                 alt=""
-                className="pointer-events-none absolute -inset-1.5 h-auto w-auto"
+                className="pointer-events-none absolute -inset-0.5 h-auto w-auto"
               />
             )}
             <span
@@ -121,7 +121,7 @@ export default function Nav() {
 
         <button
           onClick={() => setOpen(!open)}
-          className="xs:hidden ml-auto flex items-center justify-center w-8 h-8 rounded-full text-text-muted transition-colors duration-150 hover:text-text hover:bg-bg-3/80"
+          className="xs:hidden text-text-muted hover:text-text hover:bg-bg-3/80 ml-auto flex h-8 w-8 items-center justify-center rounded-full transition-colors duration-150"
           aria-label="Toggle menu"
         >
           {open ? <Cross1Icon className="h-4 w-4" /> : <HamburgerMenuIcon className="h-4 w-4" />}
@@ -129,7 +129,7 @@ export default function Nav() {
       </nav>
 
       {open && (
-        <div className="xs:hidden absolute top-16 right-4 left-4">
+        <div className="absolute top-16 right-4 left-4 md:hidden">
           <div className="bg-bg/80 border-border/80 flex flex-col gap-0.5 rounded-2xl border p-2 shadow-lg ring-1 shadow-black/30 ring-white/[0.04] backdrop-blur-xl">
             {links.map((item) => (
               <Link
