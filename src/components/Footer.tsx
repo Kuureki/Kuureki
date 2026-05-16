@@ -1,9 +1,16 @@
-'use client';
+import Link from 'next/link';
 
 import { SITE, SOCIALS } from '@/lib/config';
 
 export default function Footer() {
-  const navLinks = ['About', 'Projects', 'Activity', 'Stack', 'Writing', 'Contact'];
+  const navLinks = [
+    { label: 'About', href: '/about' },
+    { label: 'Projects', href: '/projects' },
+    { label: 'Activity', href: '/activity' },
+    { label: 'Stack', href: '/stack' },
+    { label: 'Writing', href: '/blog' },
+    { label: 'Contact', href: '/#contact' },
+  ];
 
   const socials = [
     {
@@ -50,13 +57,13 @@ export default function Footer() {
               </h4>
               <ul className="m-0 flex list-none flex-col gap-2 p-0">
                 {navLinks.map((item) => (
-                  <li key={item}>
-                    <a
-                      href={`#${item.toLowerCase()}`}
+                  <li key={item.label}>
+                    <Link
+                      href={item.href}
                       className="text-text-muted hover:text-text text-[0.825rem] no-underline transition-colors duration-150"
                     >
-                      {item}
-                    </a>
+                      {item.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -71,6 +78,8 @@ export default function Footer() {
                   <a
                     key={social.label}
                     href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-text-muted hover:text-text group inline-flex items-center gap-2.5 text-[0.825rem] no-underline transition-colors duration-150"
                   >
                     <svg

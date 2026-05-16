@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import { useLanyard } from '@/components/LanyardProvider';
 import { DISCORD_ID, SITE } from '@/lib/config';
@@ -12,10 +14,20 @@ const statusColors: Record<string, string> = {
   offline: 'bg-text-dim',
 };
 
+const links = [
+  { label: 'About', href: '/about' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Activity', href: '/activity' },
+  { label: 'Stack', href: '/stack' },
+  { label: 'Writing', href: '/blog' },
+  { label: 'Contact', href: '/#contact' },
+];
+
 export default function Nav() {
   const { presence } = useLanyard();
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
 
   const discordUser = presence?.discord_user;
   const status = presence?.discord_status ?? 'offline';
@@ -23,8 +35,6 @@ export default function Nav() {
   const avatarUrl = discordUser
     ? `https://cdn.discordapp.com/avatars/${discordUser.id}/${discordUser.avatar}.${isAnimated ? 'gif' : 'png'}?size=32`
     : `https://api.lanyard.rest/${DISCORD_ID}.png`;
-
-  const links = ['About', 'Projects', 'Activity', 'Stack', 'Writing', 'Contact'];
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -59,14 +69,19 @@ export default function Nav() {
     };
   }, [open]);
 
+  const isActive = (href: string) => {
+    if (href.startsWith('/#')) return false;
+    return pathname === href;
+  };
+
   return (
     <div
       ref={menuRef}
       className="pointer-events-none fixed top-4 right-0 left-0 z-[100] flex justify-center"
     >
       <nav className="bg-bg/70 border-border/80 pointer-events-auto flex min-w-[20rem] items-center gap-1 rounded-full border px-2 py-1.5 shadow-lg ring-1 shadow-black/20 ring-white/[0.04] backdrop-blur-xl">
-        <a
-          href="#hero"
+        <Link
+          href="/"
           className="hover:bg-bg-3 flex items-center gap-2 rounded-full py-1 pr-3 pl-1 transition-colors duration-150"
           onClick={() => setOpen(false)}
         >
@@ -77,19 +92,23 @@ export default function Nav() {
             />
           </div>
           <span className="text-text font-serif text-[0.95rem] tracking-[0.01em]">{SITE.name}</span>
-        </a>
+        </Link>
 
         <div className="bg-border/60 xs:block mx-1 hidden h-5 w-px" />
 
         <ul className="xs:flex hidden list-none items-center gap-0.5">
           {links.map((item) => (
-            <li key={item}>
-              <a
-                href={`#${item.toLowerCase()}`}
-                className="text-text-muted hover:text-text hover:bg-bg-3/80 rounded-full px-2.5 py-1.5 text-[0.78rem] font-normal tracking-[0.02em] no-underline transition-colors duration-150"
+            <li key={item.label}>
+              <Link
+                href={item.href}
+                className={`rounded-full px-2.5 py-1.5 text-[0.78rem] font-normal tracking-[0.02em] no-underline transition-colors duration-150 ${
+                  isActive(item.href)
+                    ? 'text-text bg-bg-3/80'
+                    : 'text-text-muted hover:text-text hover:bg-bg-3/80'
+                }`}
               >
-                {item}
-              </a>
+                {item.label}
+              </Link>
             </li>
           ))}
         </ul>
@@ -112,14 +131,18 @@ export default function Nav() {
         <div className="xs:hidden absolute top-16 right-4 left-4">
           <div className="bg-bg/80 border-border/80 flex flex-col gap-0.5 rounded-2xl border p-2 shadow-lg ring-1 shadow-black/30 ring-white/[0.04] backdrop-blur-xl">
             {links.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="text-text-muted hover:text-text hover:bg-bg-3/80 rounded-xl px-4 py-3 text-[0.875rem] font-normal tracking-[0.02em] no-underline transition-colors duration-150"
+              <Link
+                key={item.label}
+                href={item.href}
+                className={`rounded-xl px-4 py-3 text-[0.875rem] font-normal tracking-[0.02em] no-underline transition-colors duration-150 ${
+                  isActive(item.href)
+                    ? 'text-text bg-bg-3/80'
+                    : 'text-text-muted hover:text-text hover:bg-bg-3/80'
+                }`}
                 onClick={() => setOpen(false)}
               >
-                {item}
-              </a>
+                {item.label}
+              </Link>
             ))}
           </div>
         </div>

@@ -10,7 +10,7 @@ export const SITE = {
 export const SOCIALS = {
   github: 'https://github.com/kuureki',
   twitter: 'https://twitter.com/kuureki',
-  discord: 'https://discord.com/kuureki',
+  discord: `https://discord.com/users/${DISCORD_ID}`,
   email: 'mailto:hello@kuureki.com',
 };
 

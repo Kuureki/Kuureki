@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Link from 'next/link';
 
 import { useLanyard } from '@/components/LanyardProvider';
 import { DISCORD_ID, SITE, SOCIALS, BADGES } from '@/lib/config';
@@ -113,18 +114,18 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-wrap gap-3">
-            <a
-              href="#projects"
-              className="bg-text text-bg inline-flex cursor-pointer items-center gap-[0.4rem] rounded-[7px] border-none px-[1.1rem] py-[0.55rem] font-sans text-[0.825rem] font-medium tracking-[0.01em] no-underline transition-all duration-150 hover:bg-[#d0d0d8]"
+            <Link
+              href="/projects"
+              className="bg-text text-bg inline-flex items-center gap-[0.4rem] rounded-[7px] border-none px-[1.1rem] py-[0.55rem] font-sans text-[0.825rem] font-medium tracking-[0.01em] no-underline transition-all duration-150 hover:bg-[#d0d0d8]"
             >
               View projects →
-            </a>
-            <a
-              href="#contact"
-              className="text-text-muted border-border hover:text-text hover:border-border-hover hover:bg-bg-3 inline-flex cursor-pointer items-center gap-[0.4rem] rounded-[7px] border bg-transparent px-[1.1rem] py-[0.55rem] font-sans text-[0.825rem] font-medium tracking-[0.01em] no-underline transition-all duration-150"
+            </Link>
+            <Link
+              href="/contact"
+              className="text-text-muted border-border hover:text-text hover:border-border-hover hover:bg-bg-3 inline-flex items-center gap-[0.4rem] rounded-[7px] border bg-transparent px-[1.1rem] py-[0.55rem] font-sans text-[0.825rem] font-medium tracking-[0.01em] no-underline transition-all duration-150"
             >
               Get in touch
-            </a>
+            </Link>
           </div>
 
           <div className="border-border mt-[2.5rem] flex gap-2 border-t pt-8">

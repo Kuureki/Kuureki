@@ -101,12 +101,16 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-text bg-text hover:bg-[#d0d0d8] mb-12 inline-flex items-center gap-[0.4rem] rounded-[7px] px-[1.1rem] py-[0.55rem] text-[0.825rem] font-medium no-underline transition-all duration-150"
+                className="group mb-12 inline-flex items-center gap-3 no-underline"
               >
-                Visit site
-                <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 stroke-current stroke-[2] fill-none">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
-                </svg>
+                <div className="bg-text hover:bg-[#d0d0d8] rounded-[9px] px-[1.2rem] py-[0.6rem] text-[0.825rem] font-medium text-bg transition-all duration-150">
+                  Visit {project.name}
+                </div>
+                <div className="text-text-muted group-hover:text-text group-hover:translate-x-0.5 transition-all duration-150">
+                  <svg viewBox="0 0 24 24" className="w-4 h-4 stroke-current stroke-[2] fill-none">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </div>
               </a>
             )}
 
