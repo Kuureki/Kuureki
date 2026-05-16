@@ -1,0 +1,106 @@
+---
+title: 'Building this site — architecture and decisions'
+date: 'May 2026'
+read: '8 min'
+category: 'Engineering'
+---
+
+This portfolio site is a single Next.js 16 app with no CMS, no database, no build-time data fetching from external APIs. Everything is either statically generated or resolved client-side. Here's why, and how it's structured.
+
+## The constraint
+
+I don't want to maintain infrastructure for my portfolio. No headless CMS to patch, no database to back up, no API keys to rotate. The site should be a static output that can sit behind Cloudflare and never think about it again.
+
+That constraint shaped every architectural decision.
+
+## Stack
+
+**Next.js 16** with Turbopack, **Tailwind v4**, and **TypeScript**.
+
+No UI component library. Every component is hand-built. Tailwind v4's `@theme` directive maps CSS custom properties to utility classes, so the design system lives in one file (`globals.css`) and every component references it through utilities like `bg-bg`, `text-accent`, `border-border`.
+
+## Config-driven content
+
+Nothing is hardcoded in components. All content — projects, about cards, stack groups, site metadata, social links — lives in `src/lib/config/` as plain TypeScript modules:
+
+```
+src/lib/config/
+├── site.ts        # name, role, bio, badges, socials
+├── projects.ts    # project definitions with slugs
+├── stack.ts       # technology groups
+└── about.ts       # about cards and principles
+```
+
+Components import from these modules and render declaratively. Adding a project means adding one object to `PROJECTS`. The project page at `/projects/[slug]` auto-generates via `generateStaticParams`. No CMS, no admin panel, no database migrations.
+
+This is the same pattern I use across my projects — treat content as data, not as UI. The UI is just a view function over data. Seasonly's league configuration and Megami's economy parameters both follow this philosophy.
+
+## Dynamic routes without a database
+
+Project pages and blog posts are generated at build time from filesystem content:
+
+- **Projects**: `src/lib/config/projects.ts` → `generateStaticParams` → `/projects/[slug]`
+- **Blog**: `src/content/blog/*.mdx` → filesystem reader → `generateStaticParams` → `/blog/[slug]`
+
+The blog uses `next-mdx-remote-client` for server-side MDX rendering. Frontmatter is parsed with a lightweight regex-based parser — no gray-matter dependency, no YAML parser overhead. Just a function that reads `---` delimited blocks and extracts key-value pairs.
+
+Each MDX file gets its own page with consistent typography, code block styling, and prev/next navigation. The MDX components are defined inline in the page template, mapping every HTML element to Tailwind classes that match the site's design system.
+
+## Real-time Discord presence via Lanyard
+
+The site integrates with [Lanyard](https://github.com/Phineas/lanyard) for real-time Discord presence. The `use-lanyard` library provides a WebSocket hook (`useLanyardWS`) that connects to `wss://api.lanyard.rest/socket`, handles the heartbeat protocol, and returns presence data.
+
+The architecture:
+
+1. **`LanyardProvider`** wraps the app, establishes a single WebSocket connection
+2. **Context** distributes presence data to any component via `useLanyard()`
+3. **Hero** renders the Discord avatar (with animated GIF support for nitro avatars) and a live status indicator
+4. **Activity section** shows Spotify now-playing with album art, progress bar, and elapsed time, plus other activities (games, VS Code, etc.)
+
+The WebSocket connection is client-side only. The rest of the site is fully static. This separation means the site loads instantly for everyone, and the real-time features activate progressively for clients that support WebSockets.
+
+## Design system: CSS variables → Tailwind theme
+
+The original HTML template used CSS custom properties for everything — colors, fonts, borders. The migration to Tailwind v4 preserved this by mapping every variable into the `@theme` block:
+
+```css
+@theme {
+  --color-bg: #0f0f11;
+  --color-border: rgba(255, 255, 255, 0.07);
+  --color-accent: #a78bfa;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-mono: 'DM Mono', monospace;
+  --breakpoint-xs: 600px;
+}
+```
+
+This means components use utilities like `bg-bg`, `border-border`, `font-serif`, `text-accent` — which resolve to the exact same values as the original CSS. Zero visual drift. The noise texture overlay, smooth scroll, and fade-in animations remain as raw CSS in `globals.css` because they don't benefit from utility classes.
+
+A custom `xs: 600px` breakpoint was added to match the original media query exactly — Tailwind's `sm:` is 640px, which would have shifted the responsive behavior.
+
+## Floating navbar with mobile menu
+
+The navbar is a centered floating pill with glassmorphism (`backdrop-blur-xl`), a subtle white ring, and a shadow. On desktop it shows the avatar, name, and all nav links inline. On mobile it collapses to avatar + name + hamburger, with a dropdown menu that:
+
+- Closes on link tap, tap outside, or Escape key
+- Locks body scroll while open
+- Animates the hamburger icon to an ✕ with rotation
+
+The mobile menu uses the same glassmorphism treatment as the navbar, maintaining visual consistency.
+
+## What's not here
+
+No analytics. No cookies. No tracking scripts. No newsletter signup. No comment system. No dark mode toggle (it's always dark). No language switcher.
+
+The site does one thing: presents who I am, what I build, and how to reach me. Every feature that isn't that is a distraction.
+
+## Principles reflected
+
+The architecture mirrors the working principles listed on the site:
+
+- **Build things that survive without promotion** — the site is static, self-contained, needs no maintenance
+- **Privacy is a feature** — no analytics, no tracking, no external data collection
+- **Ship working before optimizing** — the MDX parser is a regex, not a YAML library. It works, it's fast, it doesn't need to be fancier
+- **Study the domain** — the design system preserves the original template's exact values, breakpoints, and animations. No approximation, no "close enough"
+
+The site is a product of the same constraints that shape everything else I build: tight budget, real requirements, no cloud bill bloat. It works because it's simple, and it's simple because the constraints forced it to be.
