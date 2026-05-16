@@ -19,3 +19,39 @@ export const BADGES = [
   { label: 'Megami · Seasonly', type: 'violet' as const, animated: false },
   { label: 'Kamiyama', type: 'default' as const, animated: false },
 ];
+
+export const QUOTES = [
+  {
+    text: "The world isn't perfect. But it's there for us, doing the best it can. That's what makes it so damn beautiful.",
+    source: 'Fullmetal Alchemist',
+  },
+  {
+    text: 'If you don\'t take risks, you can\'t create a future.',
+    source: 'Monkey D. Luffy, One Piece',
+  },
+  {
+    text: 'People\'s lives don\'t end when they die. It ends when they lose faith.',
+    source: 'Itachi Uchiha, Naruto',
+  },
+  {
+    text: 'Whatever you lose, you\'ll find it again. But what you throw away you\'ll never get back.',
+    source: 'Kenshin Himura, Rurouni Kenshin',
+  },
+  {
+    text: 'It\'s not the face that makes someone a monster, it\'s the choices they make with their lives.',
+    source: 'Naruto Uzumaki',
+  },
+  {
+    text: 'The moment you think of giving up, think of the reason why you held on so long.',
+    source: 'Natsu Dragneel, Fairy Tail',
+  },
+];
+
+export const CURRENT_OBSESSION = {
+  type: 'show' as const,
+  title: 'Hyouka',
+  subtitle: 'Kyoto Animation, 2012',
+  note: 'Re-watching for the third time. The mystery-of-the-week structure masked as slice-of-life is genuinely brilliant storytelling.',
+};
+
+export const GITHUB_USERNAME = 'kuureki';

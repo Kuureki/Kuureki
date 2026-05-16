@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { useLanyard as useLanyardRest, type Types } from 'use-lanyard';
 
 import { DISCORD_ID } from '@/lib/config';
@@ -22,22 +22,45 @@ export function useLanyard() {
 }
 
 export function LanyardProvider({ children }: { children: React.ReactNode }) {
-  const { data, isLoading, error } = useLanyardRest(DISCORD_ID);
-
+  const { data, isLoading: hookLoading, error: hookError } = useLanyardRest(DISCORD_ID);
   const [presence, setPresence] = useState<Types.Presence | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    if (data && Object.keys(data).length > 0) {
-      setPresence(data as Types.Presence);
+    timeoutRef.current = setTimeout(() => {
+      if (!presence) {
+        setIsLoading(false);
+      }
+    }, 8000);
+
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, [presence]);
+
+  useEffect(() => {
+    if (data) {
+      const presenceData = (data as any).data ?? data;
+      if (presenceData && typeof presenceData === 'object') {
+        setPresence(presenceData as Types.Presence);
+        setIsLoading(false);
+      }
     }
   }, [data]);
+
+  useEffect(() => {
+    if (hookError) {
+      setIsLoading(false);
+    }
+  }, [hookError]);
 
   return (
     <LanyardContext.Provider
       value={{
         presence,
-        isLoading: isLoading || !presence,
-        error: error ? String(error) : null,
+        isLoading,
+        error: hookError ? String(hookError) : null,
       }}
     >
       {children}

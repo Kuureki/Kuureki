@@ -162,7 +162,7 @@ const mdxComponents = {
       return (
         <code
           {...rest}
-          className="text-accent bg-bg-3 border-border rounded border px-[0.35rem] py-[0.15rem] font-mono text-[0.825rem]"
+          className="text-accent bg-bg-3 border-border rounded border px-[0.35rem] py-[0.15rem] font-mono text-[0.825rem] [pre_&]:rounded-none [pre_&]:border-none [pre_&]:bg-transparent [pre_&]:p-0"
         >
           {children}
         </code>

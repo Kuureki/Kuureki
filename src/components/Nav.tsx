@@ -5,7 +5,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { useLanyard } from '@/components/LanyardProvider';
-import { DISCORD_ID, SITE } from '@/lib/config';
+import { SITE } from '@/lib/config';
+import { getAvatarUrl, getAvatarDecorationUrl } from '@/lib/lanyard';
 
 const statusColors: Record<string, string> = {
   online: 'bg-green',
@@ -29,12 +30,9 @@ export default function Nav() {
   const menuRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
-  const discordUser = presence?.discord_user;
   const status = presence?.discord_status ?? 'offline';
-  const isAnimated = discordUser?.avatar?.startsWith('a_');
-  const avatarUrl = discordUser
-    ? `https://cdn.discordapp.com/avatars/${discordUser.id}/${discordUser.avatar}.${isAnimated ? 'gif' : 'png'}?size=32`
-    : `https://api.lanyard.rest/${DISCORD_ID}.png`;
+  const avatarUrl = getAvatarUrl(presence?.discord_user);
+  const avatarDecorationUrl = getAvatarDecorationUrl(presence?.discord_user);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -87,6 +85,13 @@ export default function Nav() {
         >
           <div className="relative flex-shrink-0">
             <img src={avatarUrl} alt="Avatar" className="h-7 w-7 rounded-full" />
+            {avatarDecorationUrl && (
+              <img
+                src={avatarDecorationUrl}
+                alt=""
+                className="pointer-events-none absolute -inset-1.5 h-auto w-auto"
+              />
+            )}
             <span
               className={`border-bg absolute -right-0.5 -bottom-0.5 h-2.5 w-2.5 rounded-full border-[1.5px] ${statusColors[status] || 'bg-text-dim'}`}
             />

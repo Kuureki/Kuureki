@@ -5,6 +5,7 @@ import Link from 'next/link';
 
 import { useLanyard } from '@/components/LanyardProvider';
 import { DISCORD_ID, SITE, SOCIALS, BADGES } from '@/lib/config';
+import { getAvatarUrl, getAvatarDecorationUrl } from '@/lib/lanyard';
 
 const statusColors: Record<string, string> = {
   online: 'bg-green',
@@ -37,12 +38,9 @@ export default function Hero() {
     }
   }, []);
 
-  const discordUser = presence?.discord_user;
   const status = presence?.discord_status ?? 'offline';
-  const isAnimated = discordUser?.avatar?.startsWith('a_');
-  const avatarUrl = discordUser
-    ? `https://cdn.discordapp.com/avatars/${discordUser.id}/${discordUser.avatar}.${isAnimated ? 'gif' : 'png'}?size=128`
-    : `https://api.lanyard.rest/${DISCORD_ID}.png`;
+  const avatarUrl = getAvatarUrl(presence?.discord_user);
+  const avatarDecorationUrl = getAvatarDecorationUrl(presence?.discord_user);
 
   const bioParts = SITE.bio.split(/(\*\*[^*]+\*\*)/g);
 
@@ -62,6 +60,13 @@ export default function Hero() {
                 alt="Discord avatar"
                 className="border-border h-12 w-12 rounded-full border"
               />
+              {avatarDecorationUrl && (
+                <img
+                  src={avatarDecorationUrl}
+                  alt=""
+                  className="pointer-events-none absolute -inset-3 h-auto w-auto"
+                />
+              )}
               <span
                 className={`border-bg absolute right-0 bottom-0 h-3 w-3 rounded-full border-2 ${statusColors[status] || 'bg-text-dim'}`}
               />
