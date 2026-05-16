@@ -1,7 +1,8 @@
 'use client';
 
 import { createContext, useContext, useEffect, useRef, useState } from 'react';
-import { useLanyard as useLanyardRest, type Types } from 'use-lanyard';
+import { useLanyard as useLanyardRest } from 'use-lanyard';
+import type { Types } from 'use-lanyard';
 
 import { DISCORD_ID } from '@/lib/config';
 

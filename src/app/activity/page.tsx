@@ -1,5 +1,16 @@
 'use client';
 
+import {
+  SpeakerLoudIcon,
+  DesktopIcon,
+  PlayIcon,
+  SpeakerModerateIcon,
+  VideoIcon,
+  PersonIcon,
+  TimerIcon,
+  CursorArrowIcon,
+} from '@radix-ui/react-icons';
+
 import { useLanyard } from '@/components/LanyardProvider';
 import Contact from '@/components/Contact';
 import CurrentObsession from '@/components/CurrentObsession';
@@ -28,6 +39,24 @@ const statusColors: Record<string, string> = {
   idle: 'bg-amber',
   dnd: 'bg-red-500',
   offline: 'bg-text-dim',
+};
+
+const activityTypeIcons: Record<number, React.ComponentType<{ className?: string }>> = {
+  0: DesktopIcon,
+  1: PlayIcon,
+  2: SpeakerModerateIcon,
+  3: VideoIcon,
+  4: PersonIcon,
+  5: TimerIcon,
+};
+
+const activityTypeLabels: Record<number, string> = {
+  0: 'Playing',
+  1: 'Streaming',
+  2: 'Listening to',
+  3: 'Watching',
+  4: 'Custom Status',
+  5: 'Competing in',
 };
 
 export default function ActivityPage() {
@@ -147,7 +176,8 @@ export default function ActivityPage() {
               {/* Spotify Card */}
               {spotify && (
                 <div className="border-border rounded-[10px] border bg-bg-2 px-[1.6rem] py-[1.6rem]">
-                  <div className="text-text-dim mb-3 font-mono text-[0.68rem] tracking-[0.1em] uppercase">
+                  <div className="text-text-dim mb-3 flex items-center gap-2 font-mono text-[0.68rem] tracking-[0.1em] uppercase">
+                    <SpeakerLoudIcon className="h-3.5 w-3.5" />
                     Listening to Spotify
                   </div>
                   <div className="flex items-start gap-4">
@@ -176,52 +206,44 @@ export default function ActivityPage() {
               {/* Activities */}
               {activities
                 .filter((a) => a.name !== 'Spotify' && a.name !== 'Custom Status')
-                .map((activity) => (
-                  <div
-                    key={activity.id}
-                    className="border-border rounded-[10px] border bg-bg-2 px-[1.6rem] py-[1.6rem]"
-                  >
-                    <div className="text-text-dim mb-3 font-mono text-[0.68rem] tracking-[0.1em] uppercase">
-                      {activity.type === 0
-                        ? 'Playing'
-                        : activity.type === 1
-                          ? 'Streaming'
-                          : activity.type === 2
-                            ? 'Listening to'
-                            : activity.type === 3
-                              ? 'Watching'
-                              : activity.type === 4
-                                ? 'Custom Status'
-                                : activity.type === 5
-                                  ? 'Competing in'
-                                  : 'Using'}
-                    </div>
-                    <div className="flex items-start gap-4">
-                      {activity.assets?.large_image && (
-                        <img
-                          src={`https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`}
-                          alt=""
-                          className="h-16 w-16 flex-shrink-0 rounded-md"
-                        />
-                      )}
-                      <div className="flex-1">
-                        <div className="text-text mb-1 text-[0.95rem] font-medium">
-                          {activity.name}
+                .map((activity) => {
+                  const ActivityIcon = activityTypeIcons[activity.type] ?? CursorArrowIcon;
+                  return (
+                    <div
+                      key={activity.id}
+                      className="border-border rounded-[10px] border bg-bg-2 px-[1.6rem] py-[1.6rem]"
+                    >
+                      <div className="text-text-dim mb-3 flex items-center gap-2 font-mono text-[0.68rem] tracking-[0.1em] uppercase">
+                        <ActivityIcon className="h-3.5 w-3.5" />
+                        {activityTypeLabels[activity.type] ?? 'Using'}
+                      </div>
+                      <div className="flex items-start gap-4">
+                        {activity.assets?.large_image && (
+                          <img
+                            src={`https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`}
+                            alt=""
+                            className="h-16 w-16 flex-shrink-0 rounded-md"
+                          />
+                        )}
+                        <div className="flex-1">
+                          <div className="text-text mb-1 text-[0.95rem] font-medium">
+                            {activity.name}
+                          </div>
+                          {activity.details && (
+                            <div className="text-text-muted text-[0.825rem]">
+                              {activity.details}
+                            </div>
+                          )}
+                          {activity.state && (
+                            <div className="text-text-dim mt-1 text-[0.75rem]">
+                              {activity.state}
+                            </div>
+                          )}
                         </div>
-                        {activity.details && (
-                          <div className="text-text-muted text-[0.825rem]">
-                            {activity.details}
-                          </div>
-                        )}
-                        {activity.state && (
-                          <div className="text-text-dim mt-1 text-[0.75rem]">
-                            {activity.state}
-                          </div>
-                        )}
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
 
               {/* Custom Status */}
               {activities
@@ -231,7 +253,8 @@ export default function ActivityPage() {
                     key={activity.id}
                     className="border-border rounded-[10px] border bg-bg-2 px-[1.6rem] py-[1.6rem]"
                   >
-                    <div className="text-text-dim mb-3 font-mono text-[0.68rem] tracking-[0.1em] uppercase">
+                    <div className="text-text-dim mb-3 flex items-center gap-2 font-mono text-[0.68rem] tracking-[0.1em] uppercase">
+                      <PersonIcon className="h-3.5 w-3.5" />
                       Custom Status
                     </div>
                     <div className="text-text text-[0.95rem]">

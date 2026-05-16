@@ -20,7 +20,7 @@ export default function RotatingQuote({ quotes, interval = 6000 }: RotatingQuote
   const rotateQuote = () => {
     setIsFading(true);
     setTimeout(() => {
-      setCurrentIndex((prev) => (prev + 1) % quotes.length);
+      setCurrentIndex(prev => (prev + 1) % quotes.length);
       setIsFading(false);
     }, 300);
   };
@@ -28,7 +28,8 @@ export default function RotatingQuote({ quotes, interval = 6000 }: RotatingQuote
   useEffect(() => {
     intervalRef.current = setInterval(rotateQuote, interval);
     return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
+      if (intervalRef.current) 
+clearInterval(intervalRef.current);
     };
   }, [interval]);
 
@@ -46,12 +47,15 @@ export default function RotatingQuote({ quotes, interval = 6000 }: RotatingQuote
             isFading ? 'opacity-0' : 'opacity-100'
           }`}
         >
-          &ldquo;{currentQuote.text}&rdquo;
+          &ldquo;
+{currentQuote.text}&rdquo;
         </blockquote>
       </div>
 
       <div className="text-text-muted mt-3 font-mono text-[0.75rem]">
-        — {currentQuote.source}
+        — 
+{' '}
+{currentQuote.source}
       </div>
 
       <div className="border-border mt-4 flex items-center gap-2 border-t pt-3">
@@ -64,7 +68,8 @@ export default function RotatingQuote({ quotes, interval = 6000 }: RotatingQuote
                 setCurrentIndex(idx);
                 setIsFading(false);
               }, 300);
-              if (intervalRef.current) clearInterval(intervalRef.current);
+              if (intervalRef.current) 
+clearInterval(intervalRef.current);
               intervalRef.current = setInterval(rotateQuote, interval);
             }}
             className={`h-1.5 w-1.5 rounded-full transition-colors duration-150 ${

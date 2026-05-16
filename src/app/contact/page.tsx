@@ -66,7 +66,7 @@ export default function ContactPage() {
             </div>
 
             <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
-              {links.map((link) => (
+              {links.map(link => (
                 <a
                   key={link.label}
                   href={link.href}
@@ -77,8 +77,10 @@ export default function ContactPage() {
                   <div className="mb-1 flex items-center justify-between">
                     <span className="text-text text-[0.95rem] font-medium">{link.label}</span>
                     <span className="text-text-dim group-hover:text-accent font-mono text-[0.72rem] transition-colors duration-150">
-                      {link.handle} →
-                    </span>
+                      {link.handle}
+{' '}
+→
+</span>
                   </div>
                   <p className="text-text-dim text-[0.78rem]">{link.description}</p>
                 </a>
@@ -94,7 +96,7 @@ export default function ContactPage() {
                   'Discussions about gacha mechanics and player economies',
                   'Fantasy sports and prediction market design',
                   'Technical architecture and systems engineering',
-                ].map((item) => (
+                ].map(item => (
                   <div key={item} className="flex items-start gap-3">
                     <span className="text-accent mt-[0.05rem] flex-shrink-0 font-mono text-[0.75rem]">
                       →

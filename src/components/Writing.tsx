@@ -21,7 +21,8 @@ export default function Writing({ posts }: { posts: BlogMeta[] }) {
       { threshold: 0.1, rootMargin: '0px 0px -40px 0px' },
     );
 
-    if (ref.current) observer.observe(ref.current);
+    if (ref.current) 
+observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
 

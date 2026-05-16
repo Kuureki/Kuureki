@@ -45,12 +45,17 @@ function generateMockContributions(): ContributionDay[] {
     let count = 0;
     if (!isWeekend) {
       const rand = Math.random();
-      if (rand > 0.6) count = Math.floor(Math.random() * 8) + 1;
-      if (rand > 0.85) count = Math.floor(Math.random() * 12) + 4;
-      if (isRecent && rand > 0.5) count = Math.floor(Math.random() * 6) + 1;
-    } else {
+      if (rand > 0.6) 
+count = Math.floor(Math.random() * 8) + 1;
+      if (rand > 0.85) 
+count = Math.floor(Math.random() * 12) + 4;
+      if (isRecent && rand > 0.5) 
+count = Math.floor(Math.random() * 6) + 1;
+    }
+ else {
       const rand = Math.random();
-      if (rand > 0.8) count = Math.floor(Math.random() * 3) + 1;
+      if (rand > 0.8) 
+count = Math.floor(Math.random() * 3) + 1;
     }
 
     const level = count === 0 ? 0 : count <= 3 ? 1 : count <= 6 ? 2 : count <= 9 ? 3 : 4;
@@ -94,8 +99,10 @@ export default function GitHubHeatmap({ username }: GitHubHeatmapProps) {
           GitHub Contributions
         </div>
         <div className="text-text-muted font-mono text-[0.75rem]">
-          {totalContributions.toLocaleString()} contributions in the last year
-        </div>
+          {totalContributions.toLocaleString()}
+{' '}
+contributions in the last year
+</div>
       </div>
 
       <div className="overflow-x-auto">
@@ -141,7 +148,9 @@ export default function GitHubHeatmap({ username }: GitHubHeatmapProps) {
           }}
         >
           <div className="text-text whitespace-nowrap font-mono text-[0.7rem]">
-            {tooltip.count} contribution{tooltip.count !== 1 ? 's' : ''}
+            {tooltip.count}
+{' '}
+contribution{tooltip.count !== 1 ? 's' : ''}
           </div>
           <div className="text-text-dim whitespace-nowrap font-mono text-[0.65rem]">
             {tooltip.date}

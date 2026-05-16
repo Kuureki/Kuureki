@@ -24,7 +24,7 @@ export default function RootLayout({
       </head>
       <body
         style={{
-          fontFamily: "'DM Sans', sans-serif",
+          fontFamily: '\'DM Sans\', sans-serif',
         }}
       >
         {children}

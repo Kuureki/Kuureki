@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 
 import type { Metadata } from 'next';
 import { MDXRemote } from 'next-mdx-remote-client/rsc';
@@ -13,7 +13,7 @@ import { SITE } from '@/lib/config';
 
 export function generateStaticParams() {
   const posts = getAllBlogMeta();
-  return posts.map((post) => ({ slug: post.slug }));
+  return posts.map(post => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({
@@ -23,7 +23,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const source = getBlogSource(slug);
-  if (!source) return { title: 'Post Not Found' };
+  if (!source) 
+return { title: 'Post Not Found' };
   return {
     title: `${source.frontmatter.title} — ${SITE.name}`,
     description: source.frontmatter.category,
@@ -41,10 +42,11 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   }
 
   const source = getBlogSource(slug);
-  if (!source) notFound();
+  if (!source) 
+notFound();
 
   const allPosts = getAllBlogMeta();
-  const currentIndex = allPosts.findIndex((p) => p.slug === slug);
+  const currentIndex = allPosts.findIndex(p => p.slug === slug);
   const prevPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
   const nextPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
 
@@ -73,8 +75,10 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
               </span>
               <span className="text-text-dim font-mono text-[0.65rem]">·</span>
               <span className="text-text-dim font-mono text-[0.65rem]">
-                {source.frontmatter.read} read
-              </span>
+                {source.frontmatter.read}
+{' '}
+read
+</span>
             </div>
 
             <h1 className="text-[clamp(1.8rem, 4vw, 2.5rem)] text-text mb-8 font-serif leading-[1.15] font-normal tracking-[-0.02em]">
@@ -87,7 +91,8 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
             {(prevPost || nextPost) && (
               <div className="border-border xs:grid-cols-1 mt-16 grid grid-cols-2 gap-8 border-t pt-8">
-                {prevPost ? (
+                {prevPost
+? (
                   <a href={`/blog/${prevPost.slug}`} className="group no-underline">
                     <div className="text-text-dim mb-1 font-mono text-[0.68rem] tracking-[0.06em] uppercase">
                       Previous
@@ -96,7 +101,8 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                       {prevPost.title}
                     </div>
                   </a>
-                ) : (
+                )
+: (
                   <div />
                 )}
                 {nextPost && (

@@ -77,7 +77,7 @@ export default function ProjectsPage() {
                         {project.shortDesc}
                       </p>
                       <div className="flex flex-wrap gap-[0.35rem]">
-                        {project.tags.map((tag) => (
+                        {project.tags.map(tag => (
                           <span
                             key={tag}
                             className="text-text-dim bg-bg-3 border-border rounded-sm border px-[0.45rem] py-[0.15rem] font-mono text-[0.65rem] tracking-[0.03em]"

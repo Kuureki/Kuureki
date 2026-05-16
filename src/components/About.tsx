@@ -20,7 +20,8 @@ export default function About() {
       { threshold: 0.1, rootMargin: '0px 0px -40px 0px' },
     );
 
-    if (ref.current) observer.observe(ref.current);
+    if (ref.current) 
+observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
 
@@ -40,7 +41,7 @@ export default function About() {
             </p>
           </div>
           <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
-            {ABOUT_CARDS.map((card) => (
+            {ABOUT_CARDS.map(card => (
               <div
                 key={card.title}
                 className="bg-bg-2 border-border hover:border-border-hover rounded-[10px] border px-[1.4rem] py-[1.25rem] transition-colors duration-200"
@@ -57,7 +58,7 @@ export default function About() {
               Working principles
             </h4>
             <ul className="m-0 flex list-none flex-col gap-2 p-0">
-              {PRINCIPLES.map((p) => (
+              {PRINCIPLES.map(p => (
                 <li key={p} className="text-text-muted flex items-start gap-3 text-[0.825rem]">
                   <span className="text-text-dim mt-[0.05rem] flex-shrink-0 font-mono text-[0.75rem]">
                     —

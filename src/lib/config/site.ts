@@ -22,7 +22,7 @@ export const BADGES = [
 
 export const QUOTES = [
   {
-    text: "The world isn't perfect. But it's there for us, doing the best it can. That's what makes it so damn beautiful.",
+    text: 'The world isn\'t perfect. But it\'s there for us, doing the best it can. That\'s what makes it so damn beautiful.',
     source: 'Fullmetal Alchemist',
   },
   {

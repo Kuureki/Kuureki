@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { HamburgerMenuIcon, Cross1Icon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -123,12 +124,7 @@ export default function Nav() {
           className="xs:hidden ml-auto flex items-center justify-center w-8 h-8 rounded-full text-text-muted transition-colors duration-150 hover:text-text hover:bg-bg-3/80"
           aria-label="Toggle menu"
         >
-          <svg
-            viewBox="0 0 24 24"
-            className={`h-4 w-4 fill-none stroke-current stroke-[2] transition-transform duration-200 ${open ? 'rotate-90' : ''}`}
-          >
-            {open ? <path d="M18 6L6 18M6 6l12 12" /> : <path d="M4 6h16M4 12h16M4 18h16" />}
-          </svg>
+          {open ? <Cross1Icon className="h-4 w-4" /> : <HamburgerMenuIcon className="h-4 w-4" />}
         </button>
       </nav>
 

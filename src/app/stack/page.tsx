@@ -39,7 +39,7 @@ export default function StackPage() {
             </div>
 
             <div className="mt-12 flex flex-col gap-6">
-              {STACK.map((group) => (
+              {STACK.map(group => (
                 <div
                   key={group.title}
                   className="border-border rounded-[10px] border bg-bg-2 px-[1.6rem] py-[1.6rem]"
@@ -48,7 +48,7 @@ export default function StackPage() {
                     {group.title}
                   </h3>
                   <div className="flex flex-wrap gap-2">
-                    {group.items.map((item) => (
+                    {group.items.map(item => (
                       <span
                         key={item}
                         className="border-border hover:border-border-hover text-text rounded-sm border bg-bg-3 px-3 py-[0.35rem] font-mono text-[0.75rem] tracking-[0.03em] transition-colors duration-150"

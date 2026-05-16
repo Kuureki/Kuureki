@@ -40,7 +40,7 @@ export default function AboutPage() {
             </p>
 
             <div className="mb-12 flex flex-wrap gap-2">
-              {BADGES.map((badge) => (
+              {BADGES.map(badge => (
                 <span
                   key={badge.label}
                   className={`rounded-sm border px-2.5 py-[0.35rem] font-mono text-[0.7rem] ${
@@ -57,7 +57,7 @@ export default function AboutPage() {
             </div>
 
             <div className="mb-16 grid gap-4 xs:grid-cols-1 md:grid-cols-2">
-              {ABOUT_CARDS.map((card) => (
+              {ABOUT_CARDS.map(card => (
                 <div
                   key={card.title}
                   className="border-border hover:border-border-hover rounded-[10px] border bg-bg-2 px-[1.4rem] py-[1.4rem] transition-colors duration-200"
@@ -94,7 +94,7 @@ export default function AboutPage() {
                   { label: 'Twitter', href: SOCIALS.twitter },
                   { label: 'Discord', href: SOCIALS.discord },
                   { label: 'Email', href: SOCIALS.email },
-                ].map((link) => (
+                ].map(link => (
                   <a
                     key={link.label}
                     href={link.href}
@@ -102,8 +102,10 @@ export default function AboutPage() {
                     rel="noopener noreferrer"
                     className="border-border hover:border-border-hover text-text-muted hover:text-text rounded-[8px] border bg-bg-2 px-4 py-2.5 text-[0.825rem] no-underline transition-all duration-150"
                   >
-                    {link.label} →
-                  </a>
+                    {link.label}
+{' '}
+→
+</a>
                 ))}
               </div>
             </div>
