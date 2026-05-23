@@ -6,7 +6,7 @@ import { SITE, SOCIALS } from '@/lib/config';
 
 export const metadata: Metadata = {
   title: `Contact — ${SITE.name}`,
-  description: 'Get in touch. Collaborate, discuss ideas, or just talk about anime.',
+  description: 'Get in touch. Collaborate or discuss ideas.',
 };
 
 export default function ContactPage() {
@@ -21,7 +21,7 @@ export default function ContactPage() {
       label: 'X / Twitter',
       handle: '@Kuureki',
       href: SOCIALS.twitter,
-      description: 'Quick thoughts, updates, and anime hot takes',
+      description: 'Quick thoughts and updates',
     },
     {
       label: 'GitHub',

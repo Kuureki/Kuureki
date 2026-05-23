@@ -4,14 +4,14 @@ export const SITE = {
   name: 'Kuureki',
   role: 'Student & indie builder',
   bio: 'I build products at the intersection of **consumer entertainment culture** and **systems engineering**. **Megami**, a Discord economy bot with full relationship mechanics — ownership, trading, marriage, and a community drama feed. **Seasonly**, a fantasy league platform for seasonal entertainment drafts — users predict their top picks and score against real performance data. **Brume**, a Rust realtime gateway that competes with Pusher and Ably but is entirely self-hostable and DB-agnostic. I care about products that are honest, well-crafted, and solve problems that actually exist.',
-  email: 'hello@kuureki.com',
+  email: 'hey@kuureki.com',
 };
 
 export const SOCIALS = {
   github: 'https://github.com/kuureki',
   twitter: 'https://twitter.com/kuureki',
   discord: `https://discord.com/users/${DISCORD_ID}`,
-  email: 'mailto:hello@kuureki.com',
+  email: 'mailto:hey@kuureki.com',
 };
 
 export const BADGES = [
