@@ -8,7 +8,7 @@ import { PROJECTS, SITE } from '@/lib/config';
 export const metadata: Metadata = {
   title: `Projects — ${SITE.name}`,
   description:
-    "Things I've built. Two products, one focused on anime culture, the other on competitive seasonal prediction.",
+    "Things I've built. Megami, Seasonly, Brume, and other products focused on community and systems.",
 };
 
 export default function ProjectsPage() {
@@ -35,8 +35,7 @@ export default function ProjectsPage() {
                 Things I&apos;ve built.
               </h1>
               <p className="text-text-muted mt-[0.6rem] max-w-[460px] text-[0.875rem]">
-                Two products, one focused on anime culture, the other on competitive seasonal
-                prediction.
+                Megami, a community-focused Discord bot with ownership and relationship mechanics. Seasonly, a seasonal prediction platform. And Brume, a realtime WebSocket gateway built in Rust.
               </p>
             </div>
 

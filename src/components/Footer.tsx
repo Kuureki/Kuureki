@@ -37,7 +37,7 @@ export default function Footer() {
                 {SITE.name}
               </h4>
               <p className="text-text-muted max-w-[200px] text-[0.825rem] leading-[1.65]">
-                Building at the intersection of anime culture and systems engineering.
+                Building at the intersection of consumer entertainment culture and systems engineering.
               </p>
             </div>
 

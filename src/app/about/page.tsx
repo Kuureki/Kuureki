@@ -7,7 +7,7 @@ import { ABOUT_CARDS, BADGES, PRINCIPLES, SITE, SOCIALS } from '@/lib/config';
 
 export const metadata: Metadata = {
   title: `About — ${SITE.name}`,
-  description: 'Building at the intersection of anime culture and systems engineering.',
+  description: 'Building at the intersection of consumer entertainment culture and systems engineering.',
 };
 
 export default function AboutPage() {
