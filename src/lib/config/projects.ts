@@ -17,25 +17,51 @@ export const PROJECTS: Project[] = [
     name: 'Megami',
     status: 'Active',
     shortDesc:
-      'Discord anime gacha bot with a full relationship economy. Skins, print numbers, romantic ownership mechanics, steal windows, marriage, legacy children, and a cold-voice drama feed. Real-ESRGAN upscale pipeline.',
+      'Discord economy bot with full relationship mechanics — ownership, trading, marriage, and a community activity feed. Real-ESRGAN image upscale pipeline.',
     fullDesc:
-      'Megami is a Discord anime gacha bot built around a full relationship economy. It goes beyond simple card collection — featuring skins, print numbers, romantic ownership mechanics, steal windows, marriage systems, legacy children, and a cold-voice drama feed.\n\nThe bot was designed by studying existing gacha bot economics (Karuta, Mudae, Gachapon) deeply and asking what a drama-driven relationship economy could look like. Image processing uses a Real-ESRGAN upscale pipeline for high-quality card generation, with napi-rs canvas for performant image rendering.',
+      'Megami is a Discord economy bot built around a full relationship economy. It goes beyond simple card collection — featuring ownership transfers, trading mechanics, marriage systems, and a community activity feed that surfaces notable events.\n\nThe bot was designed by studying existing bot economies deeply and asking what a relationship-driven economy could look like. Image processing uses a Real-ESRGAN upscale pipeline for high-quality card generation, with napi-rs canvas for performant image rendering.',
     tags: [
       'Discord.js',
       'napi-rs canvas',
       'PostgreSQL',
-      'AniList GraphQL',
+      'GraphQL',
       'Real-ESRGAN',
       'Cloudflare Workers',
     ],
     highlights: [
-      'Full relationship economy with romantic ownership mechanics',
-      'Skins and print number rarity system',
-      'Steal windows and marriage mechanics',
-      'Cold-voice drama feed for community engagement',
+      'Full relationship economy with ownership and trading mechanics',
+      'Skin and print number rarity system',
+      'Trading windows, marriage mechanics, and succession chains',
+      'Community activity feed for notable events',
       'Real-ESRGAN upscale pipeline for card images',
     ],
     url: 'https://megami.dev',
+  },
+  {
+    slug: 'brume',
+    num: '03',
+    name: 'Brume',
+    status: 'Active',
+    shortDesc:
+      'Realtime WebSocket gateway built in Rust. A single binary that handles pub/sub, presence tracking, and Postgres change streams. Flat-rate, stack-agnospheric.',
+    fullDesc:
+      'Brume is a realtime WebSocket gateway built in Rust. A single binary that connects to any Postgres database and exposes typed pub/sub channels, rich presence, and a REST API for server-side publishing.\n\nThe architecture is designed around transparency — messages are fire-and-forget, nothing is persisted, and the system is intentionally boring. It competes with Pusher and Ably but differentiates by being entirely self-hostable, DB-agnostic, and privacy-by-design.\n\nThe TypeScript SDK is the primary interface. Event schemas are defined once and propagate as fully typed payloads across the entire stack. The transport layer falls back gracefully: WebSocket → SSE → long-polling for environments where raw sockets aren\'t available.',
+    tags: [
+      'Rust',
+      'axum',
+      'tokio',
+      'WebSocket',
+      'PostgreSQL LISTEN/NOTIFY',
+      'TypeScript SDK',
+    ],
+    highlights: [
+      'Rust binary — tens of thousands of concurrent connections on modest hardware',
+      'Zero-dependency TypeScript SDK with full type inference from event schemas',
+      'Postgres LISTEN/NOTIFY for changefeed without a separate relay process',
+      'Multi-transport fallback chain: WebSocket → SSE → long-polling',
+      'Flat-rate pricing, no connection-based billing',
+    ],
+    url: 'https://brume.io',
   },
   {
     slug: 'seasonly',

@@ -3,7 +3,7 @@ export const DISCORD_ID = '835137181504372806';
 export const SITE = {
   name: 'Kuureki',
   role: 'Student & indie builder',
-  bio: 'I build products at the intersection of **anime culture** and **systems engineering**. **Megami**, a Discord gacha bot with a full relationship economy — ownership mechanics, marriage, legacy children, and a drama feed. **Seasonly**, a fantasy anime league platform with prediction-accuracy scoring that treats seasonal anime drafts like real fantasy sports. I care about products that are honest, well-crafted, and solve problems that actually exist.',
+  bio: 'I build products at the intersection of **consumer entertainment culture** and **systems engineering**. **Megami**, a Discord economy bot with full relationship mechanics — ownership, trading, marriage, and a community drama feed. **Seasonly**, a fantasy league platform for seasonal entertainment drafts — users predict their top picks and score against real performance data. **Brume**, a Rust realtime gateway that competes with Pusher and Ably but is entirely self-hostable and DB-agnostic. I care about products that are honest, well-crafted, and solve problems that actually exist.',
   email: 'hello@kuureki.com',
 };
 
@@ -16,7 +16,7 @@ export const SOCIALS = {
 
 export const BADGES = [
   { label: 'Building actively', type: 'green' as const, animated: true },
-  { label: 'Megami · Seasonly', type: 'violet' as const, animated: false },
+  { label: 'Megami · Seasonly · Brume', type: 'violet' as const, animated: false },
   { label: 'Kamiyama', type: 'default' as const, animated: false },
 ];
 
@@ -30,28 +30,28 @@ export const QUOTES = [
     source: 'Monkey D. Luffy, One Piece',
   },
   {
-    text: "People's lives don't end when they die. It ends when they lose faith.",
-    source: 'Itachi Uchiha, Naruto',
-  },
-  {
-    text: "Whatever you lose, you'll find it again. But what you throw away you'll never get back.",
-    source: 'Kenshin Himura, Rurouni Kenshin',
-  },
-  {
-    text: "It's not the face that makes someone a monster, it's the choices they make with their lives.",
-    source: 'Naruto Uzumaki',
-  },
-  {
-    text: 'The moment you think of giving up, think of the reason why you held on so long.',
+    text: 'You should never give up on something you truly want.',
     source: 'Natsu Dragneel, Fairy Tail',
+  },
+  {
+    text: 'A lesson without pain is a lesson unlearned.',
+    source: 'Dudley Blackwell',
+  },
+  {
+    text: 'The only thing we have to fear is fear itself.',
+    source: 'Franklin D. Roosevelt',
+  },
+  {
+    text: 'Even if we forget the reasons for our fights, the feelings between us never change.',
+    source: 'Naruto',
   },
 ];
 
 export const CURRENT_OBSESSION = {
-  type: 'show' as const,
-  title: 'Hyouka',
-  subtitle: 'Kyoto Animation, 2012',
-  note: 'Re-watching for the third time. The mystery-of-the-week structure masked as slice-of-life is genuinely brilliant storytelling.',
+  type: 'book' as const,
+  title: 'A Philosophy of Software Design',
+  subtitle: 'John Ousterhout, 2018',
+  note: 'Re-reading on module design and the cost of complexity. Every chapter makes me reconsider at least one decision I have made.',
 };
 
 export const GITHUB_USERNAME = 'kuureki';

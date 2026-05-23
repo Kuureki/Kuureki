@@ -129,7 +129,7 @@ export default function Nav() {
       </nav>
 
       {open && (
-        <div className="absolute top-16 right-4 left-4 md:hidden">
+        <div className="absolute top-16 right-4 left-4 md:hidden pointer-events-auto">
           <div className="bg-bg/80 border-border/80 flex flex-col gap-0.5 rounded-2xl border p-2 shadow-lg ring-1 shadow-black/30 ring-white/[0.04] backdrop-blur-xl">
             {links.map((item) => (
               <Link
