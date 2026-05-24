@@ -17,9 +17,9 @@ export const PROJECTS: Project[] = [
     name: 'Megami',
     status: 'Active',
     shortDesc:
-      'Discord economy bot with full relationship mechanics — ownership, trading, marriage, and a community activity feed. Real-ESRGAN image upscale pipeline.',
+      'Community-driven Discord economy bot with ownership, trading, and relationship mechanics. Real-ESRGAN image pipeline for high-quality card visuals.',
     fullDesc:
-      'Megami is a Discord economy bot built around a full relationship economy. It goes beyond simple card collection — featuring ownership transfers, trading mechanics, marriage systems, and a community activity feed that surfaces notable events.\n\nThe bot was designed by studying existing bot economies deeply and asking what a relationship-driven economy could look like. Image processing uses a Real-ESRGAN upscale pipeline for high-quality card generation, with napi-rs canvas for performant image rendering.',
+      'Megami is a Discord economy bot built around a full relationship economy. It goes beyond simple card collection — featuring ownership transfers, trading mechanics, marriage systems, and a community activity feed that surfaces notable events as they happen.\n\nCard visuals are generated through a custom Real-ESRGAN upscale pipeline, rendered via napi-rs for performance. Every card has a skin and print number, making each one unique and tradeable.\n\nThe economy is designed to feel alive — trading windows, succession chains, and seasonal events keep the meta evolving without requiring constant manual intervention.',
     tags: [
       'Discord.js',
       'napi-rs canvas',
@@ -29,11 +29,11 @@ export const PROJECTS: Project[] = [
       'Cloudflare Workers',
     ],
     highlights: [
-      'Full relationship economy with ownership and trading mechanics',
-      'Skin and print number rarity system',
-      'Trading windows, marriage mechanics, and succession chains',
-      'Community activity feed for notable events',
-      'Real-ESRGAN upscale pipeline for card images',
+      'Full relationship economy — ownership, trading, marriage, succession',
+      'Skins and print numbers make every card unique and collectible',
+      'Community activity feed surfaces notable events in real time',
+      'Real-ESRGAN upscale pipeline for premium card visuals',
+      'Fully self-hosted — your server, your rules',
     ],
     url: 'https://megami.dev',
   },
@@ -43,9 +43,9 @@ export const PROJECTS: Project[] = [
     name: 'Brume',
     status: 'Active',
     shortDesc:
-      'Realtime WebSocket gateway built in Rust. A single binary that handles pub/sub, presence tracking, and Postgres change streams. Flat-rate, stack-agnospheric.',
+      'Realtime WebSocket gateway built in Rust. Typed pub/sub channels, presence tracking, and Postgres change streams — as a single deployable binary. Flat-rate pricing, no per-connection billing.',
     fullDesc:
-      'Brume is a realtime WebSocket gateway built in Rust. A single binary that connects to any Postgres database and exposes typed pub/sub channels, rich presence, and a REST API for server-side publishing.\n\nThe architecture is designed around transparency — messages are fire-and-forget, nothing is persisted, and the system is intentionally boring. It competes with Pusher and Ably but differentiates by being entirely self-hostable, DB-agnostic, and privacy-by-design.\n\nThe TypeScript SDK is the primary interface. Event schemas are defined once and propagate as fully typed payloads across the entire stack. The transport layer falls back gracefully: WebSocket → SSE → long-polling for environments where raw sockets aren\'t available.',
+      'Brume is a realtime WebSocket gateway for teams that need pub/sub infrastructure without the SaaS lock-in. A single Rust binary connects to your existing Postgres database and exposes typed pub/sub channels, presence, and a REST API for server-side publishing.\n\nDefine your event schema once. Messages propagate as fully typed payloads across every client — TypeScript, Python, Go, whatever your stack speaks. The transport layer falls back gracefully: WebSocket → SSE → long-polling for environments where raw sockets are not available.\n\nPricing is flat-rate. No per-connection billing, no scaling surprises. Built for teams who want to own their realtime infrastructure and deploy it wherever they run their code.',
     tags: [
       'Rust',
       'axum',
@@ -55,11 +55,11 @@ export const PROJECTS: Project[] = [
       'TypeScript SDK',
     ],
     highlights: [
-      'Rust binary — tens of thousands of concurrent connections on modest hardware',
-      'Zero-dependency TypeScript SDK with full type inference from event schemas',
-      'Postgres LISTEN/NOTIFY for changefeed without a separate relay process',
+      'Single binary — no separate relay process, no dependency on external services',
+      'Fully typed event schemas propagate as typed payloads across your entire stack',
+      'Presence tracking built in — roster, count, and custom state',
       'Multi-transport fallback chain: WebSocket → SSE → long-polling',
-      'Flat-rate pricing, no connection-based billing',
+      'Self-hostable or use Brume Cloud — same SDK, same API either way',
     ],
     url: 'https://brume.io',
   },
@@ -69,15 +69,15 @@ export const PROJECTS: Project[] = [
     name: 'Seasonly',
     status: 'Active',
     shortDesc:
-      "Premium fantasy anime league platform. Draft your predicted top 10 shows each season, compete in private or public leagues, and score based on real AniList performance data. Built as a quality-first replacement for MAL's neglected FAL.",
+      'Premium seasonal fantasy league platform. Draft your predicted top shows each season, compete in private or public leagues, scored against real AniList data. Flat-rate pricing, no premium features locked behind paywalls.',
     fullDesc:
-      "Seasonly is a fantasy anime league platform built around the natural cadence of the anime calendar — Winter, Spring, Summer, Fall. Each season, users draft their predicted top 10 shows before the season locks, then compete in head-to-head league matchups scored against real AniList data.\n\nThe scoring model goes beyond naive popularity tracking. It uses a prediction-accuracy system with pre-season expectation baselines derived from AniList popularity, trending, meanScore, and favourites at draft-lock time — combined with a rank-position multiplier. Dark horse picks that genuinely overperform score more than obvious frontrunners that simply deliver as expected.\n\nPrivate leagues with invite codes, AniList OAuth as the sole auth method, and a Noir Gold design system differentiate it from the only real competitor: MAL's Fantasy Anime League, which has an active user base but no design investment, broken onboarding, and zero feature iteration.",
+      'Seasonly is a fantasy league platform built around the natural cadence of seasonal entertainment — Winter, Spring, Summer, Fall. Each season, users draft their predicted top 10 shows before the season locks, then compete in head-to-head league matchups scored against real AniList data.\n\nThe scoring model rewards accurate predictions over obvious frontrunners. Pre-season baselines are derived from AniList popularity, trending, meanScore, and favourites at draft-lock time — combined with a rank-position multiplier. Dark horse picks that genuinely overperform score more than safe selections that simply deliver as expected.\n\nPrivate leagues with invite codes, AniList OAuth as the sole auth method, and a Noir Gold design system fill the gaps left by the only other option — MAL Fantasy Anime League, which has an active user base but no design investment and zero feature iteration.',
     tags: ['Next.js', 'TypeScript', 'Tailwind v4', 'Drizzle ORM', 'PostgreSQL', 'AniList GraphQL'],
     highlights: [
-      'Prediction-accuracy scoring model with pre-season expectation baselines',
-      'Private leagues with invite codes — a key gap in MAL FAL',
-      'AniList OAuth integration as both auth and social proof',
-      'Live data pipeline — no anime metadata stored, always fetched real-time',
+      'Prediction-accuracy scoring model — rewards dark horse picks over safe selections',
+      'Private and public leagues with invite codes',
+      'AniList OAuth — no separate account needed',
+      'Real-time data pipeline, no stale metadata stored locally',
       'Noir Gold design system: true black, ivory, and gold as sole accent',
     ],
     url: 'https://seasonly.space',
