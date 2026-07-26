@@ -14,13 +14,18 @@
     "url": "git+https://github.com/Kuureki/Kuureki.git"
   },
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
+    "dev": "next dev",
     "start": "next start",
     "lint": "oxlint --fix --fix-suggestions",
-    "format": "oxfmt"
+    "format": "oxfmt",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
+    "@opennextjs/cloudflare": "^1.19.11",
     "@radix-ui/react-icons": "^1.3.2",
     "next": "^16.2.6",
     "next-mdx-remote-client": "^2.1.10",
@@ -51,6 +56,7 @@
     "oxfmt": "^0.50.0",
     "oxlint": "^1.65.0",
     "oxlint-tsgolint": "^0.22.1",
-    "tailwindcss": "^4.3.0"
+    "tailwindcss": "^4.3.0",
+    "wrangler": "^4.103.0"
   }
 }
