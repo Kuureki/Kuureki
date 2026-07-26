@@ -1,17 +1,22 @@
+import type { Metadata } from 'next';
+
 import About from '@/components/About';
-import Activity from '@/components/Activity';
-import Contact from '@/components/Contact';
+import ActivityPreview from '@/components/ActivityPreview';
 import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
 import { LanyardProvider } from '@/components/LanyardProvider';
 import Nav from '@/components/Nav';
-import Projects from '@/components/Projects';
-import Stack from '@/components/Stack';
-import Writing from '@/components/Writing';
+import ProjectsPreview from '@/components/ProjectsPreview';
+import WritingPreview from '@/components/WritingPreview';
 import { getAllBlogMeta } from '@/lib/blog';
 
+export const metadata: Metadata = {
+  title: 'Kuureki',
+  description: 'Student & indie builder. Working on Megami, Seasonly, and Brume.',
+};
+
 export default function Home() {
-  const posts = getAllBlogMeta();
+  const posts = getAllBlogMeta().slice(0, 3);
 
   return (
     <LanyardProvider>
@@ -19,11 +24,9 @@ export default function Home() {
       <main className="pt-6">
         <Hero />
         <About />
-        <Projects />
-        <Activity />
-        <Stack />
-        <Writing posts={posts} />
-        <Contact />
+        <ProjectsPreview />
+        <ActivityPreview />
+        <WritingPreview posts={posts} />
       </main>
       <Footer />
     </LanyardProvider>

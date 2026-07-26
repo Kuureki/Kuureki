@@ -1,9 +1,17 @@
 export const DISCORD_ID = '835137181504372806';
 
+export interface Quote {
+  text: string;
+  source: string;
+}
+
 export const SITE = {
   name: 'Kuureki',
   role: 'Student & indie builder',
-  bio: 'I build products at the intersection of **consumer entertainment culture** and **systems engineering**. **Megami**, a Discord economy bot with full relationship mechanics — ownership, trading, marriage, and a community drama feed. **Seasonly**, a fantasy league platform for seasonal entertainment drafts — users predict their top picks and score against real performance data. **Brume**, a Rust realtime gateway that competes with Pusher and Ably but is entirely self-hostable and DB-agnostic. I care about products that are honest, well-crafted, and solve problems that actually exist.',
+  location: 'Kamiyama',
+  bio: 'I build products where **consumer entertainment culture** meets **systems engineering**. Right now that\'s **Megami**, a Discord economy bot; **Seasonly**, a fantasy league platform for seasonal entertainment; and **Brume**, a self-hostable realtime gateway in Rust.',
+  longBio:
+    'I care about products that are honest, well-crafted, and solve problems that actually exist. My work sits at the intersection of consumer entertainment culture and systems engineering.',
   email: 'hey@kuureki.com',
 };
 
@@ -11,22 +19,22 @@ export const SOCIALS = {
   github: 'https://github.com/kuureki',
   twitter: 'https://twitter.com/kuureki',
   discord: `https://discord.com/users/${DISCORD_ID}`,
-  email: 'mailto:hey@kuureki.com',
+  email: `mailto:hey@kuureki.com`,
 };
 
 export const BADGES = [
   { label: 'Building actively', type: 'green' as const, animated: true },
   { label: 'Megami · Seasonly · Brume', type: 'violet' as const, animated: false },
-  { label: 'Kamiyama', type: 'default' as const, animated: false },
+  { label: SITE.location, type: 'default' as const, animated: false },
 ];
 
-export const QUOTES = [
+export const QUOTES: Quote[] = [
   {
-    text: "The world isn't perfect. But it's there for us, doing the best it can. That's what makes it so damn beautiful.",
+    text: 'The world isn\'t perfect. But it\'s there for us, doing the best it can. That\'s what makes it so damn beautiful.',
     source: 'Fullmetal Alchemist',
   },
   {
-    text: "If you don't take risks, you can't create a future.",
+    text: 'If you don\'t take risks, you can\'t create a future.',
     source: 'Monkey D. Luffy, One Piece',
   },
   {
@@ -55,3 +63,22 @@ export const CURRENT_OBSESSION = {
 };
 
 export const GITHUB_USERNAME = 'kuureki';
+
+export const PRINCIPLES = [
+  {
+    title: 'Understand the domain first',
+    desc: 'The quality gap between most software and what practitioners actually need is almost always a knowledge problem, not a technical one.',
+  },
+  {
+    title: 'Privacy by design',
+    desc: 'I think carefully about what data should and should not leave a user\'s machine — not as a compliance checkbox, but as an architectural constraint from the start.',
+  },
+  {
+    title: 'Lean infrastructure',
+    desc: 'Tight budgets force better decisions. I build with the smallest footprint that meets the requirement, and treat every unnecessary dependency as a liability.',
+  },
+  {
+    title: 'Ship, then refine',
+    desc: 'A working version in front of real users is worth more than a perfect architecture in a design doc. I move fast on the first version and let actual use reveal what matters.',
+  },
+];

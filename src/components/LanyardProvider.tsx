@@ -23,7 +23,7 @@ export function useLanyard() {
 }
 
 export function LanyardProvider({ children }: { children: React.ReactNode }) {
-  const { data, isLoading: hookLoading, error: hookError } = useLanyardRest(DISCORD_ID);
+  const { data, error: hookError } = useLanyardRest(DISCORD_ID);
   const [presence, setPresence] = useState<Types.Presence | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -36,7 +36,8 @@ export function LanyardProvider({ children }: { children: React.ReactNode }) {
     }, 8000);
 
     return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      if (timeoutRef.current)
+        clearTimeout(timeoutRef.current);
     };
   }, [presence]);
 

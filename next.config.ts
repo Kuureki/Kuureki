@@ -1,11 +1,5 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  experimental: {
-    turbopack: {
-      root: '/home/workspace/Projects/Kuureki',
-    },
-  },
-};
+const nextConfig = {};
 
 export default nextConfig;
 import('@opennextjs/cloudflare').then(m => m.initOpenNextCloudflareForDev());

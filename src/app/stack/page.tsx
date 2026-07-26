@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 
-import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import Nav from '@/components/Nav';
-import { SITE, STACK } from '@/lib/config';
+import SectionHeader from '@/components/SectionHeader';
+import { SITE, STACK, STACK_NOTES } from '@/lib/config';
 
 export const metadata: Metadata = {
   title: `Stack — ${SITE.name}`,
@@ -15,31 +15,24 @@ export default function StackPage() {
     <>
       <Nav />
       <main className="pt-6">
-        <section className="border-border border-b py-[6rem] pb-[5rem]">
+        <section className="border-border border-b py-[5rem] pb-[4.5rem] md:py-[6rem] md:pb-[5rem]">
           <div className="xs:px-[1.1rem] mx-auto max-w-[740px] px-6">
             <div className="mb-6">
               <a
-                href="/#stack"
+                href="/"
                 className="text-text-dim hover:text-text font-mono text-[0.75rem] no-underline transition-colors duration-150"
               >
                 ← Back to home
               </a>
             </div>
 
-            <div className="mb-4">
-              <div className="text-text-dim mb-2 font-mono text-[0.68rem] tracking-[0.12em] uppercase">
-                Stack
-              </div>
-              <h1 className="text-[clamp(2rem, 5vw, 3rem)] text-text font-serif leading-[1.1] font-normal tracking-[-0.02em]">
-                Tools I use.
-              </h1>
-              <p className="text-text-muted mt-[0.6rem] max-w-[460px] text-[0.875rem]">
-                Technologies and tools I use to build products.
-              </p>
-            </div>
+            <SectionHeader
+              title="Tools I use"
+              subtitle="Technologies and tools I reach for when building products that need to ship fast and scale gracefully."
+            />
 
-            <div className="mt-12 flex flex-col gap-6">
-              {STACK.map((group) => (
+            <div className="flex flex-col gap-6">
+              {STACK.map(group => (
                 <div
                   key={group.title}
                   className="border-border bg-bg-2 rounded-[10px] border px-[1.6rem] py-[1.6rem]"
@@ -48,10 +41,10 @@ export default function StackPage() {
                     {group.title}
                   </h3>
                   <div className="flex flex-wrap gap-2">
-                    {group.items.map((item) => (
+                    {group.items.map(item => (
                       <span
                         key={item}
-                        className="border-border hover:border-border-hover text-text bg-bg-3 rounded-sm border px-3 py-[0.35rem] font-mono text-[0.75rem] tracking-[0.03em] transition-colors duration-150"
+                        className="border-border bg-bg-3 text-text hover:border-border-hover rounded-sm border px-3 py-[0.35rem] font-mono text-[0.75rem] tracking-[0.03em] transition-colors duration-150"
                       >
                         {item}
                       </span>
@@ -61,19 +54,19 @@ export default function StackPage() {
               ))}
             </div>
 
-            <div className="border-border bg-bg-2 mt-12 rounded-[10px] border px-[1.6rem] py-[1.6rem]">
-              <h3 className="text-text mb-3 font-serif text-[1.1rem]">Philosophy</h3>
-              <p className="text-text-muted text-[0.875rem] leading-[1.65]">
-                I prefer lean, well-documented tools that get out of the way. The stack above is
-                what I reach for when building products that need to ship fast and scale gracefully.
-                I&apos;m always evaluating new tools, but these have proven reliable across multiple
-                projects.
-              </p>
+            <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
+              {STACK_NOTES.map(note => (
+                <div
+                  key={note.title}
+                  className="border-border bg-bg-2 rounded-[10px] border px-[1.4rem] py-[1.4rem]"
+                >
+                  <h3 className="text-text mb-2 font-serif text-[1.05rem]">{note.title}</h3>
+                  <p className="text-text-muted text-[0.82rem] leading-[1.65]">{note.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
-
-        <Contact />
       </main>
       <Footer />
     </>

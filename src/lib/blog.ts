@@ -12,9 +12,10 @@ export interface BlogMeta {
 const BLOG_DIR = path.join(process.cwd(), 'src/content/blog');
 
 export function getAllBlogMeta(): BlogMeta[] {
-  if (!fs.existsSync(BLOG_DIR)) return [];
+  if (!fs.existsSync(BLOG_DIR))
+    return [];
 
-  const files = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith('.mdx'));
+  const files = fs.readdirSync(BLOG_DIR).filter(f => f.endsWith('.mdx'));
 
   return files.map((file) => {
     const slug = file.replace(/\.mdx$/, '');
@@ -34,7 +35,8 @@ export function getAllBlogMeta(): BlogMeta[] {
 export function getBlogSource(slug: string) {
   const filePath = path.join(BLOG_DIR, `${slug}.mdx`);
 
-  if (!fs.existsSync(filePath)) return null;
+  if (!fs.existsSync(filePath))
+    return null;
 
   const content = fs.readFileSync(filePath, 'utf-8');
   const frontmatter = parseFrontmatter(content);
@@ -45,21 +47,23 @@ export function getBlogSource(slug: string) {
 
 function parseFrontmatter(content: string): Record<string, string> {
   const match = content.match(/^---([\s\S]*?)---/);
-  if (!match) return {};
+  if (!match)
+    return {};
 
   const lines = match[1].trim().split('\n');
   const result: Record<string, string> = {};
 
   for (const line of lines) {
     const colonIndex = line.indexOf(':');
-    if (colonIndex === -1) continue;
+    if (colonIndex === -1)
+      continue;
 
     const key = line.slice(0, colonIndex).trim();
     let value = line.slice(colonIndex + 1).trim();
 
     if (
-      (value.startsWith('"') && value.endsWith('"')) ||
-      (value.startsWith("'") && value.endsWith("'"))
+      (value.startsWith('"') && value.endsWith('"'))
+      || (value.startsWith('\'') && value.endsWith('\''))
     ) {
       value = value.slice(1, -1);
     }

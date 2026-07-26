@@ -25,3 +25,18 @@ export const STACK: StackGroup[] = [
     items: ['Vercel AI SDK', 'OpenRouter', 'Real-ESRGAN', 'PaddleOCR'],
   },
 ];
+
+export const STACK_NOTES = [
+  {
+    title: 'Lean by default',
+    desc: 'I reach for the smallest stack that can carry the product. Every dependency is a liability until it proves otherwise.',
+  },
+  {
+    title: 'Type safety everywhere',
+    desc: 'From TypeScript to Rust to Drizzle — I prefer contracts that the compiler can check over documentation that goes stale.',
+  },
+  {
+    title: 'Own the runtime',
+    desc: 'Self-hostable infrastructure, flat-rate pricing, and no surprise scaling bills. That is the Brume philosophy, and it shapes how I choose every tool.',
+  },
+];

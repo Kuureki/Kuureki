@@ -2,17 +2,14 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-interface Quote {
-  text: string;
-  source: string;
-}
+import { Quote } from '@/lib/config';
 
 interface RotatingQuoteProps {
   quotes: Quote[];
   interval?: number;
 }
 
-export default function RotatingQuote({ quotes, interval = 6000 }: RotatingQuoteProps) {
+export default function RotatingQuote({ quotes, interval = 8000 }: RotatingQuoteProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFading, setIsFading] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -20,7 +17,7 @@ export default function RotatingQuote({ quotes, interval = 6000 }: RotatingQuote
   const rotateQuote = () => {
     setIsFading(true);
     setTimeout(() => {
-      setCurrentIndex((prev) => (prev + 1) % quotes.length);
+      setCurrentIndex(prev => (prev + 1) % quotes.length);
       setIsFading(false);
     }, 300);
   };
@@ -28,32 +25,38 @@ export default function RotatingQuote({ quotes, interval = 6000 }: RotatingQuote
   useEffect(() => {
     intervalRef.current = setInterval(rotateQuote, interval);
     return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
+      if (intervalRef.current) 
+clearInterval(intervalRef.current);
     };
   }, [interval]);
 
   const currentQuote = quotes[currentIndex];
 
   return (
-    <div className="border-border bg-bg-2 rounded-[10px] border px-[1.6rem] py-[1.6rem]">
-      <div className="text-text-dim mb-4 font-mono text-[0.68rem] tracking-[0.1em] uppercase">
+    <div className="rounded-[10px] border border-border bg-bg-2 px-[1.6rem] py-[1.6rem]">
+      <div className="mb-4 font-mono text-[0.68rem] uppercase tracking-[0.1em] text-text-dim">
         Current rotation
       </div>
 
       <div className="relative min-h-[80px]">
         <blockquote
-          className={`text-text font-serif text-[1.15rem] leading-[1.5] tracking-[-0.01em] transition-opacity duration-300 ${
+          className={`font-serif text-[1.15rem] leading-[1.5] tracking-[-0.01em] text-text transition-opacity duration-300 ${
             isFading ? 'opacity-0' : 'opacity-100'
           }`}
         >
           &ldquo;
-          {currentQuote.text}&rdquo;
+          {currentQuote.text}
+          &rdquo;
         </blockquote>
       </div>
 
-      <div className="text-text-muted mt-3 font-mono text-[0.75rem]">— {currentQuote.source}</div>
+      <div className="mt-3 font-mono text-[0.75rem] text-text-muted">
+        —
+        {' '}
+        {currentQuote.source}
+      </div>
 
-      <div className="border-border mt-4 flex items-center gap-2 border-t pt-3">
+      <div className="mt-4 flex items-center gap-2 border-t border-border pt-3">
         {quotes.map((_, idx) => (
           <button
             key={idx}
@@ -63,7 +66,8 @@ export default function RotatingQuote({ quotes, interval = 6000 }: RotatingQuote
                 setCurrentIndex(idx);
                 setIsFading(false);
               }, 300);
-              if (intervalRef.current) clearInterval(intervalRef.current);
+              if (intervalRef.current) 
+clearInterval(intervalRef.current);
               intervalRef.current = setInterval(rotateQuote, interval);
             }}
             className={`h-1.5 w-1.5 rounded-full transition-colors duration-150 ${

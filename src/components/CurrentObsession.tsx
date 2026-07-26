@@ -1,12 +1,6 @@
 'use client';
 
-import {
-  VideoIcon,
-  SpeakerLoudIcon,
-  MagicWandIcon,
-  RocketIcon,
-  FileTextIcon,
-} from '@radix-ui/react-icons';
+import { FileTextIcon } from '@radix-ui/react-icons';
 
 interface Obsession {
   type: 'show' | 'album' | 'idea' | 'game' | 'book';
@@ -20,14 +14,6 @@ interface CurrentObsessionProps {
   obsession: Obsession;
 }
 
-const typeIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  show: VideoIcon,
-  album: SpeakerLoudIcon,
-  idea: MagicWandIcon,
-  game: RocketIcon,
-  book: FileTextIcon,
-};
-
 const typeLabels: Record<string, string> = {
   show: 'Currently watching',
   album: 'Currently listening to',
@@ -37,8 +23,6 @@ const typeLabels: Record<string, string> = {
 };
 
 export default function CurrentObsession({ obsession }: CurrentObsessionProps) {
-  const Icon = typeIcons[obsession.type] ?? MagicWandIcon;
-
   return (
     <div className="border-border bg-bg-2 rounded-[10px] border px-[1.6rem] py-[1.6rem]">
       <div className="text-text-dim mb-4 font-mono text-[0.68rem] tracking-[0.1em] uppercase">
@@ -46,18 +30,19 @@ export default function CurrentObsession({ obsession }: CurrentObsessionProps) {
       </div>
 
       <div className="flex items-start gap-4">
-        {obsession.image && (
-          <img
-            src={obsession.image}
-            alt={obsession.title}
-            className="h-16 w-16 flex-shrink-0 rounded-md"
-          />
-        )}
-        {!obsession.image && (
-          <div className="bg-bg-3 border-border flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-md border">
-            <Icon className="text-text-dim h-7 w-7" />
-          </div>
-        )}
+        {obsession.image
+          ? (
+              <img
+                src={obsession.image}
+                alt={obsession.title}
+                className="h-16 w-16 flex-shrink-0 rounded-md"
+              />
+            )
+          : (
+              <div className="border-border bg-bg-3 flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-md border">
+                <FileTextIcon className="text-text-dim h-7 w-7" />
+              </div>
+            )}
 
         <div className="flex-1">
           <div className="text-text mb-1 text-[1.05rem] font-medium">{obsession.title}</div>

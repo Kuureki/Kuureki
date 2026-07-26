@@ -1,14 +1,13 @@
-import { ArrowLeftIcon, ExternalLinkIcon, ArrowRightIcon } from '@radix-ui/react-icons';
+import { ArrowRightIcon, ExternalLinkIcon } from '@radix-ui/react-icons';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import Nav from '@/components/Nav';
-import { PROJECTS, getProjectBySlug, SITE } from '@/lib/config';
+import { getProjectBySlug, PROJECTS, SITE } from '@/lib/config';
 
 export function generateStaticParams() {
-  return PROJECTS.map((project) => ({ slug: project.slug }));
+  return PROJECTS.map(project => ({ slug: project.slug }));
 }
 
 export async function generateMetadata({
@@ -18,7 +17,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
-  if (!project) return { title: 'Project Not Found' };
+  if (!project)
+    return { title: 'Project Not Found' };
   return {
     title: `${project.name} — ${SITE.name}`,
     description: project.shortDesc,
@@ -33,7 +33,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     notFound();
   }
 
-  const currentIndex = PROJECTS.findIndex((p) => p.slug === slug);
+  const currentIndex = PROJECTS.findIndex(p => p.slug === slug);
   const prevProject = currentIndex < PROJECTS.length - 1 ? PROJECTS[currentIndex + 1] : null;
   const nextProject = currentIndex > 0 ? PROJECTS[currentIndex - 1] : null;
 
@@ -41,11 +41,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     <>
       <Nav />
       <main className="pt-6">
-        <section className="border-border border-b py-[6rem] pb-[5rem]">
+        <section className="border-border border-b py-[5rem] pb-[4.5rem] md:py-[6rem] md:pb-[5rem]">
           <div className="xs:px-[1.1rem] mx-auto max-w-[740px] px-6">
             <div className="mb-6 flex items-center gap-3">
               <a
-                href="/#projects"
+                href="/projects"
                 className="text-text-dim hover:text-text font-mono text-[0.75rem] no-underline transition-colors duration-150"
               >
                 ← Projects
@@ -54,7 +54,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             </div>
 
             <div className="mb-4 flex items-center gap-3">
-              <h1 className="text-[clamp(2rem, 5vw, 3rem)] text-text font-serif leading-[1.1] font-normal tracking-[-0.02em]">
+              <h1 className="text-text font-serif text-[clamp(2rem,5vw,3rem)] leading-[1.1] font-normal tracking-[-0.02em]">
                 {project.name}
               </h1>
               <div className="flex items-center gap-2">
@@ -85,10 +85,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             </p>
 
             <div className="mb-12 flex flex-wrap gap-[0.35rem]">
-              {project.tags.map((tag) => (
+              {project.tags.map((tag: string) => (
                 <span
                   key={tag}
-                  className="text-text-dim bg-bg-3 border-border rounded-sm border px-[0.45rem] py-[0.15rem] font-mono text-[0.65rem] tracking-[0.03em]"
+                  className="border-border bg-bg-3 text-text-dim rounded-sm border px-[0.45rem] py-[0.15rem] font-mono text-[0.65rem] tracking-[0.03em]"
                 >
                   {tag}
                 </span>
@@ -103,7 +103,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 className="group mb-12 inline-flex items-center gap-3 no-underline"
               >
                 <div className="bg-text text-bg rounded-[9px] px-[1.2rem] py-[0.6rem] text-[0.825rem] font-medium transition-all duration-150 hover:bg-[#d0d0d8]">
-                  Visit {project.name}
+                  Visit
+                  {' '}
+                  {project.name}
                 </div>
                 <div className="text-text-muted group-hover:text-text transition-all duration-150 group-hover:translate-x-0.5">
                   <ArrowRightIcon className="h-4 w-4" />
@@ -123,12 +125,12 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             </div>
 
             {project.highlights && project.highlights.length > 0 && (
-              <div className="bg-bg-2 border-border mt-12 rounded-[10px] border px-[1.4rem] py-[1.4rem]">
+              <div className="border-border bg-bg-2 mt-12 rounded-[10px] border px-[1.4rem] py-[1.4rem]">
                 <h3 className="text-text mb-[0.85rem] font-mono text-[0.8rem] font-medium tracking-[0.06em] uppercase">
                   Highlights
                 </h3>
                 <ul className="m-0 flex list-none flex-col gap-3 p-0">
-                  {project.highlights.map((h) => (
+                  {project.highlights.map(h => (
                     <li key={h} className="text-text-muted flex items-start gap-3 text-[0.825rem]">
                       <span className="text-accent mt-[0.05rem] flex-shrink-0 font-mono text-[0.75rem]">
                         →
@@ -142,18 +144,20 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
             {(prevProject || nextProject) && (
               <div className="border-border xs:grid-cols-1 mt-12 grid grid-cols-2 gap-8 border-t pt-8">
-                {prevProject ? (
-                  <a href={`/projects/${prevProject.slug}`} className="group no-underline">
-                    <div className="text-text-dim mb-1 font-mono text-[0.68rem] tracking-[0.06em] uppercase">
+                {prevProject
+                  ? (
+                      <a href={`/projects/${prevProject.slug}`} className="group no-underline">
+                        <div className="text-text-dim mb-1 font-mono text-[0.68rem] tracking-[0.06em] uppercase">
                       Previous
-                    </div>
-                    <div className="text-text group-hover:text-accent text-[0.95rem] font-medium transition-colors duration-150">
-                      {prevProject.name}
-                    </div>
-                  </a>
-                ) : (
-                  <div />
-                )}
+                        </div>
+                        <div className="text-text group-hover:text-accent text-[0.95rem] font-medium transition-colors duration-150">
+                          {prevProject.name}
+                        </div>
+                      </a>
+                    )
+                  : (
+                      <div />
+                    )}
                 {nextProject && (
                   <a
                     href={`/projects/${nextProject.slug}`}
@@ -171,8 +175,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             )}
           </div>
         </section>
-
-        <Contact />
       </main>
       <Footer />
     </>

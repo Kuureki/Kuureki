@@ -1,56 +1,54 @@
 import {
-  GitHubLogoIcon,
-  TwitterLogoIcon,
   DiscordLogoIcon,
   EnvelopeClosedIcon,
+  GitHubLogoIcon,
+  TwitterLogoIcon,
 } from '@radix-ui/react-icons';
 import Link from 'next/link';
 
 import { SITE, SOCIALS } from '@/lib/config';
 
+const navLinks = [
+  { label: 'About', href: '/about' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Activity', href: '/activity' },
+  { label: 'Stack', href: '/stack' },
+  { label: 'Writing', href: '/blog' },
+  { label: 'Contact', href: '/contact' },
+];
+
+const socials = [
+  { label: 'GitHub', href: SOCIALS.github, icon: GitHubLogoIcon },
+  { label: 'X / Twitter', href: SOCIALS.twitter, icon: TwitterLogoIcon },
+  { label: 'Discord', href: SOCIALS.discord, icon: DiscordLogoIcon },
+  { label: 'Email', href: SOCIALS.email, icon: EnvelopeClosedIcon },
+];
+
 export default function Footer() {
-  const navLinks = [
-    { label: 'About', href: '/about' },
-    { label: 'Projects', href: '/projects' },
-    { label: 'Activity', href: '/activity' },
-    { label: 'Stack', href: '/stack' },
-    { label: 'Writing', href: '/blog' },
-    { label: 'Contact', href: '/#contact' },
-  ];
-
-  const socials = [
-    { label: 'GitHub', href: SOCIALS.github, icon: GitHubLogoIcon },
-    { label: 'X / Twitter', href: SOCIALS.twitter, icon: TwitterLogoIcon },
-    { label: 'Discord', href: SOCIALS.discord, icon: DiscordLogoIcon },
-    { label: 'Email', href: SOCIALS.email, icon: EnvelopeClosedIcon },
-  ];
-
   return (
-    <footer className="border-border relative border-t">
-      <div className="to-bg-2/30 pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent" />
-
+    <footer className="relative border-t border-border">
       <div className="xs:px-[1.1rem] relative mx-auto max-w-[740px] px-6">
-        <div className="xs:py-10 py-12">
-          <div className="xs:gap-8 grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="py-12 xs:py-10">
+          <div className="grid grid-cols-1 gap-8 xs:gap-8 md:grid-cols-3">
             <div>
-              <h4 className="text-text mb-3 font-serif text-[1.1rem] tracking-[0.01em]">
+              <h4 className="mb-3 font-serif text-[1.1rem] tracking-[0.01em] text-text">
                 {SITE.name}
               </h4>
-              <p className="text-text-muted max-w-[200px] text-[0.825rem] leading-[1.65]">
-                Building at the intersection of consumer entertainment culture and systems engineering.
+              <p className="max-w-[220px] text-[0.825rem] leading-[1.65] text-text-muted">
+                {SITE.longBio}
               </p>
             </div>
 
             <div>
-              <h4 className="text-text-dim mb-3 font-mono text-[0.68rem] tracking-[0.1em] uppercase">
+              <h4 className="mb-3 font-mono text-[0.68rem] uppercase tracking-[0.1em] text-text-dim">
                 Navigate
               </h4>
               <ul className="m-0 flex list-none flex-col gap-2 p-0">
-                {navLinks.map((item) => (
+                {navLinks.map(item => (
                   <li key={item.label}>
                     <Link
                       href={item.href}
-                      className="text-text-muted hover:text-text text-[0.825rem] no-underline transition-colors duration-150"
+                      className="text-[0.825rem] text-text-muted no-underline transition-colors duration-150 hover:text-text"
                     >
                       {item.label}
                     </Link>
@@ -60,7 +58,7 @@ export default function Footer() {
             </div>
 
             <div>
-              <h4 className="text-text-dim mb-3 font-mono text-[0.68rem] tracking-[0.1em] uppercase">
+              <h4 className="mb-3 font-mono text-[0.68rem] uppercase tracking-[0.1em] text-text-dim">
                 Connect
               </h4>
               <div className="flex flex-col gap-2">
@@ -72,9 +70,9 @@ export default function Footer() {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-text-muted hover:text-text group inline-flex items-center gap-2.5 text-[0.825rem] no-underline transition-colors duration-150"
+                      className="group inline-flex items-center gap-2.5 text-[0.825rem] text-text-muted no-underline transition-colors duration-150 hover:text-text"
                     >
-                      <Icon className="text-text-dim group-hover:text-text h-3.5 w-3.5 transition-colors duration-150" />
+                      <Icon className="h-3.5 w-3.5 text-text-dim transition-colors duration-150 group-hover:text-text" />
                       {social.label}
                     </a>
                   );
@@ -83,11 +81,13 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="border-border xs:flex-col xs:gap-3 xs:items-start mt-12 flex items-center justify-between border-t pt-6">
-            <span className="text-text-dim font-mono text-[0.72rem]">{SITE.name} © 2026</span>
-            <span className="text-text-dim font-mono text-[0.72rem]">
-              Built with Next.js & Tailwind
+          <div className="mt-12 flex items-center justify-between border-t border-border pt-6 xs:flex-col xs:items-start xs:gap-3">
+            <span className="font-mono text-[0.72rem] text-text-dim">
+              {SITE.name}
+              {' '}
+              © 2026
             </span>
+            <span className="font-mono text-[0.72rem] text-text-dim">Built with Next.js & Tailwind</span>
           </div>
         </div>
       </div>

@@ -16,7 +16,8 @@ const paletteColors: Record<string, string> = {
 };
 
 export function getAvatarUrl(discordUser: Types.DiscordUser | undefined): string {
-  if (!discordUser) return `https://api.lanyard.rest/${DISCORD_ID}.png`;
+  if (!discordUser)
+    return `https://api.lanyard.rest/${DISCORD_ID}.png`;
   const isAnimated = discordUser.avatar?.startsWith('a_');
   return `https://cdn.discordapp.com/avatars/${discordUser.id}/${discordUser.avatar}.${isAnimated ? 'gif' : 'png'}?size=128`;
 }
@@ -44,7 +45,8 @@ export function getPrimaryGuildTag(discordUser: Types.DiscordUser | undefined): 
 
 export function getPrimaryGuildBadgeUrl(discordUser: Types.DiscordUser | undefined): string | null {
   const guild = (discordUser as any)?.primary_guild;
-  if (!guild?.badge || !guild?.identity_guild_id) return null;
+  if (!guild?.badge || !guild?.identity_guild_id)
+    return null;
   return `https://cdn.discordapp.com/guild-tag-badges/${guild.identity_guild_id}/${guild.badge}.png`;
 }
 

@@ -17,7 +17,7 @@ export const PROJECTS: Project[] = [
     name: 'Megami',
     status: 'Active',
     shortDesc:
-      'Community-driven Discord economy bot with ownership, trading, and relationship mechanics. Real-ESRGAN image pipeline for high-quality card visuals.',
+      'A Discord economy bot built around ownership, trading, and relationships. Cards have skins, print numbers, and a real secondary market.',
     fullDesc:
       'Megami is a Discord economy bot built around a full relationship economy. It goes beyond simple card collection — featuring ownership transfers, trading mechanics, marriage systems, and a community activity feed that surfaces notable events as they happen.\n\nCard visuals are generated through a custom Real-ESRGAN upscale pipeline, rendered via napi-rs for performance. Every card has a skin and print number, making each one unique and tradeable.\n\nThe economy is designed to feel alive — trading windows, succession chains, and seasonal events keep the meta evolving without requiring constant manual intervention.',
     tags: [
@@ -39,21 +39,14 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'brume',
-    num: '03',
+    num: '02',
     name: 'Brume',
     status: 'Active',
     shortDesc:
-      'Realtime WebSocket gateway built in Rust. Typed pub/sub channels, presence tracking, and Postgres change streams — as a single deployable binary. Flat-rate pricing, no per-connection billing.',
+      'A self-hostable realtime WebSocket gateway. Typed pub/sub channels, presence, and multi-transport fallback — one Rust binary.',
     fullDesc:
       'Brume is a realtime WebSocket gateway for teams that need pub/sub infrastructure without the SaaS lock-in. A single Rust binary connects to your existing Postgres database and exposes typed pub/sub channels, presence, and a REST API for server-side publishing.\n\nDefine your event schema once. Messages propagate as fully typed payloads across every client — TypeScript, Python, Go, whatever your stack speaks. The transport layer falls back gracefully: WebSocket → SSE → long-polling for environments where raw sockets are not available.\n\nPricing is flat-rate. No per-connection billing, no scaling surprises. Built for teams who want to own their realtime infrastructure and deploy it wherever they run their code.',
-    tags: [
-      'Rust',
-      'axum',
-      'tokio',
-      'WebSocket',
-      'PostgreSQL LISTEN/NOTIFY',
-      'TypeScript SDK',
-    ],
+    tags: ['Rust', 'axum', 'tokio', 'WebSocket', 'PostgreSQL LISTEN/NOTIFY', 'TypeScript SDK'],
     highlights: [
       'Single binary — no separate relay process, no dependency on external services',
       'Fully typed event schemas propagate as typed payloads across your entire stack',
@@ -65,11 +58,11 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'seasonly',
-    num: '02',
+    num: '03',
     name: 'Seasonly',
     status: 'Active',
     shortDesc:
-      'Premium seasonal fantasy league platform. Draft your predicted top shows each season, compete in private or public leagues, scored against real AniList data. Flat-rate pricing, no premium features locked behind paywalls.',
+      'A fantasy league platform for seasonal entertainment. Draft predicted top picks, compete in leagues, score against real performance data.',
     fullDesc:
       'Seasonly is a fantasy league platform built around the natural cadence of seasonal entertainment — Winter, Spring, Summer, Fall. Each season, users draft their predicted top 10 shows before the season locks, then compete in head-to-head league matchups scored against real AniList data.\n\nThe scoring model rewards accurate predictions over obvious frontrunners. Pre-season baselines are derived from AniList popularity, trending, meanScore, and favourites at draft-lock time — combined with a rank-position multiplier. Dark horse picks that genuinely overperform score more than safe selections that simply deliver as expected.\n\nPrivate leagues with invite codes, AniList OAuth as the sole auth method, and a Noir Gold design system fill the gaps left by the only other option — MAL Fantasy Anime League, which has an active user base but no design investment and zero feature iteration.',
     tags: ['Next.js', 'TypeScript', 'Tailwind v4', 'Drizzle ORM', 'PostgreSQL', 'AniList GraphQL'],
@@ -85,9 +78,9 @@ export const PROJECTS: Project[] = [
 ];
 
 export function getProjectBySlug(slug: string): Project | undefined {
-  return PROJECTS.find((p) => p.slug === slug);
+  return PROJECTS.find(p => p.slug === slug);
 }
 
 export function getAllProjectSlugs(): string[] {
-  return PROJECTS.map((p) => p.slug);
+  return PROJECTS.map(p => p.slug);
 }

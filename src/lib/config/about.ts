@@ -10,7 +10,7 @@ export const ABOUT_CARDS: AboutCard[] = [
   },
   {
     title: 'Privacy by design',
-    desc: "I think carefully about what data should and should not leave a user's machine — not as a compliance checkbox, but as an architectural constraint from the start.",
+    desc: 'I think carefully about what data should and should not leave a user\'s machine — not as a compliance checkbox, but as an architectural constraint from the start.',
   },
   {
     title: 'Lean infrastructure',

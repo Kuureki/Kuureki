@@ -3,12 +3,17 @@
 import { ExternalLinkIcon } from '@radix-ui/react-icons';
 import { useEffect, useRef } from 'react';
 
+import SectionHeader from '@/components/SectionHeader';
 import { PROJECTS } from '@/lib/config';
 
-export default function Projects() {
+export default function ProjectsPreview() {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const el = ref.current;
+    if (!el)
+      return;
+    el.classList.add('fade-in');
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -20,8 +25,7 @@ export default function Projects() {
       },
       { threshold: 0.1, rootMargin: '0px 0px -40px 0px' },
     );
-
-    if (ref.current) observer.observe(ref.current);
+    observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
@@ -29,29 +33,19 @@ export default function Projects() {
     <section id="projects" className="border-border border-b py-20">
       <div className="xs:px-[1.1rem] mx-auto max-w-[740px] px-6">
         <div ref={ref} className="fade-in">
-          <div className="mb-[2.5rem]">
-            <div className="text-text-dim mb-2 font-mono text-[0.68rem] tracking-[0.12em] uppercase">
-              02 — Projects
-            </div>
-            <h2 className="text-text font-serif text-[1.9rem] leading-[1.2] font-normal tracking-[-0.02em]">
-              Things I&apos;ve built.
-            </h2>
-          </div>
+          <SectionHeader
+            title="Things I've built"
+            action={{ label: 'All projects', href: '/projects' }}
+          />
+
           <div className="flex flex-col gap-[1px]">
-            {PROJECTS.map((project, idx) => (
-              <div
+            {PROJECTS.slice(0, 3).map((project, idx) => (
+              <a
                 key={project.slug}
-                className={`border-border hover:bg-bg-2/30 cursor-pointer border-b py-[1.35rem] transition-colors duration-150 ${idx === 0 ? 'border-border border-t' : ''}`}
-                onClick={() => {
-                  window.location.href = `/projects/${project.slug}`;
-                }}
-                role="link"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    window.location.href = `/projects/${project.slug}`;
-                  }
-                }}
+                href={`/projects/${project.slug}`}
+                className={`group border-border hover:bg-bg-2/40 border-b py-[1.35rem] no-underline transition-colors duration-150 ${
+                  idx === 0 ? 'border-border border-t' : ''
+                }`}
               >
                 <div className="flex items-start gap-[1.25rem]">
                   <span className="text-text-dim w-6 flex-shrink-0 pt-1 font-mono text-[0.65rem]">
@@ -59,21 +53,24 @@ export default function Projects() {
                   </span>
                   <div className="flex-1">
                     <div className="mb-[0.3rem] flex items-center justify-between">
-                      <span className="text-text hover:text-accent text-[0.95rem] font-medium transition-colors duration-150">
+                      <span className="text-text group-hover:text-accent text-[0.95rem] font-medium transition-colors duration-150">
                         {project.name}
                       </span>
                       <div className="flex items-center gap-2">
                         {project.url && (
-                          <button
+                          <span
+                            className="text-text-dim opacity-0 transition-opacity duration-150 group-hover:opacity-100"
                             onClick={(e) => {
+                              e.preventDefault();
                               e.stopPropagation();
                               window.open(project.url, '_blank', 'noopener,noreferrer');
                             }}
-                            className="text-text-dim hover:text-accent transition-colors duration-150"
-                            aria-label={`Visit ${project.name} website`}
+                            role="button"
+                            tabIndex={0}
+                            aria-label={`Visit ${project.name}`}
                           >
                             <ExternalLinkIcon className="h-4 w-4" />
-                          </button>
+                          </span>
                         )}
                         <span
                           className={`rounded-sm border px-2 py-[0.18rem] font-mono text-[0.65rem] ${
@@ -90,10 +87,10 @@ export default function Projects() {
                       {project.shortDesc}
                     </p>
                     <div className="flex flex-wrap gap-[0.35rem]">
-                      {project.tags.map((tag) => (
+                      {project.tags.slice(0, 5).map(tag => (
                         <span
                           key={tag}
-                          className="text-text-dim bg-bg-3 border-border rounded-sm border px-[0.45rem] py-[0.15rem] font-mono text-[0.65rem] tracking-[0.03em]"
+                          className="border-border bg-bg-3 text-text-dim rounded-sm border px-[0.45rem] py-[0.15rem] font-mono text-[0.65rem] tracking-[0.03em]"
                         >
                           {tag}
                         </span>
@@ -101,7 +98,7 @@ export default function Projects() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>

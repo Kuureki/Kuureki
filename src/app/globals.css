@@ -1,24 +1,26 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-bg: #0f0f11;
-  --color-bg-2: #141416;
+  --color-bg: #0c0c0e;
+  --color-bg-elevated: #131315;
+  --color-bg-2: #131315;
   --color-bg-3: #1a1a1d;
-  --color-border: rgba(255, 255, 255, 0.07);
-  --color-border-hover: rgba(255, 255, 255, 0.14);
-  --color-text: #e8e8ea;
-  --color-text-muted: #888890;
-  --color-text-dim: #555560;
+  --color-border: rgba(255, 255, 255, 0.06);
+  --color-border-hover: rgba(255, 255, 255, 0.12);
+  --color-text: #f1f1f3;
+  --color-text-muted: #94949c;
+  --color-text-dim: #5c5c66;
   --color-accent: #a78bfa;
   --color-accent-soft: rgba(167, 139, 250, 0.12);
-  --color-accent-dim: rgba(167, 139, 250, 0.06);
+  --color-accent-dim: rgba(167, 139, 250, 0.05);
   --color-green: #86efac;
   --color-green-soft: rgba(134, 239, 172, 0.1);
   --color-amber: #fbbf24;
+  --color-red: #f87171;
 
   --font-serif: 'Instrument Serif', Georgia, serif;
-  --font-sans: 'DM Sans', sans-serif;
-  --font-mono: 'DM Mono', monospace;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'DM Mono', ui-monospace, monospace;
 
   --breakpoint-xs: 600px;
 
@@ -35,6 +37,27 @@
   }
 }
 
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -44,7 +67,7 @@ body {
   color: var(--color-text);
   font-family: var(--font-sans);
   font-size: 15px;
-  line-height: 1.65;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -53,23 +76,27 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 999;
-  opacity: 0.4;
+  opacity: 0.5;
 }
 
 .fade-in {
   opacity: 0;
   transform: translateY(16px);
   transition:
-    opacity 0.5s ease,
-    transform 0.5s ease;
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* ─── SCROLLBAR ─── */
@@ -130,9 +157,17 @@ textarea {
   line-height: inherit;
 }
 
-/* ─── SMOOTH SCROLL POLYFILL FOR SAFARI ─── */
-@media (prefers-reduced-motion: no-preference) {
+/* ─── REDUCED MOTION ─── */
+@media (prefers-reduced-motion: reduce) {
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
+  }
+  .fade-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .animate-fade-in-up {
+    animation: none;
   }
 }

@@ -1,12 +1,15 @@
-export { ABOUT_CARDS, PRINCIPLES } from './about';
-export { PROJECTS, getProjectBySlug, getAllProjectSlugs } from './projects';
+export { ABOUT_CARDS } from './about';
+export type { Project } from './projects';
+export { getAllProjectSlugs, getProjectBySlug, PROJECTS } from './projects';
+export type { Quote } from './site';
 export {
+  BADGES,
+  CURRENT_OBSESSION,
   DISCORD_ID,
+  GITHUB_USERNAME,
+  PRINCIPLES,
+  QUOTES,
   SITE,
   SOCIALS,
-  BADGES,
-  QUOTES,
-  CURRENT_OBSESSION,
-  GITHUB_USERNAME,
 } from './site';
-export { STACK } from './stack';
+export { STACK, STACK_NOTES } from './stack';
