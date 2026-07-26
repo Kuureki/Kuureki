@@ -22,8 +22,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const source = getBlogSource(slug);
-  if (!source) 
-return { title: 'Post Not Found' };
+  if (!source)
+    return { title: 'Post Not Found' };
   return {
     title: `${source.frontmatter.title} — ${SITE.name}`,
     description: source.frontmatter.category,
@@ -126,8 +126,8 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
   }
 
   const source = getBlogSource(slug);
-  if (!source) 
-notFound();
+  if (!source)
+    notFound();
 
   const allPosts = getAllBlogMeta();
   const currentIndex = allPosts.findIndex(p => p.slug === slug);
@@ -174,19 +174,19 @@ notFound();
             {(prevPost || nextPost) && (
               <div className="mt-16 grid grid-cols-2 gap-8 border-t border-border pt-8 xs:grid-cols-1">
                 {prevPost
-? (
-                  <a href={`/blog/${prevPost.slug}`} className="group no-underline">
-                    <div className="mb-1 font-mono text-[0.68rem] uppercase tracking-[0.06em] text-text-dim">
+                  ? (
+                      <a href={`/blog/${prevPost.slug}`} className="group no-underline">
+                        <div className="mb-1 font-mono text-[0.68rem] uppercase tracking-[0.06em] text-text-dim">
                       Previous
-                    </div>
-                    <div className="text-[0.95rem] font-medium text-text transition-colors duration-150 group-hover:text-accent">
-                      {prevPost.title}
-                    </div>
-                  </a>
-                )
-: (
-                  <div />
-                )}
+                        </div>
+                        <div className="text-[0.95rem] font-medium text-text transition-colors duration-150 group-hover:text-accent">
+                          {prevPost.title}
+                        </div>
+                      </a>
+                    )
+                  : (
+                      <div />
+                    )}
                 {nextPost && (
                   <a
                     href={`/blog/${nextPost.slug}`}

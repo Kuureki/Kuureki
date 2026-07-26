@@ -70,28 +70,28 @@ function resolveDiscordImage(applicationId: string, asset: string): string {
 }
 
 function formatTimestamps(start?: number, end?: number): string | null {
-  if (!start) 
-return null;
+  if (!start)
+    return null;
   const now = Date.now();
   if (end) {
     const elapsed = now - start;
     const total = end - start;
     const remaining = total - elapsed;
-    if (remaining <= 0) 
-return null;
+    if (remaining <= 0)
+      return null;
     const mins = Math.floor(remaining / 60000);
     const hrs = Math.floor(mins / 60);
-    if (hrs > 0) 
-return `${hrs}h ${mins % 60}m left`;
+    if (hrs > 0)
+      return `${hrs}h ${mins % 60}m left`;
     return `${mins}m left`;
   }
   const elapsed = now - start;
   const mins = Math.floor(elapsed / 60000);
   const hrs = Math.floor(mins / 60);
-  if (hrs > 0) 
-return `${hrs}h ${mins % 60}m elapsed`;
-  if (mins > 0) 
-return `${mins}m elapsed`;
+  if (hrs > 0)
+    return `${hrs}h ${mins % 60}m elapsed`;
+  if (mins > 0)
+    return `${mins}m elapsed`;
   return 'Just started';
 }
 
@@ -209,9 +209,9 @@ function ClientActivity({
                       </span>
                       {discordUser?.id && (
                         <span className="font-mono text-[0.65rem] text-text-dim">
-                          ID: 
-{' '}
-{discordUser.id}
+                          ID:
+                          {' '}
+                          {discordUser.id}
                         </span>
                       )}
                     </div>

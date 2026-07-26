@@ -12,30 +12,23 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
-    slug: 'megami',
+    slug: 'seasonly',
     num: '01',
-    name: 'Megami',
+    name: 'Seasonly',
     status: 'Active',
     shortDesc:
-      'A Discord economy bot built around ownership, trading, and relationships. Cards have skins, print numbers, and a real secondary market.',
+      'A roguelike Discord bot with seasonal progression, tower combat, and a growing catalog of game content.',
     fullDesc:
-      'Megami is a Discord economy bot built around a full relationship economy. It goes beyond simple card collection — featuring ownership transfers, trading mechanics, marriage systems, and a community activity feed that surfaces notable events as they happen.\n\nCard visuals are generated through a custom Real-ESRGAN upscale pipeline, rendered via napi-rs for performance. Every card has a skin and print number, making each one unique and tradeable.\n\nThe economy is designed to feel alive — trading windows, succession chains, and seasonal events keep the meta evolving without requiring constant manual intervention.',
-    tags: [
-      'Discord.js',
-      'napi-rs canvas',
-      'PostgreSQL',
-      'GraphQL',
-      'Real-ESRGAN',
-      'Cloudflare Workers',
-    ],
+      'Seasonly is a roguelike Discord bot built around seasonal progression and tower combat. Players climb floors, face bosses, and collect gear across seasonal resets that keep the meta fresh.\n\nThe game content catalog is stored in Postgres and loaded at runtime, making events, enemies, items, and bosses easy to tune without redeploying. Combat runs in-memory through a dedicated tower system, with state persisted per session.\n\nAuth is handled via Discord OAuth. The bot is designed to be self-hostable, with migrations and sqlx query metadata committed alongside the Rust source.',
+    tags: ['Rust', 'Discord', 'sqlx', 'PostgreSQL', 'Tower Combat', 'Roguelike'],
     highlights: [
-      'Full relationship economy — ownership, trading, marriage, succession',
-      'Skins and print numbers make every card unique and collectible',
-      'Community activity feed surfaces notable events in real time',
-      'Real-ESRGAN upscale pipeline for premium card visuals',
-      'Fully self-hosted — your server, your rules',
+      'Roguelike tower combat with floor-by-floor progression',
+      'Seasonal resets that refresh the meta without wiping player identity',
+      'Game content catalog in Postgres, tunable without redeploys',
+      'Discord OAuth as the sole auth method',
+      'Self-hostable single-binary architecture',
     ],
-    url: 'https://megami.dev',
+    url: 'https://seasonly.space',
   },
   {
     slug: 'brume',
@@ -55,25 +48,6 @@ export const PROJECTS: Project[] = [
       'Self-hostable or use Brume Cloud — same SDK, same API either way',
     ],
     url: 'https://brume.io',
-  },
-  {
-    slug: 'seasonly',
-    num: '03',
-    name: 'Seasonly',
-    status: 'Active',
-    shortDesc:
-      'A fantasy league platform for seasonal entertainment. Draft predicted top picks, compete in leagues, score against real performance data.',
-    fullDesc:
-      'Seasonly is a fantasy league platform built around the natural cadence of seasonal entertainment — Winter, Spring, Summer, Fall. Each season, users draft their predicted top 10 shows before the season locks, then compete in head-to-head league matchups scored against real AniList data.\n\nThe scoring model rewards accurate predictions over obvious frontrunners. Pre-season baselines are derived from AniList popularity, trending, meanScore, and favourites at draft-lock time — combined with a rank-position multiplier. Dark horse picks that genuinely overperform score more than safe selections that simply deliver as expected.\n\nPrivate leagues with invite codes, AniList OAuth as the sole auth method, and a Noir Gold design system fill the gaps left by the only other option — MAL Fantasy Anime League, which has an active user base but no design investment and zero feature iteration.',
-    tags: ['Next.js', 'TypeScript', 'Tailwind v4', 'Drizzle ORM', 'PostgreSQL', 'AniList GraphQL'],
-    highlights: [
-      'Prediction-accuracy scoring model — rewards dark horse picks over safe selections',
-      'Private and public leagues with invite codes',
-      'AniList OAuth — no separate account needed',
-      'Real-time data pipeline, no stale metadata stored locally',
-      'Noir Gold design system: true black, ivory, and gold as sole accent',
-    ],
-    url: 'https://seasonly.space',
   },
 ];
 

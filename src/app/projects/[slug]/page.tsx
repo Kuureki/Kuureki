@@ -148,7 +148,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                   ? (
                       <a href={`/projects/${prevProject.slug}`} className="group no-underline">
                         <div className="text-text-dim mb-1 font-mono text-[0.68rem] tracking-[0.06em] uppercase">
-                      Previous
+                          Previous
                         </div>
                         <div className="text-text group-hover:text-accent text-[0.95rem] font-medium transition-colors duration-150">
                           {prevProject.name}

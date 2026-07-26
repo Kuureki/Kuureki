@@ -39,9 +39,8 @@ export default function ContactPage() {
   ];
 
   const openTo = [
-    'Collaborations on anime-themed products',
-    'Feedback on Megami or Seasonly',
-    'Discussions about gacha mechanics and player economies',
+    'Feedback on Seasonly or Brume',
+    'Roguelike and Discord bot design',
     'Fantasy sports and prediction market design',
     'Technical architecture and systems engineering',
   ];
@@ -63,7 +62,7 @@ export default function ContactPage() {
 
             <SectionHeader
               title="Let's talk"
-              subtitle="If you have an idea, want to collaborate, or just want to talk about anime culture, gacha economies, fantasy sports, or distributed systems — reach out."
+              subtitle="If you have an idea, want to collaborate, or just want to talk about roguelikes, Discord bots, fantasy sports, or distributed systems — reach out."
             />
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">

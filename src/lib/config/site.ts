@@ -9,7 +9,7 @@ export const SITE = {
   name: 'Kuureki',
   role: 'Student & indie builder',
   location: 'Kamiyama',
-  bio: 'I build products where **consumer entertainment culture** meets **systems engineering**. Right now that\'s **Megami**, a Discord economy bot; **Seasonly**, a fantasy league platform for seasonal entertainment; and **Brume**, a self-hostable realtime gateway in Rust.',
+  bio: 'I build products where **consumer entertainment culture** meets **systems engineering**. Right now that\'s **Seasonly**, a roguelike Discord bot, and **Brume**, a self-hostable realtime gateway in Rust.',
   longBio:
     'I care about products that are honest, well-crafted, and solve problems that actually exist. My work sits at the intersection of consumer entertainment culture and systems engineering.',
   email: 'hey@kuureki.com',
@@ -24,7 +24,7 @@ export const SOCIALS = {
 
 export const BADGES = [
   { label: 'Building actively', type: 'green' as const, animated: true },
-  { label: 'Megami · Seasonly · Brume', type: 'violet' as const, animated: false },
+  { label: 'Seasonly · Brume', type: 'violet' as const, animated: false },
   { label: SITE.location, type: 'default' as const, animated: false },
 ];
 

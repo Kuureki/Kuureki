@@ -25,8 +25,8 @@ export default function RotatingQuote({ quotes, interval = 8000 }: RotatingQuote
   useEffect(() => {
     intervalRef.current = setInterval(rotateQuote, interval);
     return () => {
-      if (intervalRef.current) 
-clearInterval(intervalRef.current);
+      if (intervalRef.current)
+        clearInterval(intervalRef.current);
     };
   }, [interval]);
 
@@ -66,8 +66,8 @@ clearInterval(intervalRef.current);
                 setCurrentIndex(idx);
                 setIsFading(false);
               }, 300);
-              if (intervalRef.current) 
-clearInterval(intervalRef.current);
+              if (intervalRef.current)
+                clearInterval(intervalRef.current);
               intervalRef.current = setInterval(rotateQuote, interval);
             }}
             className={`h-1.5 w-1.5 rounded-full transition-colors duration-150 ${

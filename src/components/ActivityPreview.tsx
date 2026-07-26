@@ -27,8 +27,8 @@ export default function ActivityPreview() {
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) 
-return;
+    if (!el)
+      return;
     el.classList.add('fade-in');
     const observer = new IntersectionObserver(
       (entries) => {
@@ -84,48 +84,48 @@ return;
                 Listening to Spotify
               </div>
               {isListeningToSpotify && spotify
-? (
-                <div className="flex items-start gap-4">
-                  {spotify.album_art_url && (
-                    <img
-                      src={spotify.album_art_url}
-                      alt={spotify.album ?? 'Album art'}
-                      className="h-14 w-14 flex-shrink-0 rounded-md"
-                    />
-                  )}
-                  <div className="min-w-0 flex-1">
-                    <div className="truncate text-[0.9rem] font-medium text-text">{spotify.song}</div>
-                    <div className="truncate text-[0.825rem] text-text-muted">{spotify.artist}</div>
-                    {spotify.timestamps?.start && spotify.timestamps?.end && (
-                      <div className="mt-2">
-                        <div className="h-1 flex-1 overflow-hidden rounded-full bg-bg-3">
-                          <div
-                            className="h-full rounded-full bg-green transition-all duration-1000"
-                            style={{
-                              width: `${Math.min(
-                                100,
-                                ((Date.now() - spotify.timestamps.start)
+                ? (
+                    <div className="flex items-start gap-4">
+                      {spotify.album_art_url && (
+                        <img
+                          src={spotify.album_art_url}
+                          alt={spotify.album ?? 'Album art'}
+                          className="h-14 w-14 flex-shrink-0 rounded-md"
+                        />
+                      )}
+                      <div className="min-w-0 flex-1">
+                        <div className="truncate text-[0.9rem] font-medium text-text">{spotify.song}</div>
+                        <div className="truncate text-[0.825rem] text-text-muted">{spotify.artist}</div>
+                        {spotify.timestamps?.start && spotify.timestamps?.end && (
+                          <div className="mt-2">
+                            <div className="h-1 flex-1 overflow-hidden rounded-full bg-bg-3">
+                              <div
+                                className="h-full rounded-full bg-green transition-all duration-1000"
+                                style={{
+                                  width: `${Math.min(
+                                    100,
+                                    ((Date.now() - spotify.timestamps.start)
                                   / (spotify.timestamps.end - spotify.timestamps.start))
                                 * 100,
-                              )}%`,
-                            }}
-                          />
-                        </div>
-                        <div className="mt-1 font-mono text-[0.65rem] text-text-dim">
-                          {formatTime(Date.now() - spotify.timestamps.start)}
-                          {' '}
+                                  )}%`,
+                                }}
+                              />
+                            </div>
+                            <div className="mt-1 font-mono text-[0.65rem] text-text-dim">
+                              {formatTime(Date.now() - spotify.timestamps.start)}
+                              {' '}
                           /
-                          {' '}
-                          {formatTime(spotify.timestamps.end - spotify.timestamps.start)}
-                        </div>
+                              {' '}
+                              {formatTime(spotify.timestamps.end - spotify.timestamps.start)}
+                            </div>
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </div>
-                </div>
-              )
-: (
-                <div className="text-[0.85rem] text-text-muted">Not playing anything right now.</div>
-              )}
+                    </div>
+                  )
+                : (
+                    <div className="text-[0.85rem] text-text-muted">Not playing anything right now.</div>
+                  )}
             </div>
           </div>
 
