@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
 import {
   CursorArrowIcon,
   DesktopIcon,
@@ -12,13 +14,13 @@ import {
 } from '@radix-ui/react-icons';
 
 import CurrentObsession from '@/components/CurrentObsession';
+import { LanyardProvider,useLanyard } from '@/components/LanyardProvider';
 import Footer from '@/components/Footer';
 import GitHubHeatmap from '@/components/GitHubHeatmap';
 import Nav from '@/components/Nav';
 import RotatingQuote from '@/components/RotatingQuote';
 import SectionHeader from '@/components/SectionHeader';
 import { ActivityCard, ActivityGrid } from '@/components/ActivityCard';
-import { useLanyard } from '@/components/LanyardProvider';
 import { CURRENT_OBSESSION, QUOTES } from '@/lib/config';
 import { getGitHubContributions } from '@/lib/github';
 import {
@@ -95,15 +97,19 @@ function formatTimestamps(start?: number, end?: number): string | null {
   return 'Just started';
 }
 
-export default async function ActivityPage() {
-  const contributions = await getGitHubContributions();
+export default function ActivityPage() {
+  const [contributions, setContributions] = useState<Awaited<ReturnType<typeof getGitHubContributions>>>([]);
+
+  useEffect(() => {
+    getGitHubContributions().then(setContributions);
+  }, []);
 
   return (
-    <>
+    <LanyardProvider>
       <Nav />
       <ClientActivity contributions={contributions} />
       <Footer />
-    </>
+    </LanyardProvider>
   );
 }
 

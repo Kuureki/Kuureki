@@ -19,14 +19,14 @@ export const PROJECTS: Project[] = [
     shortDesc:
       'A roguelike Discord bot with seasonal progression, tower combat, and a growing catalog of game content.',
     fullDesc:
-      'Seasonly is a roguelike Discord bot built around seasonal progression and tower combat. Players climb floors, face bosses, and collect gear across seasonal resets that keep the meta fresh.\n\nThe game content catalog is stored in Postgres and loaded at runtime, making events, enemies, items, and bosses easy to tune without redeploying. Combat runs in-memory through a dedicated tower system, with state persisted per session.\n\nAuth is handled via Discord OAuth. The bot is designed to be self-hostable, with migrations and sqlx query metadata committed alongside the Rust source.',
+      'Seasonly is a roguelike Discord bot built around seasonal progression and tower combat. Players climb floors, face bosses, and collect gear across seasonal resets that keep the meta fresh.\n\nThe game content catalog is stored in Postgres and loaded at runtime, making events, enemies, items, and bosses easy to tune without redeploying. Combat runs in-memory through a dedicated tower system, with state persisted per session.\n\nAuth is handled via Discord OAuth. It is served by me at seasonly.space — not open source and not self-hostable.',
     tags: ['Rust', 'Discord', 'sqlx', 'PostgreSQL', 'Tower Combat', 'Roguelike'],
     highlights: [
       'Roguelike tower combat with floor-by-floor progression',
       'Seasonal resets that refresh the meta without wiping player identity',
       'Game content catalog in Postgres, tunable without redeploys',
       'Discord OAuth as the sole auth method',
-      'Self-hostable single-binary architecture',
+      'Hosted and served by me at seasonly.space',
     ],
     url: 'https://seasonly.space',
   },
@@ -36,16 +36,16 @@ export const PROJECTS: Project[] = [
     name: 'Brume',
     status: 'Active',
     shortDesc:
-      'A self-hostable realtime WebSocket gateway. Typed pub/sub channels, presence, and multi-transport fallback — one Rust binary.',
+      'A realtime WebSocket gateway. Typed pub/sub channels, presence, and multi-transport fallback — served by me.',
     fullDesc:
-      'Brume is a realtime WebSocket gateway for teams that need pub/sub infrastructure without the SaaS lock-in. A single Rust binary connects to your existing Postgres database and exposes typed pub/sub channels, presence, and a REST API for server-side publishing.\n\nDefine your event schema once. Messages propagate as fully typed payloads across every client — TypeScript, Python, Go, whatever your stack speaks. The transport layer falls back gracefully: WebSocket → SSE → long-polling for environments where raw sockets are not available.\n\nPricing is flat-rate. No per-connection billing, no scaling surprises. Built for teams who want to own their realtime infrastructure and deploy it wherever they run their code.',
+      'Brume is a realtime WebSocket gateway for teams that need pub/sub infrastructure without the SaaS lock-in. A single Rust binary connects to your existing Postgres database and exposes typed pub/sub channels, presence, and a REST API for server-side publishing.\n\nDefine your event schema once. Messages propagate as fully typed payloads across every client — TypeScript, Python, Go, whatever your stack speaks. The transport layer falls back gracefully: WebSocket → SSE → long-polling for environments where raw sockets are not available.\n\nPricing is flat-rate. No per-connection billing, no scaling surprises. It is served by me at brume.io — not open source and not self-hostable.',
     tags: ['Rust', 'axum', 'tokio', 'WebSocket', 'PostgreSQL LISTEN/NOTIFY', 'TypeScript SDK'],
     highlights: [
       'Single binary — no separate relay process, no dependency on external services',
       'Fully typed event schemas propagate as typed payloads across your entire stack',
       'Presence tracking built in — roster, count, and custom state',
       'Multi-transport fallback chain: WebSocket → SSE → long-polling',
-      'Self-hostable or use Brume Cloud — same SDK, same API either way',
+      'Hosted and served by me at brume.io',
     ],
     url: 'https://brume.io',
   },

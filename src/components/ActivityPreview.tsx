@@ -105,7 +105,7 @@ export default function ActivityPreview() {
                                   width: `${Math.min(
                                     100,
                                     ((Date.now() - spotify.timestamps.start)
-                                  / (spotify.timestamps.end - spotify.timestamps.start))
+                                      / (spotify.timestamps.end - spotify.timestamps.start))
                                 * 100,
                                   )}%`,
                                 }}
@@ -114,7 +114,7 @@ export default function ActivityPreview() {
                             <div className="mt-1 font-mono text-[0.65rem] text-text-dim">
                               {formatTime(Date.now() - spotify.timestamps.start)}
                               {' '}
-                          /
+                              /
                               {' '}
                               {formatTime(spotify.timestamps.end - spotify.timestamps.start)}
                             </div>

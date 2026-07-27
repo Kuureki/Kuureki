@@ -177,7 +177,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
                   ? (
                       <a href={`/blog/${prevPost.slug}`} className="group no-underline">
                         <div className="mb-1 font-mono text-[0.68rem] uppercase tracking-[0.06em] text-text-dim">
-                      Previous
+                          Previous
                         </div>
                         <div className="text-[0.95rem] font-medium text-text transition-colors duration-150 group-hover:text-accent">
                           {prevPost.title}

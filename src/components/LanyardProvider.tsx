@@ -23,7 +23,7 @@ export function useLanyard() {
 }
 
 export function LanyardProvider({ children }: { children: React.ReactNode }) {
-  const { data, error: hookError } = useLanyardRest(DISCORD_ID);
+  const presenceData = useLanyardRest(DISCORD_ID);
   const [presence, setPresence] = useState<Types.Presence | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -42,27 +42,21 @@ export function LanyardProvider({ children }: { children: React.ReactNode }) {
   }, [presence]);
 
   useEffect(() => {
-    if (data) {
-      const presenceData = (data as any).data ?? data;
-      if (presenceData && typeof presenceData === 'object') {
-        setPresence(presenceData as Types.Presence);
+    if (presenceData && typeof presenceData === 'object') {
+      const actualPresence = (presenceData as any).data ?? presenceData;
+      if (actualPresence && typeof actualPresence === 'object') {
+        setPresence(actualPresence as Types.Presence);
         setIsLoading(false);
       }
     }
-  }, [data]);
-
-  useEffect(() => {
-    if (hookError) {
-      setIsLoading(false);
-    }
-  }, [hookError]);
+  }, [presenceData]);
 
   return (
     <LanyardContext.Provider
       value={{
         presence,
         isLoading,
-        error: hookError ? String(hookError) : null,
+        error: null,
       }}
     >
       {children}
