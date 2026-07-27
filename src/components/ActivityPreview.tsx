@@ -106,7 +106,7 @@ export default function ActivityPreview() {
                                     100,
                                     ((Date.now() - spotify.timestamps.start)
                                       / (spotify.timestamps.end - spotify.timestamps.start))
-                                * 100,
+                                    * 100,
                                   )}%`,
                                 }}
                               />

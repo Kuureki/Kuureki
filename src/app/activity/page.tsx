@@ -14,7 +14,7 @@ import {
 } from '@radix-ui/react-icons';
 
 import CurrentObsession from '@/components/CurrentObsession';
-import { LanyardProvider,useLanyard } from '@/components/LanyardProvider';
+import { LanyardProvider, useLanyard } from '@/components/LanyardProvider';
 import Footer from '@/components/Footer';
 import GitHubHeatmap from '@/components/GitHubHeatmap';
 import Nav from '@/components/Nav';

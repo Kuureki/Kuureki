@@ -38,16 +38,16 @@ export const PROJECTS: Project[] = [
     shortDesc:
       'A realtime WebSocket gateway. Typed pub/sub channels, presence, and multi-transport fallback — served by me.',
     fullDesc:
-      'Brume is a realtime WebSocket gateway for teams that need pub/sub infrastructure without the SaaS lock-in. A single Rust binary connects to your existing Postgres database and exposes typed pub/sub channels, presence, and a REST API for server-side publishing.\n\nDefine your event schema once. Messages propagate as fully typed payloads across every client — TypeScript, Python, Go, whatever your stack speaks. The transport layer falls back gracefully: WebSocket → SSE → long-polling for environments where raw sockets are not available.\n\nPricing is flat-rate. No per-connection billing, no scaling surprises. It is served by me at brume.io — not open source and not self-hostable.',
+      'Brume is a realtime WebSocket gateway for teams that need pub/sub infrastructure without the SaaS lock-in. A single Rust binary connects to your existing Postgres database and exposes typed pub/sub channels, presence, and a REST API for server-side publishing.\n\nDefine your event schema once. Messages propagate as fully typed payloads across every client — TypeScript, Python, Go, whatever your stack speaks. The transport layer falls back gracefully: WebSocket → SSE → long-polling for environments where raw sockets are not available.\n\nPricing is flat-rate. No per-connection billing, no scaling surprises. It is served by me at brume.run — not open source and not self-hostable.',
     tags: ['Rust', 'axum', 'tokio', 'WebSocket', 'PostgreSQL LISTEN/NOTIFY', 'TypeScript SDK'],
     highlights: [
       'Single binary — no separate relay process, no dependency on external services',
       'Fully typed event schemas propagate as typed payloads across your entire stack',
       'Presence tracking built in — roster, count, and custom state',
       'Multi-transport fallback chain: WebSocket → SSE → long-polling',
-      'Hosted and served by me at brume.io',
+      'Hosted and served by me at brume.run',
     ],
-    url: 'https://brume.io',
+    url: 'https://brume.run',
   },
 ];
 
