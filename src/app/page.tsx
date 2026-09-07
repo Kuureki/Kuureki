@@ -12,7 +12,7 @@ import { getAllBlogMeta } from '@/lib/blog';
 
 export const metadata: Metadata = {
   title: 'Kuureki',
-  description: 'Student & indie builder. Working on Megami, Seasonly, and Brume.',
+  description: 'Student & indie builder. Working on Seasonly and Brume.',
 };
 
 export default function Home() {

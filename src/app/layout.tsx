@@ -2,12 +2,14 @@ import type { Metadata } from 'next';
 
 import './globals.css';
 
+import CatLayer from '@/components/CatLayer';
+
 export const metadata: Metadata = {
   title: 'Kuureki',
-  description: 'Student & indie builder. Working on Megami, Seasonly, and Brume.',
+  description: 'Student & indie builder. Working on Seasonly and Brume.',
   openGraph: {
     title: 'Kuureki',
-    description: 'Student & indie builder. Working on Megami, Seasonly, and Brume.',
+    description: 'Student & indie builder. Working on Seasonly and Brume.',
     type: 'website',
   },
 };
@@ -33,6 +35,7 @@ export default function RootLayout({
         }}
       >
         {children}
+        <CatLayer />
       </body>
     </html>
   );

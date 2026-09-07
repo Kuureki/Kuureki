@@ -37,6 +37,6 @@ export const STACK_NOTES = [
   },
   {
     title: 'Own the runtime',
-    desc: 'Self-hostable infrastructure, flat-rate pricing, and no surprise scaling bills. That is the Brume philosophy, and it shapes how I choose every tool.',
+    desc: 'Flat-rate pricing and no surprise scaling bills. That is the Brume philosophy, and it shapes how I choose every tool.',
   },
 ];

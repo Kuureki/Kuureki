@@ -23,6 +23,12 @@
     "node": true
   },
   "ignorePatterns": [
+    "src/lib/oneko/**",
+    "src/components/oneko.tsx",
+    "src/components/laser-cursor.tsx",
+    "src/hooks/use-cat-animation.ts",
+    "src/hooks/use-oneko-props-sync.ts",
+    "src/hooks/use-sprite-appearance.ts",
     "**/node_modules/",
     "**/dist/",
     "**/.next/",

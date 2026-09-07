@@ -9,7 +9,7 @@ export const SITE = {
   name: 'Kuureki',
   role: 'Student & indie builder',
   location: 'Kamiyama',
-  bio: 'I build products where **consumer entertainment culture** meets **systems engineering**. Right now that\'s **Seasonly**, a roguelike Discord bot, and **Brume**, a realtime WebSocket gateway in Rust — both served by me.',
+  bio: 'I build products where **consumer entertainment culture** meets **systems engineering**. Right now that\'s **Seasonly**, an AI admin for Discord, and **Brume**, a rate-limiting API in Rust — both served by me.',
   longBio:
     'I care about products that are honest, well-crafted, and solve problems that actually exist. My work sits at the intersection of consumer entertainment culture and systems engineering.',
   email: 'hey@kuureki.com',

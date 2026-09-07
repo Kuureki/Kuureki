@@ -9,7 +9,7 @@ import { PROJECTS, SITE } from '@/lib/config';
 export const metadata: Metadata = {
   title: `Projects — ${SITE.name}`,
   description:
-    'Things I\'ve built. Seasonly, Brume, and other products focused on community, prediction, and systems.',
+    'Things I\'ve built. Seasonly, Brume, and other products focused on community, AI agents, and systems.',
 };
 
 export default function ProjectsPage() {

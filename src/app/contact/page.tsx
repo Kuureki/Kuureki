@@ -40,8 +40,8 @@ export default function ContactPage() {
 
   const openTo = [
     'Feedback on Seasonly or Brume',
-    'Roguelike and Discord bot design',
-    'Fantasy sports and prediction market design',
+    'AI agents and guarded autonomy',
+    'Rate limiting and API design',
     'Technical architecture and systems engineering',
   ];
 
@@ -62,7 +62,7 @@ export default function ContactPage() {
 
             <SectionHeader
               title="Let's talk"
-              subtitle="If you have an idea, want to collaborate, or just want to talk about roguelikes, Discord bots, fantasy sports, or distributed systems — reach out."
+              subtitle="If you have an idea, want to collaborate, or just want to talk about AI agents, rate limiting, or systems design — reach out."
             />
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
