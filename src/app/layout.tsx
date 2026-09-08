@@ -5,6 +5,7 @@ import './globals.css';
 import CatLayer from '@/components/CatLayer';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://kuureki.com'),
   title: 'Kuureki',
   description: 'Student & indie builder. Working on Seasonly and Brume.',
   openGraph: {
