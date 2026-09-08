@@ -10,12 +10,12 @@
   --color-text: #f1f1f3;
   --color-text-muted: #94949c;
   --color-text-dim: #5c5c66;
-  --color-accent: #a78bfa;
-  --color-accent-soft: rgba(167, 139, 250, 0.12);
-  --color-accent-dim: rgba(167, 139, 250, 0.05);
+  --color-accent: #e3d2a9;
+  --color-accent-soft: rgba(227, 210, 169, 0.12);
+  --color-accent-dim: rgba(227, 210, 169, 0.05);
   --color-green: #86efac;
   --color-green-soft: rgba(134, 239, 172, 0.1);
-  --color-amber: #fbbf24;
+  --color-amber: #d6b36a;
   --color-red: #f87171;
 
   --font-serif: 'Instrument Serif', Georgia, serif;
