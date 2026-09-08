@@ -12,6 +12,9 @@ export const metadata: Metadata = {
     description: 'Student & indie builder. Working on Seasonly and Brume.',
     type: 'website',
   },
+  twitter: {
+    card: 'summary_large_image',
+  },
 };
 
 export default function RootLayout({
