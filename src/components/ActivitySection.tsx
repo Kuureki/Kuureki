@@ -16,12 +16,11 @@ import {
 import { ActivityCard, ActivityGrid } from '@/components/ActivityCard';
 import AnilistCard from '@/components/AnilistCard';
 import GitHubHeatmap from '@/components/GitHubHeatmap';
-import RotatingQuote from '@/components/RotatingQuote';
+
 import SectionHeader from '@/components/SectionHeader';
 import { useLanyard } from '@/components/LanyardProvider';
 import { getAnilistFavourites, getAnilistProfile, getAnilistWatching } from '@/lib/anilist';
 import type { AnilistCharacter, AnilistFavourite, AnilistState } from '@/lib/anilist';
-import { QUOTES } from '@/lib/config';
 import { getGitHubContributions } from '@/lib/github';
 import type { GitHubContributionDay } from '@/lib/github';
 import {
@@ -321,7 +320,6 @@ export default function ActivitySection() {
                 watching={anilist.watching}
                 favourites={favourites}
               />
-              <RotatingQuote quotes={QUOTES} interval={8000} />
             </ActivityGrid>
           </div>
         </div>
