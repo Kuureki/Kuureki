@@ -11,9 +11,12 @@ import { SITE, SOCIALS } from '@/lib/config';
 const navLinks = [
   { label: 'About', href: '/about' },
   { label: 'Projects', href: '/projects' },
+  { label: 'Activity', href: '/activity' },
   { label: 'Now', href: '/now' },
   { label: 'Stack', href: '/stack' },
+  { label: 'Writing', href: '/blog' },
   { label: 'Uses', href: '/uses' },
+  { label: 'Studio', href: '/studio' },
   { label: 'Contact', href: '/contact' },
 ];
 
