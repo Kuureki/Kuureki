@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 import About from '@/components/About';
-import ActivityPreview from '@/components/ActivityPreview';
+import ActivitySection from '@/components/ActivitySection';
 import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
 import { LanyardProvider } from '@/components/LanyardProvider';
@@ -26,7 +26,7 @@ export default function Home() {
         <Hero />
         <About />
         <ProjectsPreview />
-        <ActivityPreview />
+        <ActivitySection />
         <WritingPreview posts={posts} />
       </main>
       <Footer />

@@ -35,17 +35,55 @@ export interface AnilistState {
   watching: AnilistAnime[];
 }
 
+export interface AnilistFavourite {
+  id: number;
+  title: string;
+  siteUrl: string;
+  coverImage: string | null;
+}
+
+export interface AnilistCharacter {
+  id: number;
+  name: string;
+  siteUrl: string;
+  imageUrl: string | null;
+}
+
 const PROFILE_QUERY = `
   query($name: String) {
     User(name: $name) {
       id
       name
-
       siteUrl
       avatar { large }
       statistics {
         anime { count episodesWatched minutesWatched meanScore }
         manga { count chaptersRead }
+      }
+    }
+  }
+`;
+
+const FAVOURITES_QUERY = `
+  query($name: String) {
+    User(name: $name) {
+      favourites {
+        anime {
+          nodes {
+            id
+            title { romaji english }
+            siteUrl
+            coverImage { large }
+          }
+        }
+        characters {
+          nodes {
+            id
+            name { full }
+            siteUrl
+            image { large }
+          }
+        }
       }
     }
   }
@@ -101,7 +139,6 @@ interface ProfileResponse {
   User: {
     id: number;
     name: string;
-
     siteUrl: string;
     avatar: { large: string };
     statistics: {
@@ -142,7 +179,6 @@ export async function getAnilistProfile(username: string = ANILIST_USERNAME): Pr
   return {
     userId: u.id,
     username: u.name,
-
     siteUrl: u.siteUrl,
     avatarUrl: u.avatar.large,
     animeCount: u.statistics.anime.count,
@@ -182,4 +218,54 @@ export async function getAnilistWatching(
       };
     }),
   );
+}
+
+interface FavouritesResponse {
+  User: {
+    favourites: {
+      anime: {
+        nodes: Array<{
+          id: number;
+          title: { romaji: string | null; english: string | null };
+          siteUrl: string;
+          coverImage: { large: string };
+        }>;
+      };
+      characters: {
+        nodes: Array<{
+          id: number;
+          name: { full: string };
+          siteUrl: string;
+          image: { large: string };
+        }>;
+      };
+    };
+  };
+}
+
+export interface AnilistFavourites {
+  anime: AnilistFavourite[];
+  characters: AnilistCharacter[];
+}
+
+export async function getAnilistFavourites(username: string = ANILIST_USERNAME): Promise<AnilistFavourites> {
+  const data = await anilistFetch<FavouritesResponse>(FAVOURITES_QUERY, { name: username });
+  if (!data?.User?.favourites)
+    return { anime: [], characters: [] };
+
+  const favs = data.User.favourites;
+  return {
+    anime: favs.anime.nodes.map(n => ({
+      id: n.id,
+      title: n.title.romaji ?? n.title.english ?? 'Unknown',
+      siteUrl: n.siteUrl,
+      coverImage: n.coverImage.large,
+    })),
+    characters: favs.characters.nodes.map(n => ({
+      id: n.id,
+      name: n.name.full,
+      siteUrl: n.siteUrl,
+      imageUrl: n.image.large,
+    })),
+  };
 }

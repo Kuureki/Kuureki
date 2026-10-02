@@ -19,7 +19,6 @@ const statusColors: Record<string, string> = {
 const links = [
   { label: 'About', href: '/about' },
   { label: 'Projects', href: '/projects' },
-  { label: 'Activity', href: '/activity' },
   { label: 'Now', href: '/now' },
   { label: 'Stack', href: '/stack' },
   { label: 'Writing', href: '/blog' },

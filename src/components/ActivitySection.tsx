@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import {
   CursorArrowIcon,
@@ -13,20 +13,17 @@ import {
   VideoIcon,
 } from '@radix-ui/react-icons';
 
+import { ActivityCard, ActivityGrid } from '@/components/ActivityCard';
 import AnilistCard from '@/components/AnilistCard';
-import { LanyardProvider, useLanyard } from '@/components/LanyardProvider';
-import Footer from '@/components/Footer';
 import GitHubHeatmap from '@/components/GitHubHeatmap';
-import Nav from '@/components/Nav';
 import RotatingQuote from '@/components/RotatingQuote';
 import SectionHeader from '@/components/SectionHeader';
-import { ActivityCard, ActivityGrid } from '@/components/ActivityCard';
-import { getAnilistProfile, getAnilistWatching } from '@/lib/anilist';
-import type { AnilistState } from '@/lib/anilist';
+import { useLanyard } from '@/components/LanyardProvider';
+import { getAnilistFavourites, getAnilistProfile, getAnilistWatching } from '@/lib/anilist';
+import type { AnilistCharacter, AnilistFavourite, AnilistState } from '@/lib/anilist';
 import { QUOTES } from '@/lib/config';
-import type { GitHubContributionDay } from '@/lib/github';
 import { getGitHubContributions } from '@/lib/github';
-
+import type { GitHubContributionDay } from '@/lib/github';
 import {
   getAvatarDecorationUrl,
   getAvatarUrl,
@@ -69,29 +66,21 @@ const activityTypeLabels: Record<number, string> = {
 };
 
 function resolveDiscordImage(applicationId: string, asset: string): string {
-  if (asset.startsWith('mp:external')) {
-    return `https://media.discordapp.net/${asset.replace('mp:', '')}`;
-  }
+  if (asset.startsWith('mp:'))
+    return `https://media.discordapp.net/${asset.slice(3)}`;
+  if (asset.startsWith('spotify:'))
+    return `https://i.scdn.co/image/${asset.slice(8)}`;
   return `https://cdn.discordapp.com/app-assets/${applicationId}/${asset}.png`;
 }
 
-function formatTimestamps(start?: number, end?: number): string | null {
+function formatTimestamps(start?: number, _end?: number): string | null {
   if (!start)
     return null;
-  const now = Date.now();
-  if (end) {
-    const elapsed = now - start;
-    const total = end - start;
-    const remaining = total - elapsed;
-    if (remaining <= 0)
-      return null;
-    const mins = Math.floor(remaining / 60000);
-    const hrs = Math.floor(mins / 60);
-    if (hrs > 0)
-      return `${hrs}h ${mins % 60}m left`;
-    return `${mins}m left`;
-  }
-  const elapsed = now - start;
+
+  const elapsed = Date.now() - start;
+  if (elapsed < 0)
+    return null;
+
   const mins = Math.floor(elapsed / 60000);
   const hrs = Math.floor(mins / 60);
   if (hrs > 0)
@@ -101,9 +90,35 @@ function formatTimestamps(start?: number, end?: number): string | null {
   return 'Just started';
 }
 
-export default function ActivityPage() {
+export default function ActivitySection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { presence, isLoading } = useLanyard();
   const [contributions, setContributions] = useState<GitHubContributionDay[]>([]);
   const [anilist, setAnilist] = useState<AnilistState>({ profile: null, watching: [] });
+  const [favourites, setFavourites] = useState<{
+    anime: AnilistFavourite[];
+    characters: AnilistCharacter[];
+  }>({ anime: [], characters: [] });
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el)
+      return;
+    el.classList.add('fade-in');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     getGitHubContributions().then(setContributions);
@@ -111,25 +126,8 @@ export default function ActivityPage() {
       const watching = profile ? await getAnilistWatching(profile.userId) : [];
       setAnilist({ profile, watching });
     });
+    getAnilistFavourites().then(setFavourites);
   }, []);
-
-  return (
-    <LanyardProvider>
-      <Nav />
-      <ClientActivity contributions={contributions} anilist={anilist} />
-      <Footer />
-    </LanyardProvider>
-  );
-}
-
-function ClientActivity({
-  contributions,
-  anilist,
-}: {
-  contributions: GitHubContributionDay[];
-  anilist: AnilistState;
-}) {
-  const { presence, isLoading } = useLanyard();
 
   const discordUser = presence?.discord_user;
   const status = presence?.discord_status ?? 'offline';
@@ -147,21 +145,12 @@ function ClientActivity({
   const customStatuses = activities.filter(a => a.name === 'Custom Status');
 
   return (
-    <main className="pt-6">
-      <section className="border-b border-border py-[5rem] pb-[4.5rem] md:py-[6rem] md:pb-[5rem]">
-        <div className="mx-auto max-w-[740px] px-6 xs:px-[1.1rem]">
-          <div className="mb-6">
-            <a
-              href="/"
-              className="font-mono text-[0.75rem] text-text-dim no-underline transition-colors duration-150 hover:text-text"
-            >
-              ← Back to home
-            </a>
-          </div>
-
+    <section id="activity" className="border-b border-border py-20">
+      <div className="mx-auto max-w-[740px] px-6 xs:px-[1.1rem]">
+        <div ref={ref} className="fade-in">
           <SectionHeader
             title="What I'm up to"
-            subtitle="Live Discord presence, GitHub commits, and whatever anime I am watching this season."
+            subtitle="Live Discord presence, GitHub commits, and the anime I'm watching. Everything here is pulled from somewhere real."
           />
 
           <div className="flex flex-col gap-6">
@@ -192,9 +181,9 @@ function ClientActivity({
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
-                      <h2 className="font-serif text-[1.3rem] text-text">
+                      <h3 className="font-serif text-[1.3rem] text-text">
                         {discordUser?.display_name ?? discordUser?.username ?? 'Unknown'}
-                      </h2>
+                      </h3>
                       {primaryGuildTag && (
                         <span
                           className="inline-flex items-center gap-1.5 rounded-sm border px-2 py-[0.1rem] font-mono text-[0.6rem]"
@@ -224,11 +213,10 @@ function ClientActivity({
                       >
                         {isLoading ? 'Connecting...' : statusLabels[status]}
                       </span>
-                      {discordUser?.id && (
+                      {discordUser?.username && (
                         <span className="font-mono text-[0.65rem] text-text-dim">
-                          ID:
-                          {' '}
-                          {discordUser.id}
+                          @
+                          {discordUser.username}
                         </span>
                       )}
                     </div>
@@ -313,7 +301,7 @@ function ClientActivity({
             })}
 
             {customStatuses.map(activity => (
-              <ActivityCard label="Custom Status" icon={<PersonIcon className="h-3.5 w-3.5" />}>
+              <ActivityCard key={activity.id} label="Custom Status" icon={<PersonIcon className="h-3.5 w-3.5" />}>
                 <div className="text-[0.95rem] text-text">{activity.state ?? 'No custom status'}</div>
               </ActivityCard>
             ))}
@@ -328,12 +316,16 @@ function ClientActivity({
               <div className="rounded-[10px] border border-border bg-bg-2 px-[1.6rem] py-[1.6rem]">
                 <GitHubHeatmap contributions={contributions} />
               </div>
-              <AnilistCard profile={anilist.profile} watching={anilist.watching} />
+              <AnilistCard
+                profile={anilist.profile}
+                watching={anilist.watching}
+                favourites={favourites}
+              />
               <RotatingQuote quotes={QUOTES} interval={8000} />
             </ActivityGrid>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
   );
 }

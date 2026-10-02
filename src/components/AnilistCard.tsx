@@ -1,8 +1,12 @@
-import type { AnilistAnime, AnilistProfile } from '@/lib/anilist';
+import type { AnilistAnime, AnilistCharacter, AnilistFavourite, AnilistProfile } from '@/lib/anilist';
 
 interface AnilistCardProps {
   profile: AnilistProfile | null;
   watching: AnilistAnime[];
+  favourites: {
+    anime: AnilistFavourite[];
+    characters: AnilistCharacter[];
+  };
 }
 
 function formatDays(minutes: number): string {
@@ -25,7 +29,7 @@ function formatNextAiring(timestamp: number | null): string | null {
   return `ep ${hours}h`;
 }
 
-export default function AnilistCard({ profile, watching }: AnilistCardProps) {
+export default function AnilistCard({ profile, watching, favourites }: AnilistCardProps) {
   if (!profile)
     return null;
 
@@ -119,6 +123,55 @@ export default function AnilistCard({ profile, watching }: AnilistCardProps) {
                     {anime.score ? ` · ${anime.score}/10` : ''}
                     {formatNextAiring(anime.nextAiringAt) ? ` · next ${formatNextAiring(anime.nextAiringAt)}` : ''}
                   </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {favourites.characters.length > 0 && (
+        <div className="mt-6 border-t border-border pt-4">
+          <div className="mb-3 font-mono text-[0.68rem] uppercase tracking-[0.1em] text-text-dim">
+            Favourite characters
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {favourites.characters.slice(0, 8).map(char => (
+              <a
+                key={char.id}
+                href={char.siteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-border px-2.5 py-1 text-[0.72rem] text-text-muted no-underline transition-colors duration-150 hover:border-border-hover hover:text-text"
+              >
+                {char.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {favourites.anime.length > 0 && (
+        <div className="mt-6 border-t border-border pt-4">
+          <div className="mb-3 font-mono text-[0.68rem] uppercase tracking-[0.1em] text-text-dim">
+            Favourite anime
+          </div>
+          <div className="grid grid-cols-3 gap-2">
+            {favourites.anime.slice(0, 6).map(anime => (
+              <a
+                key={anime.id}
+                href={anime.siteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group no-underline"
+              >
+                <img
+                  src={anime.coverImage ?? ''}
+                  alt={anime.title}
+                  className="aspect-[2/3] w-full rounded-sm border border-border object-cover transition-transform duration-150 group-hover:scale-[1.03]"
+                />
+                <div className="mt-1.5 line-clamp-2 text-[0.66rem] leading-tight text-text-dim transition-colors duration-150 group-hover:text-text">
+                  {anime.title}
                 </div>
               </a>
             ))}

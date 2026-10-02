@@ -21,7 +21,7 @@ const NOW = [
   },
   {
     label: 'Watching',
-    text: 'Whatever anime is in season. The list on my activity page is live from AniList, and the quotes there are a fair sample of my taste.',
+    text: 'Whatever anime is in season. The favourites on my home page are live from AniList, and the quotes there are a fair sample of my taste.',
   },
   {
     label: 'Reading',
