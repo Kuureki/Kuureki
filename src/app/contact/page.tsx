@@ -16,25 +16,25 @@ export default function ContactPage() {
       label: 'Email',
       handle: SITE.email,
       href: SOCIALS.email,
-      description: 'Best for detailed messages and collaborations',
+      description: 'Long messages, real conversations, things that need more than a few lines',
     },
     {
       label: 'X / Twitter',
       handle: '@Kuureki',
       href: SOCIALS.twitter,
-      description: 'Quick thoughts and updates',
+      description: 'Thoughts too short to be a blog post',
     },
     {
       label: 'GitHub',
       handle: 'github.com/Kuureki',
       href: SOCIALS.github,
-      description: 'Open source projects and code',
+      description: 'Code I have made public, and the occasional issue worth reading',
     },
     {
       label: 'Discord',
       handle: 'Kuureki',
       href: SOCIALS.discord,
-      description: 'Hang out, chat, or discuss projects',
+      description: 'Fastest way to reach me. I am probably online',
     },
   ];
 

@@ -35,6 +35,7 @@ export default function ProjectsPreview() {
         <div ref={ref} className="fade-in">
           <SectionHeader
             title="Things I've built"
+            subtitle="Two products I serve myself, and a handful of things I made because the tools I had annoyed me."
             action={{ label: 'All projects', href: '/projects' }}
           />
 

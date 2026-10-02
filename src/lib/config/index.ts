@@ -1,4 +1,5 @@
-export { ABOUT_CARDS } from './about';
+export { ABOUT_CARDS, PRINCIPLES } from './about';
+
 export type { Project } from './projects';
 export { getAllProjectSlugs, getProjectBySlug, PROJECTS } from './projects';
 export type { Quote } from './site';
@@ -7,7 +8,6 @@ export {
   CURRENT_OBSESSION,
   DISCORD_ID,
   GITHUB_USERNAME,
-  PRINCIPLES,
   QUOTES,
   SITE,
   SOCIALS,

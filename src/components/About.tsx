@@ -34,8 +34,8 @@ export default function About() {
         <div ref={ref} className="fade-in">
           <SectionHeader
             title="What I'm about"
-            subtitle="The thinking behind the projects and how I approach building."
-            action={{ label: 'Read more', href: '/about' }}
+            subtitle="How I approach building, and why I build the way I do."
+            action={{ label: 'Read the full version', href: '/about' }}
           />
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">

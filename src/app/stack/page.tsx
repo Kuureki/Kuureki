@@ -28,7 +28,7 @@ export default function StackPage() {
 
             <SectionHeader
               title="Tools I use"
-              subtitle="Technologies and tools I reach for when building products that need to ship fast and scale gracefully."
+              subtitle="What I reach for when something needs to ship and I have to pay the bill myself."
             />
 
             <div className="flex flex-col gap-6">

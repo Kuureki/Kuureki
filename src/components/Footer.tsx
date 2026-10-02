@@ -11,9 +11,9 @@ import { SITE, SOCIALS } from '@/lib/config';
 const navLinks = [
   { label: 'About', href: '/about' },
   { label: 'Projects', href: '/projects' },
-  { label: 'Activity', href: '/activity' },
+  { label: 'Now', href: '/now' },
   { label: 'Stack', href: '/stack' },
-  { label: 'Writing', href: '/blog' },
+  { label: 'Uses', href: '/uses' },
   { label: 'Contact', href: '/contact' },
 ];
 
@@ -87,7 +87,7 @@ export default function Footer() {
               {' '}
               © 2026
             </span>
-            <span className="font-mono text-[0.72rem] text-text-dim">Built with Next.js & Tailwind</span>
+            <span className="font-mono text-[0.72rem] text-text-dim">Hand-built. No CMS, no database, no tracking.</span>
           </div>
         </div>
       </div>

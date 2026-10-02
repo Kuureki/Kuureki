@@ -50,13 +50,17 @@ export default function AboutPage() {
               </h3>
               <div className="flex flex-col gap-4">
                 {PRINCIPLES.map((principle, i) => (
-                  <div key={i} className="flex items-start gap-4">
+                  <div key={principle.title} className="flex items-start gap-4">
                     <span className="mt-[0.1rem] flex-shrink-0 font-mono text-[0.75rem] text-accent">
                       {String(i + 1).padStart(2, '0')}
                     </span>
-                    <p className="text-[0.875rem] leading-[1.65] text-text-muted">{principle.desc}</p>
+                    <div>
+                      <p className="text-[0.875rem] font-medium leading-[1.4] text-text">{principle.title}</p>
+                      <p className="text-[0.875rem] leading-[1.65] text-text-muted">{principle.desc}</p>
+                    </div>
                   </div>
                 ))}
+
               </div>
             </div>
 

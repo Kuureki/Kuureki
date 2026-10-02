@@ -9,9 +9,9 @@ export const SITE = {
   name: 'Kuureki',
   role: 'Student & indie builder',
   location: 'Kamiyama',
-  bio: 'I build products where **consumer entertainment culture** meets **systems engineering**. Right now that\'s **Seasonly**, an AI admin for Discord, and **Brume**, a rate-limiting API in Rust — both served by me.',
+  bio: 'Student. Building **Seasonly**, an AI admin for Discord, and **Brume**, a rate-limiting API in Rust. I like products that feel hand-made, and infrastructure you can actually hold in your head.',
   longBio:
-    'I care about products that are honest, well-crafted, and solve problems that actually exist. My work sits at the intersection of consumer entertainment culture and systems engineering.',
+    'I build products for a living and I am picky about them. Right now that is Seasonly, an AI admin for Discord that never touches the API without your approval, and Brume, a rate-limiting API in Rust where one round trip answers the only question that matters.\n\nI like software that is honest about what it does, small enough to hold in your head, and built by people who care. I would rather write the boring version that ships than the clever version that does not. My portfolio runs on a static Next.js app with no database and no CMS, because life is short and I do not want to maintain infrastructure for a marketing page.\n\nOff the computer I read, play games, and keep up with whatever anime season is on. Some of it shows up in the quotes on my activity page.',
   email: 'hey@kuureki.com',
 };
 
@@ -63,22 +63,3 @@ export const CURRENT_OBSESSION = {
 };
 
 export const GITHUB_USERNAME = 'kuureki';
-
-export const PRINCIPLES = [
-  {
-    title: 'Understand the domain first',
-    desc: 'The quality gap between most software and what practitioners actually need is almost always a knowledge problem, not a technical one.',
-  },
-  {
-    title: 'Privacy by design',
-    desc: 'I think carefully about what data should and should not leave a user\'s machine — not as a compliance checkbox, but as an architectural constraint from the start.',
-  },
-  {
-    title: 'Lean infrastructure',
-    desc: 'Tight budgets force better decisions. I build with the smallest footprint that meets the requirement, and treat every unnecessary dependency as a liability.',
-  },
-  {
-    title: 'Ship, then refine',
-    desc: 'A working version in front of real users is worth more than a perfect architecture in a design doc. I move fast on the first version and let actual use reveal what matters.',
-  },
-];
