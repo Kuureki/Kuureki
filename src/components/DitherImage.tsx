@@ -24,6 +24,16 @@ interface DitherImageProps {
   primaryColor?: string;
   /** Duotone highlight colour. Defaults to muted grey, not the accent. */
   secondaryColor?: string;
+  /** Brightness adjustment, -1 to 1. Negative pulls the dither into the dark. */
+  brightness?: number;
+  /** Contrast adjustment, 0 to 2. Below 1 flattens the tonal range. */
+  contrast?: number;
+  /**
+   * Canvas opacity over the fallback image, 0 to 1. Below 1 lets the real
+   * artwork show through the dither, which softens the pattern without
+   * touching its scale.
+   */
+  intensity?: number;
 }
 
 /**
@@ -51,6 +61,14 @@ export default function DitherImage({
   eager = false,
   primaryColor = '#0c0c0e',
   secondaryColor = '#94949c',
+  // A small negative brightness pulls the dither toward the page background so
+  // the grid recedes instead of competing with the copy. A/B'd: -0.15 keeps
+  // faces legible, -0.3 swallows them. `intensity` is deliberately left at 1 —
+  // lowering it lets the full-colour artwork bleed through and destroys the
+  // monochrome, which is the whole point of the effect.
+  brightness = -0.15,
+  contrast = 1,
+  intensity = 1,
 }: DitherImageProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [shouldRender, setShouldRender] = useState(eager);
@@ -87,17 +105,24 @@ export default function DitherImage({
         className="absolute inset-0 h-full w-full object-cover"
       />
       {shouldRender && (
-        <DitherShader
-          src={src}
-          gridSize={gridSize}
-          ditherMode="bayer"
-          colorMode="duotone"
-          primaryColor={primaryColor}
-          secondaryColor={secondaryColor}
-          objectFit="cover"
-          backgroundColor={primaryColor}
+        <div
           className="absolute inset-0 h-full w-full"
-        />
+          style={{ opacity: intensity }}
+        >
+          <DitherShader
+            src={src}
+            gridSize={gridSize}
+            ditherMode="bayer"
+            colorMode="duotone"
+            primaryColor={primaryColor}
+            secondaryColor={secondaryColor}
+            brightness={brightness}
+            contrast={contrast}
+            objectFit="cover"
+            backgroundColor={primaryColor}
+            className="h-full w-full"
+          />
+        </div>
       )}
     </div>
   );
