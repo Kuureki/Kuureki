@@ -30,7 +30,7 @@ export default function ProjectsPage() {
 
             <SectionHeader
               title="Things I've built"
-              subtitle="Products focused on community, prediction, and infrastructure."
+              subtitle="Two of them are real products with paying users, the rest are ideas I could not leave alone."
             />
 
             <div className="flex flex-col gap-[1px]">

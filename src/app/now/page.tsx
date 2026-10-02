@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import Footer from '@/components/Footer';
 import Nav from '@/components/Nav';
 import SectionHeader from '@/components/SectionHeader';
-import { CURRENT_OBSESSION, SITE } from '@/lib/config';
+import { NOW_UPDATED, SITE } from '@/lib/config';
 
 export const metadata: Metadata = {
   title: `Now — ${SITE.name}`,
@@ -20,12 +20,12 @@ const NOW = [
     text: 'Brume is live and flat-rate. I am slowly replacing the SDK timeout fallback with something I trust more than a retry loop.',
   },
   {
-    label: 'Reading',
-    text: `${CURRENT_OBSESSION.title}, again. The chapter on deep modules keeps recontextualizing decisions I made months ago.`,
+    label: 'Watching',
+    text: 'Whatever anime is in season. The list on my activity page is live from AniList, and the quotes there are a fair sample of my taste.',
   },
   {
-    label: 'Watching',
-    text: 'Whatever anime is in season. The quotes on my activity page are a fair sample.',
+    label: 'Reading',
+    text: 'A Philosophy of Software Design, again. The chapter on deep modules keeps recontextualizing decisions I made months ago.',
   },
 ];
 
@@ -65,7 +65,9 @@ export default function NowPage() {
             </div>
 
             <p className="text-text-dim mt-10 font-mono text-[0.72rem]">
-              Last updated October 2026
+              Last updated
+              {' '}
+              {NOW_UPDATED}
             </p>
           </div>
         </section>

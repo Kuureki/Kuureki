@@ -33,7 +33,7 @@ export default function BlogIndexPage() {
 
             <SectionHeader
               title="Engineering blog"
-              subtitle="Deep dives into architecture, product decisions, and technical challenges."
+              subtitle="Long writes about the systems I build, and the decisions I would make differently."
             />
 
             <div className="flex flex-col">
@@ -45,7 +45,7 @@ export default function BlogIndexPage() {
             {posts.length === 0 && (
               <div className="border-border bg-bg-2 rounded-[10px] border p-6">
                 <div className="text-text-muted text-[0.875rem]">
-                  No posts yet. Check back soon.
+                  Nothing published yet. The drafts are longer than they should be.
                 </div>
               </div>
             )}

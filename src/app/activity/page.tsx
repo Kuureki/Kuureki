@@ -13,7 +13,7 @@ import {
   VideoIcon,
 } from '@radix-ui/react-icons';
 
-import CurrentObsession from '@/components/CurrentObsession';
+import AnilistCard from '@/components/AnilistCard';
 import { LanyardProvider, useLanyard } from '@/components/LanyardProvider';
 import Footer from '@/components/Footer';
 import GitHubHeatmap from '@/components/GitHubHeatmap';
@@ -21,8 +21,12 @@ import Nav from '@/components/Nav';
 import RotatingQuote from '@/components/RotatingQuote';
 import SectionHeader from '@/components/SectionHeader';
 import { ActivityCard, ActivityGrid } from '@/components/ActivityCard';
-import { CURRENT_OBSESSION, QUOTES } from '@/lib/config';
+import { getAnilistProfile, getAnilistWatching } from '@/lib/anilist';
+import type { AnilistState } from '@/lib/anilist';
+import { QUOTES } from '@/lib/config';
+import type { GitHubContributionDay } from '@/lib/github';
 import { getGitHubContributions } from '@/lib/github';
+
 import {
   getAvatarDecorationUrl,
   getAvatarUrl,
@@ -98,16 +102,21 @@ function formatTimestamps(start?: number, end?: number): string | null {
 }
 
 export default function ActivityPage() {
-  const [contributions, setContributions] = useState<Awaited<ReturnType<typeof getGitHubContributions>>>([]);
+  const [contributions, setContributions] = useState<GitHubContributionDay[]>([]);
+  const [anilist, setAnilist] = useState<AnilistState>({ profile: null, watching: [] });
 
   useEffect(() => {
     getGitHubContributions().then(setContributions);
+    getAnilistProfile().then(async (profile) => {
+      const watching = profile ? await getAnilistWatching(profile.userId) : [];
+      setAnilist({ profile, watching });
+    });
   }, []);
 
   return (
     <LanyardProvider>
       <Nav />
-      <ClientActivity contributions={contributions} />
+      <ClientActivity contributions={contributions} anilist={anilist} />
       <Footer />
     </LanyardProvider>
   );
@@ -115,8 +124,10 @@ export default function ActivityPage() {
 
 function ClientActivity({
   contributions,
+  anilist,
 }: {
-  contributions: Awaited<ReturnType<typeof getGitHubContributions>>;
+  contributions: GitHubContributionDay[];
+  anilist: AnilistState;
 }) {
   const { presence, isLoading } = useLanyard();
 
@@ -150,7 +161,7 @@ function ClientActivity({
 
           <SectionHeader
             title="What I'm up to"
-            subtitle="Real-time Discord presence, GitHub activity, and current obsessions."
+            subtitle="Live Discord presence, GitHub commits, and whatever anime I am watching this season."
           />
 
           <div className="flex flex-col gap-6">
@@ -317,7 +328,7 @@ function ClientActivity({
               <div className="rounded-[10px] border border-border bg-bg-2 px-[1.6rem] py-[1.6rem]">
                 <GitHubHeatmap contributions={contributions} />
               </div>
-              <CurrentObsession obsession={CURRENT_OBSESSION} />
+              <AnilistCard profile={anilist.profile} watching={anilist.watching} />
               <RotatingQuote quotes={QUOTES} interval={8000} />
             </ActivityGrid>
           </div>
