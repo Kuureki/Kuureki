@@ -13,6 +13,8 @@ export const SITE = {
   longBio:
     'I build products for a living and I am picky about them. Right now that is Seasonly, an AI admin for Discord that never touches the API without your approval, and Brume, a rate-limiting API in Rust where one round trip answers the only question that matters.\n\nI like software that is honest about what it does, small enough to hold in your head, and built by people who care. I would rather write the boring version that ships than the clever version that does not. My portfolio runs on a static Next.js app with no database and no CMS, because life is short and I do not want to maintain infrastructure for a marketing page.\n\nOff the computer I read, play games, and keep up with whatever anime season is on. Some of it shows up in the quotes on my activity page.',
   email: 'hey@kuureki.com',
+  footerBio:
+    'Student and indie builder. Currently shipping Seasonly and Brume, and reading too much Ousterhout.',
 };
 
 export const SOCIALS = {

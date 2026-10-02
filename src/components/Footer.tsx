@@ -38,7 +38,7 @@ export default function Footer() {
                 {SITE.name}
               </h4>
               <p className="max-w-[220px] text-[0.825rem] leading-[1.65] text-text-muted">
-                {SITE.longBio}
+                {SITE.footerBio}
               </p>
             </div>
 
