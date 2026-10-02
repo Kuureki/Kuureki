@@ -1,19 +1,16 @@
-import type { AnilistAnime, AnilistCharacter, AnilistFavourite, AnilistProfile } from '@/lib/anilist';
+import type { AnilistAnime, AnilistFavourites, AnilistProfile } from '@/lib/anilist';
 
 interface AnilistCardProps {
   profile: AnilistProfile | null;
   watching: AnilistAnime[];
-  favourites: {
-    anime: AnilistFavourite[];
-    characters: AnilistCharacter[];
-  };
+  favourites: AnilistFavourites;
 }
 
 function formatDays(minutes: number): string {
   const days = Math.round(minutes / 60 / 24);
   if (days < 1)
     return 'less than a day';
-  return `${days} days`;
+  return `${days.toLocaleString()} days`;
 }
 
 function formatNextAiring(timestamp: number | null): string | null {
@@ -39,7 +36,7 @@ export default function AnilistCard({ profile, watching, favourites }: AnilistCa
         href={profile.siteUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="mb-4 flex items-center justify-between font-mono text-[0.68rem] uppercase tracking-[0.1em] text-text-dim no-underline transition-colors duration-150 hover:text-text"
+        className="mb-5 flex items-center justify-between font-mono text-[0.68rem] uppercase tracking-[0.1em] text-text-dim no-underline transition-colors duration-150 hover:text-text"
       >
         <span>AniList</span>
         <span className="normal-case tracking-normal text-text-dim">
@@ -48,54 +45,64 @@ export default function AnilistCard({ profile, watching, favourites }: AnilistCa
         </span>
       </a>
 
-      <div className="flex items-center gap-4">
-        <img
-          src={profile.avatarUrl}
-          alt={`${profile.username} on AniList`}
-          className="h-14 w-14 flex-shrink-0 rounded-full border border-border"
-        />
-        <div className="flex-1">
-          <div className="text-[0.95rem] font-medium text-text">{profile.username}</div>
-          <div className="text-[0.78rem] text-text-dim">
-            {profile.animeCount}
-            {' '}
+      <p className="text-[0.95rem] text-text-muted">
+        I keep a public list of everything I have watched, and a much shorter list of the things that actually stuck with me.
+      </p>
+
+      <div className="mt-5 grid grid-cols-2 gap-x-4 gap-y-3 border-t border-border pt-5 sm:grid-cols-3">
+        <div>
+          <div className="font-serif text-[1.6rem] leading-none text-text tabular-nums">
+            {profile.animeCount.toLocaleString()}
+          </div>
+          <div className="mt-1.5 font-mono text-[0.62rem] uppercase tracking-[0.1em] text-text-dim">
             anime
-            {' '}
-            ·
-            {' '}
-            {profile.mangaCount}
-            {' '}
-            manga
-            {' '}
-            ·
-            {' '}
+          </div>
+        </div>
+        <div>
+          <div className="font-serif text-[1.6rem] leading-none text-text tabular-nums">
+            {profile.episodesWatched.toLocaleString()}
+          </div>
+          <div className="mt-1.5 font-mono text-[0.62rem] uppercase tracking-[0.1em] text-text-dim">
+            episodes
+          </div>
+        </div>
+        <div>
+          <div className="font-serif text-[1.6rem] leading-none text-text tabular-nums">
             {formatDays(profile.minutesWatched)}
-            {' '}
+          </div>
+          <div className="mt-1.5 font-mono text-[0.62rem] uppercase tracking-[0.1em] text-text-dim">
             watched
           </div>
-          <div className="mt-1 text-[0.72rem] text-text-dim">
-            Mean score
-            {' '}
+        </div>
+        <div>
+          <div className="font-serif text-[1.6rem] leading-none text-text tabular-nums">
             {profile.meanScore.toFixed(1)}
-            {' '}
-            ·
-            {' '}
-            {profile.episodesWatched.toLocaleString()}
-            {' '}
-            episodes
-            {' '}
-            ·
-            {' '}
+          </div>
+          <div className="mt-1.5 font-mono text-[0.62rem] uppercase tracking-[0.1em] text-text-dim">
+            mean score
+          </div>
+        </div>
+        <div>
+          <div className="font-serif text-[1.6rem] leading-none text-text tabular-nums">
+            {profile.mangaCount.toLocaleString()}
+          </div>
+          <div className="mt-1.5 font-mono text-[0.62rem] uppercase tracking-[0.1em] text-text-dim">
+            manga
+          </div>
+        </div>
+        <div>
+          <div className="font-serif text-[1.6rem] leading-none text-text tabular-nums">
             {profile.chaptersRead.toLocaleString()}
-            {' '}
+          </div>
+          <div className="mt-1.5 font-mono text-[0.62rem] uppercase tracking-[0.1em] text-text-dim">
             chapters
           </div>
         </div>
       </div>
 
       {watching.length > 0 && (
-        <div className="mt-6 border-t border-border pt-4">
-          <div className="mb-3 font-mono text-[0.68rem] uppercase tracking-[0.1em] text-text-dim">
+        <div className="mt-7 border-t border-border pt-5">
+          <div className="mb-3.5 font-mono text-[0.68rem] uppercase tracking-[0.1em] text-text-dim">
             Currently watching
           </div>
           <div className="flex flex-col gap-3">
@@ -131,12 +138,12 @@ export default function AnilistCard({ profile, watching, favourites }: AnilistCa
       )}
 
       {favourites.characters.length > 0 && (
-        <div className="mt-6 border-t border-border pt-4">
-          <div className="mb-3 font-mono text-[0.68rem] uppercase tracking-[0.1em] text-text-dim">
+        <div className="mt-7 border-t border-border pt-5">
+          <div className="mb-3.5 font-mono text-[0.68rem] uppercase tracking-[0.1em] text-text-dim">
             Favourite characters
           </div>
           <div className="flex flex-wrap gap-1.5">
-            {favourites.characters.slice(0, 8).map(char => (
+            {favourites.characters.map(char => (
               <a
                 key={char.id}
                 href={char.siteUrl}
@@ -152,12 +159,12 @@ export default function AnilistCard({ profile, watching, favourites }: AnilistCa
       )}
 
       {favourites.anime.length > 0 && (
-        <div className="mt-6 border-t border-border pt-4">
-          <div className="mb-3 font-mono text-[0.68rem] uppercase tracking-[0.1em] text-text-dim">
+        <div className="mt-7 border-t border-border pt-5">
+          <div className="mb-3.5 font-mono text-[0.68rem] uppercase tracking-[0.1em] text-text-dim">
             Favourite anime
           </div>
-          <div className="grid grid-cols-3 gap-2">
-            {favourites.anime.slice(0, 6).map(anime => (
+          <div className="grid grid-cols-3 gap-2.5 xs:grid-cols-4 sm:grid-cols-5">
+            {favourites.anime.map(anime => (
               <a
                 key={anime.id}
                 href={anime.siteUrl}

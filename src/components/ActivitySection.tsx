@@ -13,14 +13,14 @@ import {
   VideoIcon,
 } from '@radix-ui/react-icons';
 
-import { ActivityCard, ActivityGrid } from '@/components/ActivityCard';
+import { ActivityCard } from '@/components/ActivityCard';
 import AnilistCard from '@/components/AnilistCard';
 import GitHubHeatmap from '@/components/GitHubHeatmap';
 
 import SectionHeader from '@/components/SectionHeader';
 import { useLanyard } from '@/components/LanyardProvider';
 import { getAnilistFavourites, getAnilistProfile, getAnilistWatching } from '@/lib/anilist';
-import type { AnilistCharacter, AnilistFavourite, AnilistState } from '@/lib/anilist';
+import type { AnilistFavourites, AnilistState } from '@/lib/anilist';
 import { getGitHubContributions } from '@/lib/github';
 import type { GitHubContributionDay } from '@/lib/github';
 import {
@@ -94,10 +94,7 @@ export default function ActivitySection() {
   const { presence, isLoading } = useLanyard();
   const [contributions, setContributions] = useState<GitHubContributionDay[]>([]);
   const [anilist, setAnilist] = useState<AnilistState>({ profile: null, watching: [] });
-  const [favourites, setFavourites] = useState<{
-    anime: AnilistFavourite[];
-    characters: AnilistCharacter[];
-  }>({ anime: [], characters: [] });
+  const [favourites, setFavourites] = useState<AnilistFavourites>({ anime: [], characters: [] });
 
   useEffect(() => {
     const el = ref.current;
@@ -311,7 +308,7 @@ export default function ActivitySection() {
               </ActivityCard>
             )}
 
-            <ActivityGrid>
+            <div className="grid grid-cols-1 gap-6">
               <div className="rounded-[10px] border border-border bg-bg-2 px-[1.6rem] py-[1.6rem]">
                 <GitHubHeatmap contributions={contributions} />
               </div>
@@ -320,7 +317,7 @@ export default function ActivitySection() {
                 watching={anilist.watching}
                 favourites={favourites}
               />
-            </ActivityGrid>
+            </div>
           </div>
         </div>
       </div>

@@ -29,6 +29,8 @@
     "src/hooks/use-cat-animation.ts",
     "src/hooks/use-oneko-props-sync.ts",
     "src/hooks/use-sprite-appearance.ts",
+    "src/components/ui/dither-shader.tsx",
+    "src/components/dither-shader-demo.tsx",
     "**/node_modules/",
     "**/dist/",
     "**/.next/",

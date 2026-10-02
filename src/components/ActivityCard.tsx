@@ -1,7 +1,5 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-
 import { cn } from '@/lib/utils';
 
 interface ActivityCardProps {
@@ -23,36 +21,6 @@ export function ActivityCard({ label, icon, children, className }: ActivityCardP
         {icon && <span className="text-text-muted">{icon}</span>}
         {label}
       </div>
-      {children}
-    </div>
-  );
-}
-
-export function ActivityGrid({ children }: { children: React.ReactNode }) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el)
-      return;
-    el.classList.add('fade-in');
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            observer.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div ref={ref} className="fade-in grid grid-cols-1 gap-4 md:grid-cols-2">
       {children}
     </div>
   );
