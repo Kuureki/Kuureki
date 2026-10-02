@@ -1,5 +1,7 @@
 import type { AnilistAnime, AnilistFavourites, AnilistProfile } from '@/lib/anilist';
 
+import DitherImage from '@/components/DitherImage';
+
 interface AnilistCardProps {
   profile: AnilistProfile | null;
   watching: AnilistAnime[];
@@ -142,18 +144,31 @@ export default function AnilistCard({ profile, watching, favourites }: AnilistCa
           <div className="mb-3.5 font-mono text-[0.68rem] uppercase tracking-[0.1em] text-text-dim">
             Favourite characters
           </div>
-          <div className="flex flex-wrap gap-1.5">
-            {favourites.characters.map(char => (
-              <a
-                key={char.id}
-                href={char.siteUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full border border-border px-2.5 py-1 text-[0.72rem] text-text-muted no-underline transition-colors duration-150 hover:border-border-hover hover:text-text"
-              >
-                {char.name}
-              </a>
-            ))}
+          <div className="grid grid-cols-3 gap-2.5 xs:grid-cols-4 sm:grid-cols-5">
+            {favourites.characters.map((char) => {
+              if (!char.imageUrl)
+                return null;
+
+              return (
+                <a
+                  key={char.id}
+                  href={char.siteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={char.name}
+                  className="group no-underline"
+                >
+                  <DitherImage
+                    src={char.imageUrl}
+                    alt={char.name}
+                    className="aspect-square w-full rounded-sm border border-border"
+                  />
+                  <div className="mt-1.5 line-clamp-2 text-[0.66rem] leading-tight text-text-dim transition-colors duration-150 group-hover:text-text">
+                    {char.name}
+                  </div>
+                </a>
+              );
+            })}
           </div>
         </div>
       )}
@@ -172,10 +187,10 @@ export default function AnilistCard({ profile, watching, favourites }: AnilistCa
                 rel="noopener noreferrer"
                 className="group no-underline"
               >
-                <img
+                <DitherImage
                   src={anime.coverImage ?? ''}
                   alt={anime.title}
-                  className="aspect-[2/3] w-full rounded-sm border border-border object-cover transition-transform duration-150 group-hover:scale-[1.03]"
+                  className="aspect-[2/3] w-full rounded-sm border border-border"
                 />
                 <div className="mt-1.5 line-clamp-2 text-[0.66rem] leading-tight text-text-dim transition-colors duration-150 group-hover:text-text">
                   {anime.title}
