@@ -3,68 +3,12 @@ import type { Metadata } from 'next';
 import Footer from '@/components/Footer';
 import Nav from '@/components/Nav';
 import SectionHeader from '@/components/SectionHeader';
-import { SITE } from '@/lib/config';
+import { SITE, USES } from '@/lib/config';
 
 export const metadata: Metadata = {
   title: `Uses — ${SITE.name}`,
   description: 'The hardware, editor setup, and software I actually use day to day.',
 };
-
-const SETUP = [
-  {
-    title: 'Editor',
-    items: [
-      { name: 'Cursor', note: 'Fork of VS Code, so every extension and keybinding carries over.' },
-      { name: 'JetBrains Mono', note: 'Ligatures off. I read code more than I write it.' },
-      { name: 'One Dark Pro', note: 'I have tried everything else and I keep coming back.' },
-    ],
-  },
-  {
-    title: 'Terminal',
-    items: [
-      {
-        name: 'Ghostty',
-        note: 'Fast, native, and it gets out of the way. Config in one text file.',
-      },
-      {
-        name: 'Fish',
-        note: 'Autosuggestion is worth the non-POSIX syntax. I am not writing portable scripts in my shell.',
-      },
-      {
-        name: 'tmux',
-        note: 'One session per project, named after the repo. Never reopen ten tabs again.',
-      },
-    ],
-  },
-  {
-    title: 'Hardware',
-    items: [
-      {
-        name: 'Framework 13',
-        note: 'AMD. Repairable, and the keyboard is replaceable in five minutes.',
-      },
-      {
-        name: 'Keychron Q1',
-        note: 'Boba U4T switches. Thocky enough that I can hear myself think.',
-      },
-      {
-        name: 'Logitech MX Master 3S',
-        note: 'The horizontal scroll wheel is the whole reason I own it.',
-      },
-    ],
-  },
-  {
-    title: 'Software',
-    items: [
-      {
-        name: 'Obsidian',
-        note: 'Markdown in a folder I own. Syncs over my own storage, not a service I rent.',
-      },
-      { name: 'Zen Browser', note: 'Firefox-based, vertical tabs, and it does not phone home.' },
-      { name: 'Figma', note: 'For anything I need to see before I build it.' },
-    ],
-  },
-];
 
 export default function UsesPage() {
   return (
@@ -88,7 +32,7 @@ export default function UsesPage() {
             />
 
             <div className="flex flex-col gap-6">
-              {SETUP.map(group => (
+              {USES.map(group => (
                 <div
                   key={group.title}
                   className="border-border bg-bg-2 rounded-[10px] border px-[1.6rem] py-[1.6rem]"

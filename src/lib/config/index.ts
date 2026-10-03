@@ -11,5 +11,7 @@ export {
   SITE,
   SOCIALS,
 } from './site';
-
 export { STACK, STACK_NOTES } from './stack';
+export type { UsesGroup, UsesItem } from './uses';
+
+export { USES } from './uses';
