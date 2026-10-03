@@ -36,7 +36,7 @@ export const USES: UsesGroup[] = [
     items: [
       {
         name: 'Lenovo Legion 5',
-        note: 'Bought for thermals that survive a long compile. Moved off a Framework 13, so repairability went down and I feel that, but the machine stays cool and quiet where the old one throttled.',
+        note: 'Bought for thermals that survive a long compile. It stays cool and quiet under load instead of throttling, which is the whole reason I moved on from what I had before.',
       },
     ],
   },
