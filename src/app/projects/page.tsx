@@ -8,8 +8,7 @@ import { PROJECTS, SITE } from '@/lib/config';
 
 export const metadata: Metadata = {
   title: `Projects — ${SITE.name}`,
-  description:
-    'Things I\'ve built. Seasonly, Brume, and other products focused on community, AI agents, and systems.',
+  description: 'Things I have built and run myself.',
 };
 
 export default function ProjectsPage() {
@@ -30,7 +29,7 @@ export default function ProjectsPage() {
 
             <SectionHeader
               title="Things I've built"
-              subtitle="Two of them are real products with paying users, the rest are ideas I could not leave alone."
+              subtitle="Products I run myself, and the ideas I could not leave alone."
             />
 
             <div className="flex flex-col gap-[1px]">

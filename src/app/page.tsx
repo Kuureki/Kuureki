@@ -13,7 +13,7 @@ import { getAllBlogMeta } from '@/lib/blog';
 export const metadata: Metadata = {
   title: 'Kuureki',
   description:
-    'Student and indie builder. Building Seasonly, an AI admin for Discord, and Brume, a rate-limiting API in Rust.',
+    'Student and indie builder. Building Seasonly, a roguelike that runs inside Discord, and Brume, a rate-limiting API in Rust.',
 };
 
 export default function Home() {

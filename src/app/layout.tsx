@@ -8,11 +8,11 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://kuureki.com'),
   title: 'Kuureki',
   description:
-    'Student and indie builder. Building Seasonly, an AI admin for Discord, and Brume, a rate-limiting API in Rust.',
+    'Student and indie builder. Building Seasonly, a roguelike that runs inside Discord, and Brume, a rate-limiting API in Rust.',
   openGraph: {
     title: 'Kuureki',
     description:
-      'Student and indie builder. Building Seasonly, an AI admin for Discord, and Brume, a rate-limiting API in Rust.',
+      'Student and indie builder. Building Seasonly, a roguelike that runs inside Discord, and Brume, a rate-limiting API in Rust.',
     type: 'website',
   },
   twitter: {

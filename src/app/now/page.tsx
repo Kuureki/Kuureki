@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const NOW = [
   {
     label: 'Building',
-    text: 'Seasonly is the priority. Most of my time goes to the guarded write vocabulary, the part that keeps an LLM from touching the Discord API without a human saying yes.',
+    text: 'Seasonly is the priority. Most of my time goes to the run loop itself: seeded encounters, loot tables, and making sure a death never costs anyone their gear.',
   },
   {
     label: 'Shipping',

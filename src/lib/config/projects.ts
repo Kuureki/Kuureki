@@ -17,18 +17,16 @@ export const PROJECTS: Project[] = [
     name: 'Seasonly',
     status: 'Active',
     shortDesc:
-      'An AI admin for Discord. Talk to it in plain language — it proposes a plan, you approve, it runs. Every action audited and undoable.',
+      'A roguelike that runs entirely inside Discord. Five floors, a boss, loot, and a weekly leaderboard, every screen drawn as a single card.',
     fullDesc:
-      'Seasonly is an AI admin for Discord servers. You talk to it like a colleague: @mention it, say what you want in plain language, and it negotiates like a person — proposing a short plan that runs only after your yes.\n\nThe architecture keeps the model on a short leash. The LLM never touches the Discord API: its only outputs are a schema-validated plan from a closed write vocabulary and calls to guarded meta-tools. Nothing executes without owner approval — a deterministic classifier decides consent, never the model — and every action writes an audit row with undo data. Say undo and it is undone.\n\nCoverage grows by promotion. Owners\' unmet requests land in a wishlist and become new guarded actions by demand frequency, so the bot grows capabilities where servers actually want them. It is served by me at seasonly.space — not open source and not self-hostable.',
-    tags: ['TypeScript', 'Discord', 'Bun', 'PostgreSQL', 'Drizzle ORM', 'AI Agents'],
+      'Seasonly is a text-native roguelike for Discord. One command starts a run: you walk a path, fight, and either take the loot or leave it. Death forfeits the run\'s gold but keeps your gear and XP, and weekly scores reset without ever wiping what you own.\n\nThe engine is a separate package with no Discord imports and no clock of its own, so a run is fully deterministic and testable without a bot or a network. No art, no model in the loop, and no paid randomness.',
+    tags: ['TypeScript', 'Discord', 'Bun', 'PostgreSQL', 'Drizzle ORM'],
     highlights: [
-      'The LLM never touches the Discord API — schema-validated plans from a closed write vocabulary only',
-      'Nothing executes without owner approval; consent is decided by a deterministic classifier, not the model',
-      'Every action is audited and reversible — say undo and it is undone',
-      'Capabilities grow by promotion from a wishlist of real owner requests',
-      'Hosted and served by me at seasonly.space',
+      'Five floors, a boss, loot, and a weekly leaderboard, all as native Discord cards',
+      'Death costs the run its gold, never your gear or your XP',
+      'The game engine is a pure package: no Discord imports, no clock, seeded RNG',
+      'No art, no LLM in the loop, and no paid randomness',
     ],
-    url: 'https://seasonly.space',
   },
   {
     slug: 'brume',
